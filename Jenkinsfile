@@ -1,15 +1,10 @@
 pipeline {
   agent any
-  tools {nodejs "nodejs-16"}
-  environment {
-    scannerHome = tool 'SonarQubeScan';
-  }
   stages {
         stage('get_commit_msg') {
           agent any
            when {
              anyOf {
-                branch 'ver-8';
                 branch 'dev';
                 branch 'qa';
              }
@@ -24,42 +19,8 @@ pipeline {
               }
           }
         }
-        stage('Analysis & Deploy') {
-          parallel{
-            stage('SonarQube Analysis') {
-              steps {
-                withSonarQubeEnv(installationName: 'SonarQubePro') {
-                sh "${scannerHome}/bin/sonar-scanner"
-                }
-              }
-            }
 
-        stage('Ver-8 Build') {
-        agent any
-        when {
-                branch 'ver-8'
-            }
-        steps {
-          script {
-            sshagent(['72c3455a-de8d-4b39-9f02-771ddb2fdf00']) {
-            sh '''
-            ssh -tt -o StrictHostKeyChecking=no root@159.89.161.57 -p 3030 << EOF
-            cd /var/www/ekcms/; \
-            git pull origin ver-8; \
-            composer install; \
-            composer clear-cache; \
-            composer dump-autoload; \
-            php artisan cache:clear; \
-            php artisan config:clear; \
-            php artisan migrate --force; \
-            npm install; \
-            npm run dev; \
-            exit
-            EOF '''
-            }
-          }
-          }
-        }
+
         stage('Dev Build') {
         agent any
         when {
@@ -133,15 +94,15 @@ pipeline {
           }
         }
 
-  }
-        }
+  
+        
   }
 
 
   post{
       success{
         script {
-          if (env.BRANCH_NAME == 'ver-8' || env.BRANCH_NAME == 'dev' || env.BRANCH_NAME == 'qa' || env.BRANCH_NAME == 'uat' || env.BRANCH_NAME == 'live')
+          if (env.BRANCH_NAME == 'dev' || env.BRANCH_NAME == 'qa' || env.BRANCH_NAME == 'uat' || env.BRANCH_NAME == 'live')
             notifySuccessful()
         }
       }
