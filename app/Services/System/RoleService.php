@@ -3,68 +3,30 @@
 namespace App\Services\System;
 
 use App\Exceptions\NotDeletableException;
-use App\Model\Role;
+use App\Repositories\System\RoleRepository;
+use App\Repositories\System\UserRepository;
 use App\Services\Service;
-use App\User;
 
 class RoleService extends Service
 {
-    public function __construct(Role $role, User $user)
+    public function __construct(RoleRepository $roleRepository, UserRepository $userRepository)
     {
-        parent::__construct($role);
-        $this->user = $user;
-    }
-
-    public function mapPermission($permissions)
-    {
-        $mappedPermissions = [];
-        foreach ($permissions as $permission) {
-            $decoded = json_decode($permission);
-            if (is_array($decoded)) {
-                foreach ($decoded as $per) {
-                    array_push($mappedPermissions, $per);
-                }
-            } else {
-                array_push($mappedPermissions, $decoded);
-            }
-        }
-
-        return $mappedPermissions;
-    }
-
-    public function getAllData($data, $selectedColumns = [], $pagination = true)
-    {
-        $query = $this->query();
-
-        if (isset($data->keyword) && $data->keyword !== null) {
-            $query->where('name', 'LIKE', '%'.$data->keyword.'%');
-        }
-        if (count($selectedColumns) > 0) {
-            $query->select($selectedColumns);
-        }
-        if ($pagination) {
-            return $query->orderBy('id', 'DESC')->with('users')->paginate(PAGINATE);
-        }
-
-        return $query->orderBy('id', 'DESC')->with('users')->get();
-    }
-
-    public function indexPageData($request)
-    {
-        return ['items' => $this->getAllData($request)];
+        parent::__construct($roleRepository);
+        $this->userRepository = $userRepository;
+        $this->roleRepository = $roleRepository;
     }
 
     public function store($request)
     {
         $data = $request->except('_token');
-        $data['permissions'] = $this->mapPermission($request->permissions);
+        $data['permissions'] = $this->roleRepository->mapPermission($request->permissions);
 
-        return $this->model->create($data);
+        return $this->roleRepository->create($data);
     }
 
     public function editPageData($request, $id)
     {
-        $role = $this->itemByIdentifier($id);
+        $role = $this->roleRepository->itemByIdentifier($id);
 
         return [
             'item' => $role,
@@ -73,12 +35,12 @@ class RoleService extends Service
 
     public function update($request, $id)
     {
-        $role = $this->itemByIdentifier($id);
         $data = $request->except('_token');
-        $data['permissions'] = $this->mapPermission($data['permissions']);
-        $checkRoleUsers = $this->user->where('role_id', $id)->get();
-        $role->update($data);
-        $role = $this->itemByIdentifier($id);
+        $data['permissions'] = $this->roleRepository->mapPermission($data['permissions']);
+        $checkRoleUsers = $this->userRepository->getByUserRole($id);
+
+        $this->roleRepository->update($data, $id);
+        $role = $this->roleRepository->itemByIdentifier($id);
         if ($checkRoleUsers != null || isset($checkRoleUsers)) {
             foreach ($checkRoleUsers as $user) {
                 if (getRoleCache($user) != null) {
@@ -93,11 +55,11 @@ class RoleService extends Service
 
     public function delete($request, $id)
     {
-        $role = $this->itemByIdentifier($id);
+        $role = $this->roleRepository->itemByIdentifier($id);
         if ($role->users->count() > 0) {
             throw new NotDeletableException('The role is associated to the users.');
         }
 
-        return $role->delete();
+        return $this->roleRepository->delete($request, $id);
     }
 }

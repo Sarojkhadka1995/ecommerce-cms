@@ -1,6 +1,5 @@
 @extends('system.layouts.form')
 @section('inputs')
-
 <x-system.form.form-group :input="['name'=> 'name', 'label'=>'Role name', 'required' => 'true', 'default'=> $item->name ?? old('name'), 'error' => $errors->first('name')]" />
 <x-system.form.form-group :input="['name'=> 'permissions', 'label'=>'Permissions', 'required' => 'true']">
   <x-slot name="inputs">

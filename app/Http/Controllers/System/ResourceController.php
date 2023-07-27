@@ -11,7 +11,7 @@ class ResourceController extends Controller
 
     public function __construct($service)
     {
-        $this->service = $service;     
+        $this->service = $service;
     }
 
     public function storeValidationRequest()
@@ -91,7 +91,7 @@ class ResourceController extends Controller
         $title = '';
         $data = explode('-', $this->moduleName());
         foreach ($data as $d) {
-            $title .= $d.' ';
+            $title .= $d . ' ';
         }
 
         return ucwords($title);
@@ -106,7 +106,7 @@ class ResourceController extends Controller
         $title = '';
         $data = explode('-', $this->subModuleName());
         foreach ($data as $d) {
-            $title .= $d.' ';
+            $title .= $d . ' ';
         }
 
         return ucwords($title);
@@ -116,9 +116,9 @@ class ResourceController extends Controller
     public static function breadcrumbBase()
     {
         return [
-      'title' => 'Dashboard',
-      'link' =>  '/'.PREFIX.'/'.translate('home'),
-    ];
+            'title' => 'Dashboard',
+            'link' => '/' . PREFIX . '/' . translate('home'),
+        ];
     }
 
     /**
@@ -128,19 +128,19 @@ class ResourceController extends Controller
     public function breadcrumbForIndex($activate = true)
     {
         $breadcrumbs = [
-      $this->breadcrumbBase(),
-      [
-        'title' => $this->moduleToTitle(),
-        'link' => $this->indexUrl(),
-        'active' => $this->isSubModule() ? false : $activate,
-      ],
-    ];
+            $this->breadcrumbBase(),
+            [
+                'title' => $this->moduleToTitle(),
+                'link' => $this->indexUrl(),
+                'active' => $this->isSubModule() ? false : $activate,
+            ],
+        ];
         if ($this->isSubModule()) {
             $breadcrumbs = array_merge($breadcrumbs, [[
-        'title' => $this->subModuleToTitle(),
-        'link' => $this->subModuleIndexUrl(),
-        'active' => $activate,
-      ]]);
+                'title' => $this->subModuleToTitle(),
+                'link' => $this->subModuleIndexUrl(),
+                'active' => $activate,
+            ]]);
         }
 
         return $breadcrumbs;
@@ -154,11 +154,11 @@ class ResourceController extends Controller
     public function breadcrumbForForm($title)
     {
         return array_merge($this->breadcrumbForIndex(false), [
-      [
-        'title' => $title,
-        'active' =>  true,
-      ],
-    ]);
+            [
+                'title' => $title,
+                'active' => true,
+            ],
+        ]);
     }
 
     public function getUrl()
@@ -177,7 +177,7 @@ class ResourceController extends Controller
      */
     public function indexUrl()
     {
-        return '/'.PREFIX.'/'.$this->moduleName();
+        return '/' . PREFIX . '/' . $this->moduleName();
     }
 
     /**
@@ -186,7 +186,7 @@ class ResourceController extends Controller
      */
     public function subModuleIndexUrl()
     {
-        return $this->indexUrl().'/'.$this->moduleId.'/'.$this->subModuleName();
+        return $this->indexUrl() . '/' . $this->moduleId . '/' . $this->subModuleName();
     }
 
     public function renderView($viewFile, $data)
@@ -194,7 +194,7 @@ class ResourceController extends Controller
         $data['indexUrl'] = $this->getUrl();
         $data['title'] = $this->getModuleName();
 
-        return view($this->viewFolder().'.'.$viewFile, $data)->render();
+        return view($this->viewFolder() . '.' . $viewFile, $data)->render();
     }
 
     /**
@@ -231,7 +231,7 @@ class ResourceController extends Controller
      */
     public function store()
     {
-        if (! empty($this->storeValidationRequest())) {
+        if (!empty($this->storeValidationRequest())) {
             $request = $this->storeValidationRequest();
         } else {
             $request = $this->defaultRequest();
@@ -264,9 +264,9 @@ class ResourceController extends Controller
      */
     public function update($id)
     {
-        if (! empty($this->updateValidationRequest())) {
+        if (!empty($this->updateValidationRequest())) {
             $request = $this->updateValidationRequest();
-        } elseif (! empty($this->storeValidationRequest())) {
+        } elseif (!empty($this->storeValidationRequest())) {
             $request = $this->storeValidationRequest();
         } else {
             $request = $this->defaultRequest();

@@ -47,14 +47,14 @@ class ForgotPasswordController extends Controller
         try {
             if (
                 method_exists($this, 'hasTooManyAttempts') &&
-                $this->hasTooManyAttempts($request, 4) // maximum attempts can be set by passing parameter $attempts=
+                $this->hasTooManyAttempts($request, Config::get('constants.DEFAULT_FORGOT_PASSWORD_LIMIT')) // maximum attempts can be set by passing parameter $attempts=
             ) {
                 $this->customFireLockoutEvent($request);
 
                 return $this->customLockoutResponse($request);
             }
 
-            $this->incrementAttempts($request, 5); // maximum decay minute can be set by passing parameter $minutes=
+            $this->incrementAttempts($request, Config::get('constants.DEFAULT_FORGOT_PASSWORD_EXPIRATION')); // maximum decay minute can be set by passing parameter $minutes=
 
             $this->sendPasswordResetLink($request->email);
 
@@ -70,7 +70,7 @@ class ForgotPasswordController extends Controller
         $user = $this->user->findByEmail($email);
         $token = $this->user->generateToken(24);
         $encryptedToken = encrypt($token);
-        $defaultLinkExpiration = Config::get('constants.DEFAULT_LINK_EXPIRATION');
+        $defaultLinkExpiration = Config::get('constants.DEFAULT_LINK_EXPIRATION'); //default link expiration in minutes
 
         $user->update([
             'token' => $token,

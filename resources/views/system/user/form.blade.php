@@ -1,18 +1,18 @@
 @extends('system.layouts.form')
 @section('inputs')
-<x-system.form.form-group :input="[ 'name' => 'name', 'label'=> 'Name', 'required' => true, 'default' => $item->name ?? old('name'), 'error' => $errors->first('name')]" />
-<x-system.form.form-group :input="[ 'name' => 'username', 'label'=> 'Username', 'required' => true, 'default' => $item->username ?? old('username'), 'error' => $errors->first('username')]" />
-<x-system.form.form-group :input="[ 'name' => 'email', 'label'=> 'Email', 'required' => true, 'default' => $item->email ?? old('email'), 'error' => $errors->first('email')]" />
+<x-system.form.form-group :input="[ 'name' => 'name', 'label'=> 'Name', 'required' => true, 'default' => old('name') ?? $item->name ?? '', 'error' => $errors->first('name')]" />
+<x-system.form.form-group :input="[ 'name' => 'username', 'label'=> 'Username', 'required' => true, 'default' => old('username') ?? $item->username ?? '', 'error' => $errors->first('username')]" />
+<x-system.form.form-group :input="[ 'name' => 'email', 'label'=> 'Email', 'required' => true, 'default' => old('email') ?? $item->email ?? '', 'error' => $errors->first('email')]" />
 <x-system.form.form-group :input="[ 'name' => 'role_id', 'label'=> 'Role', 'required' => true]">
   <x-slot name="inputs">
-    <x-system.form.input-select :input="[ 'name' => 'role_id', 'label'=> 'Role', 'required' => true, 'default' => $item->role_id ?? old('role_id') , 'options' => $roles, 'placeholder' => 'Select role', 'error' => $errors->first('role_id')]" />
+    <x-system.form.input-select :input="[ 'name' => 'role_id', 'label'=> 'Role', 'required' => true, 'default' => old('role_id') ?? $item->role_id ?? '' , 'options' => $roles, 'placeholder' => 'Select role', 'error' => $errors->first('role_id')]" />
   </x-slot>
 </x-system.form.form-group>
 
 <x-system.form.form-group :input="[ 'name' => 'is_2fa_enabled', 'label'=> 'Two Factor Authentication', 'required' => true]">
   <x-slot name="inputs">
     <x-system.form.input-radio :input="[ 'name' => 'is_2fa_enabled', 'label'=> 'Two Factor Authentication', 'required' => true,
-    'default' => old('is_2fa_enabled') ?? 0, 'options' => [[ 'value' => '1', 'label' => 'Active'], ['value' => '0', 'label'=>'In-Active']]]" />
+    'default' => old('is_2fa_enabled') ?? $item->is_2fa_enabled ?? 0, 'options' => [[ 'value' => '1', 'label' => 'Active'], ['value' => '0', 'label'=>'In-Active']]]" />
   </x-slot>
 </x-system.form.form-group>
 

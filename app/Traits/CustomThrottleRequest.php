@@ -108,7 +108,7 @@ trait CustomThrottleRequest
      */
     public function customMaxAttempts($attempt)
     {
-        return $attempt;
+        return $attempt - 1;
     }
 
     /**

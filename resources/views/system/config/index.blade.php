@@ -5,7 +5,7 @@
         <div class="card ">
 <br>
 <div class="content-display clearfix">
-    <div class="panel panel-default">
+    <div class="panel panel-default mt-2">
         <div class="panel-heading no-bdr">
             <x-system.search-form :action="url($indexUrl)">
                 <x-slot name="inputs">

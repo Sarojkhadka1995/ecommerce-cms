@@ -3,36 +3,20 @@
 namespace App\Services\System;
 
 use App\Model\Language;
-use App\Model\Locale;
+use App\Repositories\System\TranslationRepository;
 use App\Services\Service;
 
 class TranslationService extends Service
 {
-    public function __construct(Locale $languageLine, LanguageService $languageService)
+    public function __construct(TranslationRepository $translationRepository, LanguageService $languageService)
     {
-        parent::__construct($languageLine);
+        $this->translationRepository = $translationRepository;
         $this->languageService = $languageService;
     }
 
     public function getAllData($data, $selectedColumns = [], $pagination = true)
     {
-        $query = $this->query();
-        if (isset($data->keyword) && $data->keyword !== null) {
-            $query->where('key', 'LIKE', '%'.$data->keyword.'%');
-        }
-        if (isset($data->group) && $data->group !== null) {
-            $query->where('group', $data->group);
-        } else {
-            $query->where('group', 'backend');
-        }
-        if (count($selectedColumns) > 0) {
-            $query->select($selectedColumns);
-        }
-        if ($pagination) {
-            return $query->orderBy('id', 'DESC')->paginate(PAGINATE);
-        }
-
-        return $query->orderBy('id', 'DESC')->get();
+        return $this->translationRepository->getAllData($data);
     }
 
     public function indexPageData($request)
@@ -48,21 +32,8 @@ class TranslationService extends Service
 
     public function store($request)
     {
-        $key = strtolower(trim(str_replace('.', '', $request->key)));
-        if ($key !== '') {
-            $check = $this->model::where('key', $key)->where('group', $request->group)->first();
-            if (! isset($check)) {
-                return $this->model::create([
-                    'group' => $request->group,
-                    'key' => $key,
-                    'text' => $this->inserttext($key, $request->group),
-                ]);
-            }
-        } else {
-            return true;
-        }
+        return $this->translationRepository->create($request);
     }
-
     public function inserttext($content, $group)
     {
         $languages = Language::where('group', $group)->orderBy('group', 'ASC')->pluck('language_code');
@@ -74,26 +45,23 @@ class TranslationService extends Service
         return $text;
     }
 
+
     public function update($request, $id)
     {
-        $data = $this->itemByIdentifier($id);
+        $data = $this->translationRepository->itemByIdentifier($id);
         $currentTextArray = $data->text;
         if (in_array($request->locale, array_keys($currentTextArray))) {
             unset($currentTextArray[$request->locale]);
             $updatedTextArray = array_merge($currentTextArray, [$request->locale => $request->text]);
-            $data->update(['group' => $request->group, 'text' => $updatedTextArray]);
         } else {
             $updatedTextArray = array_merge($currentTextArray, [$request->locale => $request->text]);
-            $data->update(['group' => $request->group, 'text' => $updatedTextArray]);
         }
-
+        $this->translationRepository->update($request, $updatedTextArray);
         return $data;
     }
 
     public function delete($request, $id)
     {
-        $item = $this->itemByIdentifier($id);
-
-        return $item->delete();
+        return $this->translationRepository->delete($request, $id);
     }
 }

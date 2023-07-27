@@ -27,7 +27,7 @@ class VerificationController extends Controller
         try {
             if (
                 method_exists($this, 'hasTooManyAttempts') &&
-                $this->hasTooManyAttempts($request, 4) // maximum attempts can be set by passing parameter $attempts=
+                $this->hasTooManyAttempts($request, Config::get('constants.DEFAULT_TWO_FA_THROTTLE_LIMIT')) // maximum attempts can be set by passing parameter $attempts=
             ) {
                 $this->customFireLockoutEvent($request);
 
@@ -36,7 +36,7 @@ class VerificationController extends Controller
 
             $user = authUser();
 
-            $this->incrementAttempts($request, Config::get('constants.DEFAULT_TWO_FA_THROTTLE_LIMIT')); // maximum decay minute can be set by passing parameter $minutes=
+            $this->incrementAttempts($request, Config::get('constants.DEFAULT_TWO_FA_THROTTLE_EXPIRATION')); // maximum decay minute can be set by passing parameter $minutes=
 
             $checkExpiryDate = now()->format('Y-m-d H:i:s') > $user->two_fa_expiry_time;
 
@@ -49,7 +49,7 @@ class VerificationController extends Controller
 
             session()->put('verification_code', $verificationCode);
             try {
-                $twoFactorExpireTime = Carbon::now()->addMinutes(Config::get('constants.DEFAULT_TWO_FA_EXPIRATION'))
+                $twoFactorExpireTime = Carbon::now()->addMinutes(Config::get('constants.DEFAULT_TWO_FA_REQUEST_EXPIRATION')) // in minutes
                     ->format('Y-m-d H:i:s');
 
                 $user->update([
@@ -72,14 +72,14 @@ class VerificationController extends Controller
         try {
             if (
                 method_exists($this, 'hasTooManyAttempts') &&
-                $this->hasTooManyAttempts($request, 4) // maximum attempts can be set by passing parameter $attempts=
+                $this->hasTooManyAttempts($request, Config::get('constants.DEFAULT_TWO_FA_THROTTLE_LIMIT')) // maximum attempts can be set by passing parameter $attempts=
             ) {
                 $this->customFireLockoutEvent($request);
 
                 return $this->customLockoutResponse($request);
             }
 
-            $this->incrementAttempts($request, Config::get('constants.DEFAULT_TWO_FA_THROTTLE_LIMIT')); // maximum decay minute can be set by passing parameter $minutes=
+            $this->incrementAttempts($request, Config::get('constants.DEFAULT_TWO_FA_THROTTLE_EXPIRATION')); // maximum decay minute can be set by passing parameter $minutes=
 
             $code = $request->code;
             if (session()->get('verification_code') == $code) {

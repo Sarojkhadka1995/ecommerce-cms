@@ -103,11 +103,4 @@ class ResetPasswordController extends Controller
         }
         return $check;
     }
-
-    public function showOtpForm()
-    {
-        $title = 'Set Password';
-
-        return view('system.auth.forgotPasswordOtpCode', compact('title'));
-    }
 }

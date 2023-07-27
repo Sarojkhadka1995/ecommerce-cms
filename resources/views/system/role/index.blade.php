@@ -6,7 +6,6 @@
   </x-slot>
 </x-system.search-form>
 @endsection
-
 @section('table-heading')
 <tr>
   <th scope="col">{{translate('S.N')}}</th>

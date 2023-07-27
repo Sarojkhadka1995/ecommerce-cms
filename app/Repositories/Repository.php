@@ -57,9 +57,9 @@ class Repository implements OpenInterface
 
     //store single record
 
-    public function create($request)
+    public function create($data)
     {
-        return $this->model->create($request->except('_token'));
+        return $this->model->create($data);
     }
 
     // store bulk records
@@ -70,9 +70,8 @@ class Repository implements OpenInterface
 
     //update record
 
-    public function update($request, $id)
+    public function update($data, $id)
     {
-        $data = $request->except('_token');
         $update = $this->itemByIdentifier($id);
         $update->fill($data)->save();
         $update = $this->itemByIdentifier($id);
@@ -82,10 +81,9 @@ class Repository implements OpenInterface
 
     //delete a record
 
-    public function delete($id)
+    public function delete($data,$id)
     {
         $item = $this->itemByIdentifier($id);
-
         return $item->delete();
     }
 

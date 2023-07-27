@@ -3,6 +3,7 @@
 namespace DummyNamespace;
 
 use App\Interfaces\OpenInterface;
+use App\Repositories\Repository;
 
 class DummyClass extends Repository implements OpenInterface
 {
@@ -17,11 +18,11 @@ class DummyClass extends Repository implements OpenInterface
   {
   }
 
-  public function update($request, $id)
+  public function update($request, $data)
   {
   }
 
-  public function delete($id)
+  public function delete($request,$id)
   {
   }
 

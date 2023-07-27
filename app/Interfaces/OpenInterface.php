@@ -6,9 +6,9 @@ interface OpenInterface
 {
     public function getAllData($data, $selectedColumns = [], $pagination = true);
 
-    public function create($userData);  
+    public function create($data);  
 
-    public function update($id, $userData);
+    public function update($id, $data);
 
-    public function delete($id);
+    public function delete($request,$id);
 }

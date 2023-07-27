@@ -2,68 +2,48 @@
 
 namespace App\Services\System;
 
-use App\Model\EmailTemplate;
+
+use App\Repositories\System\EmailRepository;
 use App\Services\Service;
 
 class EmailTemplateService extends Service
 {
-    public function __construct(EmailTemplate $emailTemplate)
+    public function __construct(EmailRepository $emailRepository)
     {
-        parent::__construct($emailTemplate);
+        $this->emailRepository = $emailRepository;
     }
 
     public function getAllData($data, $selectedColumns = [], $pagination = true)
     {
-        $query = $this->query();
-
-        if (isset($data->keyword) && $data->keyword !== null) {
-            $query->where('title', 'LIKE', '%'.$data->keyword.'%');
-        }
-        if (count($selectedColumns) > 0) {
-            $query->select($selectedColumns);
-        }
-        if ($pagination) {
-            return $query->orderBy('id', 'DESC')->paginate(PAGINATE);
-        }
-
-        return $query->orderBy('id', 'DESC')->get();
+        return $this->emailRepository->getAllData($data);
     }
 
     public function indexPageData($request)
     {
-        return ['items' => $this->getAllData($request)];
+        return [
+            'items' => $this->getAllData($request)
+        ];
     }
 
     public function store($request)
-    {
-        $emailTemplate = $this->model->create($this->parseRequest($request));
-        $emailTemplate->emailTranslations()->createMany($request->get('multilingual'));
-
-        return $emailTemplate;
+    {     
+        return $this->emailRepository->create($request);
     }
 
     public function editPageData($request, $id)
     {
-        $email = $this->itemByIdentifier($id);
-
+        $email = $this->emailRepository->itemByIdentifier($id);
         return [
             'item' => $email,
         ];
     }
 
     public function update($request, $id)
-    {
-        $emailTemplate = $this->itemByIdentifier($request->email_template);
-        $emailTemplate->emailTranslations()->delete();
-        $emailTemplate = $emailTemplate->update($this->parseRequest($request));
-        $emailTemplate = $this->itemByIdentifier($request->email_template);
-        $emailTemplate->emailTranslations()->createMany($request->get('multilingual'));
-
-        return $emailTemplate;
+    {       
+        return $this->emailRepository->update($request, $id);
     }
-
-    public function parseRequest($request)
-    {
-        return $request->only('title', 'from');
+    public function delete($request, $id)
+    {       
+        return $this->emailRepository->delete($request,$id);
     }
 }

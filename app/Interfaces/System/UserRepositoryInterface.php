@@ -1,17 +1,16 @@
 <?php
 
 namespace App\Interfaces\System;
+
 interface UserRepositoryInterface
 {
     public function getAllData($data, $selectedColumns = [], $pagination = true);
 
-    public function createUser($userData);
+    public function create($userData);
 
-    public function updateUser($id, $userData);
- 
-    public function deleteUser($id);
+    public function update($id, $userData);
 
-    public function getRoles();
+    public function delete($request, $id);
 
     public function generateToken($length);
 
@@ -20,4 +19,5 @@ interface UserRepositoryInterface
     public function findByEmailAndToken($email, $token);
 
     public function findByEmail($email);
+
 }

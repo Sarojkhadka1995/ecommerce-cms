@@ -2,34 +2,19 @@
 
 namespace App\Services\System;
 
-use App\Model\Log;
+use App\Repositories\System\LogRepository;
 use App\Services\Service;
-use Carbon\Carbon;
-use Config;
 
 class LogService extends Service
 {
-    public function __construct(Log $log)
+    public function __construct(LogRepository $logRepository)
     {
-        parent::__construct($log);
+        $this->logRepository = $logRepository;
     }
 
     public function getAllData($data, $selectedColumns = [], $pagination = true)
     {
-        $query = $this->query();
-        if (count($selectedColumns) > 0) {
-            $query->select($selectedColumns);
-        }
-        if (isset($data->from) && isset($data->to)) {
-            $from = Carbon::createFromFormat('Y-m-d H:i:s', $data->from.' 00:00:00');
-            $to = Carbon::createFromFormat('Y-m-d H:i:s', $data->to.' 23:59:00');
-            $query->whereBetween('created_at', [$from, $to]);
-        }
-        if ($pagination) {
-            return $query->orderBy('id', 'DESC')->with('user')->paginate(Config::get('constants.PAGINATION'));
-        } else {
-            return $query->get();
-        }
+        return $this->logRepository->getAllData($data);
     }
 
     public function indexPageData($data)

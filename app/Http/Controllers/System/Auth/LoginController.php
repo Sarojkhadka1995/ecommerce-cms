@@ -71,7 +71,7 @@ class LoginController extends Controller
         try {
             if (
                 method_exists($this, 'hasTooManyAttempts') &&
-                $this->hasTooManyAttempts($request, 4) // maximum attempts
+                $this->hasTooManyAttempts($request, Config::get('constants.DEFAULT_LOGIN_ATTEMPT_LIMIT')) // maximum attempts
             ) {
                 $this->customFireLockoutEvent($request);
 
@@ -87,7 +87,7 @@ class LoginController extends Controller
                 return $this->sendLoginResponse($request);
             }
 
-            $this->incrementAttempts($request, 2); // decay minutes
+            $this->incrementAttempts($request, Config::get('constants.DEFAULT_LOGIN_ATTEMPT_EXPIRATION')); // decay minutes
 
             return $this->sendFailedLoginResponse($request);
         } catch (\Exception $e) {

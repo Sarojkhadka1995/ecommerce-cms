@@ -2,12 +2,9 @@
 
 namespace App\Repositories\System;
 
-use App\Events\UserCreated;
-use App\Exceptions\CustomGenericException;
+
 use App\Exceptions\EncryptedPayloadException;
-use App\Exceptions\NotDeletableException;
 use App\Exceptions\ResourceNotFoundException;
-use App\Exceptions\RoleNotChangeableException;
 use App\Interfaces\System\UserRepositoryInterface;
 use App\Model\Role;
 use App\Repositories\Repository;
@@ -45,64 +42,23 @@ class UserRepository extends Repository implements UserRepositoryInterface
 
         return $query->orderBy('id', 'DESC')->with('role')->get();
     }
-    public function getRoles()
-    {
-        $mapped = [];
-        $roles = $this->role->orderBy('name', 'ASC')->get();
-        foreach ($roles as $role) {
-            $mapped[$role->id] = $role->name;
-        }
 
-        return $mapped;
+    public function create($data)
+    {
+        return $this->model->create($data);
     }
 
-
-    public function createUser($request)
+    public function update($user, $data)
     {
-        \DB::transaction(function () use ($request) {
-            $data = $request->except('_token');
-            if ($request->set_password_status == '1') {
-                $data['password'] = Hash::make($data['password']);
-            } else {
-                unset($data['password']);
-            }
-            $token = $this->generateToken(24);
-            $data['token'] = $token;
-            $user = $this->model->create($data);
-            try {
-                event(new UserCreated($user, $token));
-
-                return $user;
-            } catch (\Exception $e) {
-                \Log::error('User creation failed: ' . $e->getMessage());
-                \DB::rollBack();
-                return throw new CustomGenericException('User creation failed. Please try again.');
-            }
-        });
+        return $user->update($data);
     }
 
-    public function updateUser($id, $request)
+    public function delete($request, $id)
     {
-        try {
-            $data = $request->except('_token');
-            $user = $this->itemByIdentifier($id);
-            if (isset($request->role_id) && ($user->id == 1 && $request->role_id != 1)) {
-                throw new RoleNotChangeableException('The role of the specific user cannot be changed.');
-            }
-            return $user->update($data);
-        } catch (\Exception $e) {
-            throw new CustomGenericException($e->getMessage());
-        }
-    }
-
-    public function deleteUser($id)
-    {
-        if ($id == 1) {
-            throw new NotDeletableException();
-        }
         $user = $this->itemByIdentifier($id);
         return $user->delete();
     }
+
     public function generateToken($length)
     {
         $token = generateToken($length);
@@ -113,6 +69,7 @@ class UserRepository extends Repository implements UserRepositoryInterface
 
         return $token;
     }
+
     public function resetPassword($request)
     {
         $user = $this->itemByIdentifier($request->id);
@@ -120,32 +77,24 @@ class UserRepository extends Repository implements UserRepositoryInterface
             'password' => Hash::make($request->password),
         ]);
     }
-    public function findByEmailAndToken($email, $token)
+
+    public function findByEmailAndToken($email, $decryptedToken)
     {
-        try {
-            $decryptedToken = decrypt($token);
-        } catch (\Exception $e) {
-            throw new EncryptedPayloadException('Invalid encrypted data');
-        }
-
-        $user = $this->model->where('email', $email)->where('token', $decryptedToken)->first();
-
-        if (!isset($user)) {
-            throw new ResourceNotFoundException("User doesn't exist in our system.");
-        }
-
-        $checkExpiryDate = now()->format('Y-m-d H:i:s') <= $user->expiry_datetime;
-
-        if (!$checkExpiryDate) {
-            throw new ResourceNotFoundException("The provided link has expired.");
-        }
-
-
-        return $user;
+        return  $this->model->where('email', $email)->where('token', $decryptedToken)->first();
     }
+
     public function findByEmail($email)
     {
         $user = $this->model->where('email', $email)->first();
+        if (!isset($user)) {
+            throw new ResourceNotFoundException("User doesn't exist in our system.");
+        }
+        return $user;
+    }
+
+    public function getByUserRole($roleId)
+    {
+        $user = $this->model->where('role_id', $roleId)->get();
         if (!isset($user)) {
             throw new ResourceNotFoundException("User doesn't exist in our system.");
         }
