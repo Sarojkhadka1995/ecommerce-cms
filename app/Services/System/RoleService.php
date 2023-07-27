@@ -59,7 +59,6 @@ class RoleService extends Service
         if ($role->users->count() > 0) {
             throw new NotDeletableException('The role is associated to the users.');
         }
-
         return $this->roleRepository->delete($request, $id);
     }
 }

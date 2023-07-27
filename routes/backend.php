@@ -63,6 +63,9 @@ Route::group(['namespace' => 'System', 'prefix' => PREFIX, 'middleware' => ['lan
         Route::resource('/configs', 'systemConfig\configController');
 
         Route::resource('/categories', 'category\CategoryController', ['except' => ['show']]);
+        Route::resource('/pages', 'page\PageController', ['except' => ['show']]);
+        Route::get('pages/change-page-status', 'page\PageController@changePageStatus')->name('changePageStatus');
+
         Route::resource('categories/{id}/sub-category', 'category\SubCategoryController');
         Route::get('/clear-lang', function () {
             LanguageLine::truncate();

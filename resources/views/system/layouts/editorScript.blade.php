@@ -1,6 +1,6 @@
 <script>
     tinymce.init({
-        selector: "textarea",height: 600,
+        selector: ".editor",height: 600,
         relative_urls : false,
         plugins: [
             "advlist autolink link image lists charmap print preview hr anchor pagebreak",

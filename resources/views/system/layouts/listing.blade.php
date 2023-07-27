@@ -70,6 +70,7 @@
                                                 </tbody>
                                             </table>
                                             @include('system.partials.pagination')
+                                            <br>
                                         </div>
                                     </div>
                                 </div><!-- panel -->

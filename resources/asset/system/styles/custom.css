@@ -216,9 +216,9 @@ body {
 }
 
 .custom-border{
-  border-style: solid; 
+  border-style: solid;
   border-color: #e8e1e1;
-  border-radius: 10px; 
+  border-radius: 10px;
   border-width: thin;
 }
 
@@ -616,9 +616,6 @@ table .form-group {
   color: #707070;
   position: relative;
 }
-
-
-
 
 /* css ended for login page */
 

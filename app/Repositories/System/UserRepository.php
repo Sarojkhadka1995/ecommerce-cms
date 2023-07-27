@@ -2,8 +2,6 @@
 
 namespace App\Repositories\System;
 
-
-use App\Exceptions\EncryptedPayloadException;
 use App\Exceptions\ResourceNotFoundException;
 use App\Interfaces\System\UserRepositoryInterface;
 use App\Model\Role;

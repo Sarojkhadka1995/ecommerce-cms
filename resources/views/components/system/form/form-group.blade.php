@@ -1,4 +1,4 @@
-<div class="theme-form g-3 row" id="{{ $input['groupId'] ?? '' }}">
+<div class="theme-form g-3 row mb-3" id="{{ $input['groupId'] ?? '' }}">
     <label for="{{ $input['name'] ?? '' }}" class="col-sm-2 form-label {{ (isset($input['required']) || isset($input['label-required'])) ? 'require' : '' }}">
         {{ isset($input['label']) ? translate($input['label']) : '' }}
     </label>

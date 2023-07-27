@@ -14,9 +14,8 @@ $languagesBaseUrl = '/languages';
 $translationBaseUrl = '/translations';
 $emailTemplateBaseUrl = '/email-templates';
 $configBaseUrl = '/configs';
-$categoriesBaseUrl = '/categories';
 $profileBaseUrl = '/profile';
-$mailtestBaseUrl = '/mail-test';
+$pagesBaseUrl = '/pages';
 
 return  [
     // routes entered in this array are accessible by any user no matter what role is given
@@ -387,75 +386,54 @@ return  [
                 ],
             ],
         ],
-        [
-            'name' => 'Category Management',
+      [
+            'name' => 'Page Management',
             'icon' => "<i class='fa fa-list'></i>",
             'hasSubmodules' => false,
-            'route' => $categoriesBaseUrl,
+            'route' => $pagesBaseUrl,
             'permissions' => [
                 [
-                    'name' => 'View Category',
+                    'name' => 'View Page',
                     'route' => [
-                        'url' => $categoriesBaseUrl,
+                        'url' => $pagesBaseUrl,
                         'method' => $getMethod,
                     ],
                 ],
                 [
-                    'name' => 'Create Category',
+                    'name' => 'Create Page',
                     'route' => [
                         [
-                            'url' => $categoriesBaseUrl.'/create',
+                            'url' => $pagesBaseUrl.'/create',
                             'method' => $getMethod,
                         ],
                         [
-                            'url' => $categoriesBaseUrl,
+                            'url' => $pagesBaseUrl,
                             'method' => $postMethod,
                         ],
 
                     ],
                 ],
                 [
-                    'name' => 'Edit Category',
+                    'name' => 'Edit Page',
                     'route' => [
                         [
-                            'url' => $categoriesBaseUrl.'/*/edit',
+                            'url' => $pagesBaseUrl.'/*/edit',
                             'method' => $getMethod,
                         ],
                         [
-                            'url' => $categoriesBaseUrl.'/*',
+                            'url' => $pagesBaseUrl.'/*',
                             'method' => $putMethod,
                         ],
                     ],
                 ],
                 [
-                    'name' => 'Delete Category',
+                    'name' => 'Delete Page',
                     'route' => [
-                        'url' => $categoriesBaseUrl.'/*',
+                        'url' => $pagesBaseUrl.'/*',
                         'method' => $deleteMethod,
                     ],
                 ],
             ],
         ],
-        [
-            'name' => 'Mail Test',
-            'icon' => "<i class='fa fa-envelope-o'></i>",
-            'hasSubmodules' => false,
-            'route' => $mailtestBaseUrl.'/create',
-            'permissions' => [
-                [
-                    'name' => 'Create Mail',
-                    'route' => [
-                        'url' => $mailtestBaseUrl.'/create',
-                        'method' => $getMethod,
-                    ],
-                    [
-                        'url' => $mailtestBaseUrl,
-                        'method' => $postMethod,
-                    ],
-
-                ],
-            ],
-        ],
-
     ],
 ];
