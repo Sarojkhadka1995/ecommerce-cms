@@ -2,7 +2,6 @@ pipeline {
   agent any
   tools {nodejs "nodejs-16"}
   environment {
-    BRANCH = 'ver-8'
     scannerHome = tool 'SonarQubeScan';
   }
   stages {
@@ -11,7 +10,8 @@ pipeline {
            when {
              anyOf {
                 branch 'ver-8';
-                changeRequest target: 'ver-8';
+                branch 'dev';
+                branch 'qa';
              }
             }
           steps {
@@ -34,7 +34,7 @@ pipeline {
               }
             }
 
-        stage('Dev Build') {
+        stage('Ver-8 Build') {
         agent any
         when {
                 branch 'ver-8'
@@ -60,6 +60,78 @@ pipeline {
           }
           }
         }
+        stage('Dev Build') {
+        agent any
+        when {
+                branch 'dev'
+            }
+        steps {
+          script {
+            sshagent(['72c3455a-de8d-4b39-9f02-771ddb2fdf00']) {
+            sh '''
+            ssh -tt -o StrictHostKeyChecking=no root@157.245.148.131 -p 3030 << EOF
+            cd /var/www/ekcms/ekcms-larvel/dev/; \
+            git pull origin dev; \
+            composer install -n; \
+            php artisan migrate; \
+            php artisan db:seed; \
+            nvm use 16.20.1; \
+            npm install; \
+            npm run dev; \
+            exit
+            EOF '''
+            }
+          }
+          }
+        }
+        stage('QA Build') {
+        agent any
+        when {
+                branch 'qa'
+            }
+        steps {
+          script {
+            sshagent(['72c3455a-de8d-4b39-9f02-771ddb2fdf00']) {
+            sh '''
+            ssh -tt -o StrictHostKeyChecking=no root@157.245.148.131 -p 3030 << EOF
+            cd /var/www/ekcms/ekcms-larvel/qa/; \
+            git pull origin qa; \
+            composer install -n; \
+            php artisan migrate; \
+            php artisan db:seed; \
+            nvm use 16.20.1; \
+            npm install; \
+            npm run dev; \
+            exit
+            EOF '''
+            }
+            }
+          }
+        }
+        stage('UAT Build') {
+        agent any
+        when {
+                branch 'uat'
+            }
+        steps {
+          script {
+            sshagent(['72c3455a-de8d-4b39-9f02-771ddb2fdf00']) {
+            sh '''
+            ssh -tt -o StrictHostKeyChecking=no root@157.245.148.131 -p 3030 << EOF
+            cd /var/www/ekcms/ekcms-larvel/uat/; \
+            git pull origin uat; \
+            composer install -n; \
+            php artisan migrate; \
+            php artisan db:seed; \
+            nvm use 16.20.1; \
+            npm install; \
+            npm run dev; \
+            exit
+            EOF '''
+            }
+            }
+          }
+        }
 
   }
         }
@@ -69,7 +141,7 @@ pipeline {
   post{
       success{
         script {
-          if (env.BRANCH_NAME == 'ver-8' || env.BRANCH_NAME == 'qa' || env.BRANCH_NAME == 'uat' || env.BRANCH_NAME == 'live')
+          if (env.BRANCH_NAME == 'ver-8' || env.BRANCH_NAME == 'dev' || env.BRANCH_NAME == 'qa' || env.BRANCH_NAME == 'uat' || env.BRANCH_NAME == 'live')
             notifySuccessful()
         }
       }
@@ -81,8 +153,8 @@ pipeline {
 def notifyStarted() {
 mattermostSend (
   color: "#2A42EE",
-  channel: 'ekcms-ver7-ver8',
-  endpoint: 'https://ekbana.letsperk.com/hooks/f8mxssqga7rn983duwfrg1hxze',
+  channel: 'ekcms-laravel-jenkins',
+  endpoint: 'https://ekbana.letsperk.com/hooks/1yhkb57ieing9ccpsoh7hqcs6o',
   message: "Build STARTED: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link to build>)"
   )
 }
@@ -90,8 +162,8 @@ mattermostSend (
 def notifySuccessful() {
 mattermostSend (
   color: "#00f514",
-  channel: 'ekcms-ver7-ver8',
-  endpoint: 'https://ekbana.letsperk.com/hooks/f8mxssqga7rn983duwfrg1hxze',
+  channel: 'ekcms-laravel-jenkins',
+  endpoint: 'https://ekbana.letsperk.com/hooks/1yhkb57ieing9ccpsoh7hqcs6o',
   message: "Build SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link to build>):\n${changeLog}"
   )
 }
@@ -99,8 +171,8 @@ mattermostSend (
 def notifyFailed() {
 mattermostSend (
   color: "#e00707",
-  channel: 'ekcms-ver7-ver8',
-  endpoint: 'https://ekbana.letsperk.com/hooks/f8mxssqga7rn983duwfrg1hxze',
+  channel: 'ekcms-laravel-jenkins',
+  endpoint: 'https://ekbana.letsperk.com/hooks/1yhkb57ieing9ccpsoh7hqcs6o',
   message: "Build FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link to build>)"
   )
 }
