@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class EmailTemplate extends Model
 {
@@ -27,6 +28,14 @@ class EmailTemplate extends Model
     public function emailTranslations()
     {
         return $this->hasMany(EmailTemplateTranslation::class, 'email_template_id', 'id');
+    }
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+        ->setDescriptionForEvent(fn (string $eventName) => $this->getDescriptionForEvent($eventName))
+        ->useLogName(self::$logName)
+        ->logOnly(self::$logAttributes)
+        ->logOnlyDirty();
     }
 
     public function getContentByLanguage($language_code = 'en', $key = null)

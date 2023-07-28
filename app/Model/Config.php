@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class Config extends Model
 {
@@ -19,6 +20,14 @@ class Config extends Model
 
     protected static $logOnlyDirty = true;
 
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+        ->setDescriptionForEvent(fn (string $eventName) => $this->getDescriptionForEvent($eventName))
+        ->useLogName(self::$logName)
+        ->logOnly(self::$logAttributes)
+        ->logOnlyDirty();
+    }
     public function getDescriptionForEvent(string $eventName): string
     {
         return logMessage('Config', $this->id, $eventName);

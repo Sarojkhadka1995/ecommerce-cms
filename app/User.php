@@ -4,9 +4,8 @@ namespace App;
 
 use App\Model\Role;
 use App\Model\UserPassword;
-use Carbon\Carbon;
 use Config;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -41,7 +40,14 @@ class User extends Authenticatable
     {
         return logMessage('User', $this->id, $eventName);
     }
-
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+        ->setDescriptionForEvent(fn (string $eventName) => $this->getDescriptionForEvent($eventName))
+        ->useLogName(self::$logName)
+        ->logOnly(self::$logAttributes)
+        ->logOnlyDirty();
+    }
     /**
      * The attributes that should be hidden for arrays.
      *

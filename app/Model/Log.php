@@ -4,6 +4,7 @@ namespace App\Model;
 
 use App\User;
 use Spatie\Activitylog\Models\Activity;
+use Spatie\Activitylog\LogOptions;
 
 class Log extends Activity
 {
@@ -47,8 +48,10 @@ class Log extends Activity
 
     public function newValues($rawValues)
     {
-        // if(!isset($rawValues['old'])) return 'N/A';
-        $value = trim(json_encode($rawValues['attributes'] ?? ''), '{}');
+        if (! isset($rawValues['attributes'])) {
+            return 'N/A';
+        }
+        $value = trim(json_encode($rawValues['attributes']), '{}');
         $string = str_replace(',', "\n", $value);
 
         return nl2br($string);

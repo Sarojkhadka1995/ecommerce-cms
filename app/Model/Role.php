@@ -5,6 +5,7 @@ namespace App\Model;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class Role extends Model
 {
@@ -27,6 +28,14 @@ class Role extends Model
     public function getDescriptionForEvent(string $eventName): string
     {
         return logMessage('Role', $this->id, $eventName);
+    }
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+        ->setDescriptionForEvent(fn (string $eventName) => $this->getDescriptionForEvent($eventName))
+        ->useLogName(self::$logName)
+        ->logOnly(self::$logAttributes)
+        ->logOnlyDirty();
     }
 
     public function users()

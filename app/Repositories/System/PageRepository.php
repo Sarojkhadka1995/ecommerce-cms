@@ -49,11 +49,10 @@ class PageRepository extends Repository implements PageRepositoryInterface
 
     }
 
-    public function updatePage($id, $data)
+    public function updatePage($page, $data)
     {
-        $update = $this->itemByIdentifier($id);
-        $update->fill($data)->save();
-        return $update;
+      return  $page->fill($data)->save();
+
     }
 
     public function deletePage($id)

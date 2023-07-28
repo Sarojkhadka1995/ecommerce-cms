@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Model;
-
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+
 
 class Language extends Model
 {
@@ -23,6 +24,16 @@ class Language extends Model
     {
         return logMessage('Language', $this->id, $eventName);
     }
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+        ->setDescriptionForEvent(fn (string $eventName) => $this->getDescriptionForEvent($eventName))
+        ->useLogName(self::$logName)
+        ->logOnly(self::$logAttributes)
+        ->logOnlyDirty();
+    }
+
+
 
     public function isDefault()
     {

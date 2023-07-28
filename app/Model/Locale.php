@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\TranslationLoader\LanguageLine;
+use Spatie\Activitylog\LogOptions;
 
 class Locale extends LanguageLine
 {
@@ -29,5 +30,13 @@ class Locale extends LanguageLine
     public function getDescriptionForEvent(string $eventName): string
     {
         return logMessage('Locale', $this->id, $eventName);
+    }
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+        ->setDescriptionForEvent(fn (string $eventName) => $this->getDescriptionForEvent($eventName))
+        ->useLogName(self::$logName)
+        ->logOnly(self::$logAttributes)
+        ->logOnlyDirty();
     }
 }

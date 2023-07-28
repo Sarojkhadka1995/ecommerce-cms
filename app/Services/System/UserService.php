@@ -96,14 +96,12 @@ class UserService extends Service
     }
     public function findByEmailAndToken($email, $token)
     {
-
         try {
             $decryptedToken = decrypt($token);
         } catch (\Exception $e) {
             throw new EncryptedPayloadException('Invalid encrypted data');
         }
         $user = $this->userRepository->findByEmailAndToken($email, $decryptedToken);
-
 
         if (!isset($user)) {
             throw new ResourceNotFoundException("User doesn't exist in our system.");

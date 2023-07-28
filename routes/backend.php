@@ -7,11 +7,11 @@ Route::get('/', function () {
     return redirect(route('login.form'));
 });
 
-Route::get(PREFIX, function () {
+Route::get(getSystemPrefix(), function () {
     return redirect(route('login.form'));
 });
 
-Route::group(['namespace' => 'System', 'prefix' => PREFIX, 'middleware' => ['language', 'pinewheel-log']], function () {
+Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix(), 'middleware' => ['language']], function () {
     Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login.form');
     Route::post('/login', 'Auth\LoginController@login')->name('login');
     Route::get('forgot-password', 'Auth\ForgotPasswordController@showRequestForm')->name('forgot.password');

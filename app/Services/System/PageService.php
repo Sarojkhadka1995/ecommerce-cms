@@ -44,7 +44,7 @@ class PageService
     {
         try {
             $data = $request->except('_token');
-            $data['slug'] = Str::slug($request->get('title'), '-');
+            $data['slug'] = Str::slug($request->get('slug'));
             if (isset($data['image'])) {
                 $data['image'] = $this->storeImage($data['image']);
             }
@@ -67,12 +67,13 @@ class PageService
     {
         $page = $this->pageRepository->itemByIdentifier($id);
        $data = $request->except('_token');
+            $data['slug'] = Str::slug($request->get('slug'));
 
         if (isset($request['image'])) {
             $this->deleteImage($page->image);
             $data['image'] = $this->storeImage($data['image']);
         }
-        return $this->pageRepository->updatePage($id, $data);
+        return $this->pageRepository->updatePage($page, $data);
     }
 
     public function delete($request, $id)
