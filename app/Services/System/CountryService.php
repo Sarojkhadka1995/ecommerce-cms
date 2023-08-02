@@ -20,15 +20,4 @@ class CountryService extends Service
         }
         return $countriesPair;
     }
-
-    public function itemByIdentifier($id)
-    {
-        try {
-            return $this->countryRepository->itemByIdentifier($id);
-        } catch (\Exception $e) {
-            throw new ResourceNotFoundException();
-        }
-    }
-
-
 }
