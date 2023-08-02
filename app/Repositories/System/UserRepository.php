@@ -4,7 +4,6 @@ namespace App\Repositories\System;
 
 use App\Exceptions\ResourceNotFoundException;
 use App\Interfaces\System\UserRepositoryInterface;
-use App\Model\Role;
 use App\Repositories\Repository;
 use App\RoleUser;
 use App\User;
@@ -89,7 +88,7 @@ class UserRepository extends Repository implements UserRepositoryInterface
         return $user;
     }
     public function bulkUpdateUserByRole($roleId, $requestRole)
-    {
+    {       
         return $this->model->where('role_id', $roleId)->update(['role_id' => $requestRole]);
     }
 

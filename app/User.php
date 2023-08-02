@@ -28,7 +28,7 @@ class User extends Authenticatable
         'id',
     ];
 
-    protected static $logAttributes = ['name', 'email', 'username', 'role_id', 'is_2fa_enabled'];
+    protected static $logAttributes = ['name', 'email', 'username', 'is_2fa_enabled'];
 
     protected static $ignoreChangedAttributes = ['password', 'password_resetted', 'token', 'remember_token', 'updated_at'];
 

@@ -68,8 +68,9 @@ class RoleService extends Service
             if ($request->role_id == $id) {
                 throw new CustomGenericException('The role that currently exist and the ones that have been modified must not be identical.');
             }
-
-            $this->userRepository->bulkUpdateUserByRole($id, $request->role_id);
+            if ($request->role_id) {
+                $this->userRepository->bulkUpdateUserByRole($id, $request->role_id);
+            }
             return $this->roleRepository->delete($request, $id);
         } catch (\Exception $e) {
             throw new CustomGenericException($e->getMessage());
