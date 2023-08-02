@@ -18,7 +18,17 @@ class CountryService extends Service
         foreach ($countries as $country) {
             $countriesPair[$country[$key]] = $country[$value];
         }
-
         return $countriesPair;
     }
+
+    public function itemByIdentifier($id)
+    {
+        try {
+            return $this->countryRepository->itemByIdentifier($id);
+        } catch (\Exception $e) {
+            throw new ResourceNotFoundException();
+        }
+    }
+
+
 }
