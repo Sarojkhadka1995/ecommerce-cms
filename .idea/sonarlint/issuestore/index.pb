@@ -11,18 +11,12 @@ R
 "app/Mail/system/ResendOtpEmail.php,f/8/f81d51c635102287054333aaad02a6091fd3f4d9
 C
 app/Traits/Mail.php,e/b/eb7f5d1932ec90c558a7e74a5f592fa52b33f52e
->
-routes/web.php,6/b/6b9a783d9b43fee50fd28f56dbd1856d2608f305
 J
 public/js/jquery.ui.min.js,e/7/e78812c3b596270807e9617441f27215ea543bed
 C
 app/Http/Kernel.php,4/0/405f423e61f666bcedb754ae8befdce9e746176e
 V
 &app/Mail/system/PasswordResetEmail.php,5/2/523aa9944b6cf15a8074b6ac021160e6bdd62e05
-Q
-!app/Helper/Ekcms/globalHelper.php,2/c/2c8ea60b95b552485f43da37af7941c5b1b77def
-a
-1resources/views/system/auth/setPassword.blade.php,8/3/83484fc9b3b4d777957d47873971186678d5584c
 d
 4resources/views/system/layouts/masterGuest.blade.php,a/4/a451f39ea310fb7820d3e836b7dd67e3e37ba0d9
 a
@@ -35,3 +29,26 @@ N
 app/Mail/system/TwoFAEmail.php,7/9/7954439ef81024824a0880ef7ade285b026363be
 M
 app/Http/Middleware/TWOFA.php,7/6/76c589d1b660f5ca26e640baadf71c5620283932
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
+c
+3app/Http/Controllers/System/user/UserController.php,0/b/0bf78f7b52c3c5b51115280ca6c5ddda9d4560ba
+Y
+)app/Console/Commands/stubs/interface.stub,3/3/337cef5636634f9011e5577a18ff789b8006be1f
+Z
+*app/Console/Commands/stubs/repository.stub,9/6/96fdf6531244c4c97bff9361df94034f80752b04
+a
+1app/Interfaces/System/UserRepositoryInterface.php,f/6/f6c8af3f1a20d422ed6c6c24beabed1949c5bdf2
+H
+app/Services/Service.php,f/2/f227a0aadc255f75549324fd543836c26864c020
+c
+3app/Http/Controllers/System/user/RoleController.php,3/2/324996371a4017d4b8df8c111ccd16a76085d1e2
+X
+(app/Http/Requests/system/roleRequest.php,a/2/a214d36dab48be1a5cf24baf3c4ba0950290f22d
+O
+app/Repositories/Repository.php,6/2/6290a2b670fd384a5473a2d8aa4df4e14bd0bba9
+f
+6resources/views/system/partials/deleteButton.blade.php,c/b/cbf8135b8892df78754279360da5855990f9ea83
+J
+app/Events/UserCreated.php,e/9/e921084e23f60f269fbff4f6e9efd828c3aa9f22

@@ -40,7 +40,7 @@ class Role extends Model
 
     public function users()
     {
-        return $this->hasMany(User::class, 'role_id', 'id');
+        return $this->belongsToMany(User::class, 'role_user');
     }
 
     public function isEditable($id)

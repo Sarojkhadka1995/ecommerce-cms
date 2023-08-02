@@ -11,6 +11,7 @@ use App\Exceptions\RoleNotChangeableException;
 use App\Repositories\System\RoleRepository;
 use App\Repositories\System\UserRepository;
 use App\Services\Service;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserService extends Service
@@ -53,10 +54,13 @@ class UserService extends Service
             $token = $this->userRepository->generateToken(24);
             $data['token'] = $token;
             $user = $this->userRepository->create($data);
+            $user->roles()->attach($request->role_id);
+
             try {
                 event(new UserCreated($user, $token));
                 return $user;
             } catch (\Exception $e) {
+                dd($e->getMessage());
                 \Log::error('User creation failed: ' . $e->getMessage());
                 \DB::rollBack();
                 return throw new CustomGenericException('User creation failed. Please try again.');
@@ -70,19 +74,25 @@ class UserService extends Service
         return [
             'item' => $user,
             'roles' => $this->roleRepository->getRoles(),
+            'roleUsers' => $this->roleRepository->getByRolePivotRoleUser($id),
         ];
     }
 
     public function update($request, $id)
     {
         try {
+            DB::beginTransaction();
             $data = $request->except('_token');
             $user = $this->userRepository->itemByIdentifier($id);
             if (isset($request->role_id) && ($user->id == 1 && $request->role_id != 1)) {
                 throw new RoleNotChangeableException('The role of the specific user cannot be changed.');
             }
-            return $this->userRepository->update($user, $data);
+            unset($data['role_id']);
+            $this->userRepository->update($user, $data);
+            $user->roles()->sync($request->role_id);
+            DB::commit();
         } catch (\Exception $e) {
+            DB::rollBack();
             throw new CustomGenericException($e->getMessage());
         }
     }
@@ -92,8 +102,14 @@ class UserService extends Service
         if ($id == 1) {
             throw new NotDeletableException();
         }
-        return $this->userRepository->delete($request, $id);
+        $user = $this->userRepository->itemByIdentifier($id);
+        $user->roles()->detach();
+
+        $this->userRepository->delete($request, $id);
+        return $user;
+
     }
+
     public function findByEmailAndToken($email, $token)
     {
         try {
@@ -124,6 +140,7 @@ class UserService extends Service
     {
         return $this->userRepository->resetPassword($request);
     }
+
     public function generateToken($length)
     {
         return $this->userRepository->generateToken($length);

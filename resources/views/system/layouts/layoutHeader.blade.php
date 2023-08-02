@@ -14,7 +14,7 @@
       rel="stylesheet"
     />
     <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
-    {{-- <link href="{{ asset('compiledCssAndJs/css/system.css')}}" rel="stylesheet" media="screen"> --}}
+    <link href="{{ asset('compiledCssAndJs/css/system.css')}}" rel="stylesheet" media="screen"> 
     <link href="{{ asset('toast/jquery.toast.min.css') }}" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,6 +32,10 @@
     <!-- Plugins css start-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/vendors/scrollbar.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/vendors/date-picker.css') }}">
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/vendors/daterange-picker.css')}}">
+
+
     <!-- Plugins css Ends-->
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/vendors/bootstrap.css') }}">
@@ -40,4 +44,7 @@
     <link id="color" rel="stylesheet" href="{{ asset('css/color-1.css') }}" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/responsive.css') }}">
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
+
 </head>

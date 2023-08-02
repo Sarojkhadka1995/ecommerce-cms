@@ -12,7 +12,7 @@ function authUser()
 
 function setRoleCache($user)
 {
-    return \Cache::put('role-'.$user->id, $user->role);
+    return \Cache::put('role-'.$user->id, $user->roles);
 }
 function getRoleCache($user)
 {
@@ -107,6 +107,11 @@ function logMessage($modelName, $modelId, $eventName)
     return "$modelName of id {$modelId} was <strong>{$eventName}</strong> by {$user} at {$now}.";
 }
 
+function paginate()
+{
+    return  Config::get('constants.PAGINATE');
+}
+
 function pageIndex($items)
 {
     $sn = 0;
@@ -124,6 +129,6 @@ function SN($sn, $key)
 
 function getSystemPrefix()
 {
-    return  config('constants.PREFIX');
+    return config('constants.PREFIX');
 }
 

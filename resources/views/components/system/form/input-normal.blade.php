@@ -4,7 +4,7 @@
     placeholder="{{ translate($input['placeholder'] ?? ($input['label'] ?? '')) }}" name="{{ $input['name'] ?? '' }}"
     {{ isset($input['disabled']) ? 'disabled' : '' }} {{ isset($input['readonly']) ? 'readonly' : '' }}
     {{ isset($input['required']) ? 'required' : '' }} {{ isset($input['min']) ? 'min=' . $input['min'] : '' }}
-    {{ isset($input['autoComplete']) ? 'autocomplete=off' : '' }}>
+    {{ isset($input['autoComplete']) ? 'autocomplete=off' : '' }} {{isset($input['data-language']) ? 'data-language=en' : ''}}>
 @if (isset($input['helpText']))
     <small class="form-text text-muted">{{ translate($input['helpText']) ?? '' }}</small>
 @endif

@@ -4,24 +4,23 @@ namespace App\Http\Controllers\Api\Categories;
 
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\Api\CategoryRequest;
+use App\Http\Resources\PageResource;
 use App\Services\System\CategoryService;
 use App\Transformers\CategoriesTransformer;
 use Illuminate\Http\Request;
-use League\Fractal\Manager;
 
 class CategoriesController extends ApiController
 {
     public function __construct(CategoryService $categoryService)
     {
         $this->service = $categoryService;
-        parent::__construct(new Manager);
     }
 
     public function index(Request $request)
     {
         $categories = $this->service->indexPageData($request);
 
-        return $this->respondWithCollection($categories['items'], new CategoriesTransformer, 'Categories');
+        return $this->respondWithCollection(PageResource::collection($categories));
     }
 
     public function detail($id)

@@ -2,7 +2,11 @@
 
 namespace App\Http\Requests\system;
 
+use Illuminate\Http\Request;
+
+
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class pageRequest extends FormRequest
 {
@@ -21,13 +25,25 @@ class pageRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
-        return [
-            'title' => 'required',
-            'slug' => 'required',
-            'description' => 'required',
+
+        $validate = [
+            'title' => 'required|string|max:255',
+            'description' => 'required|max:60000',
             'meta_title' => 'required',
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg',
         ];
+        if ($request->method() == "POST") {
+            $validate = array_merge($validate, [
+                'slug' => ['required', 'string', 'max:255', Rule::unique('pages', 'slug')],
+            ]);
+        }
+        if ($request->method() == "PUT") {
+            $validate = array_merge($validate, [
+                'slug' => ['required', 'string', 'max:255', Rule::unique('pages', 'slug')->ignore($request->id)],
+            ]);
+        }
+        return $validate;
     }
 }

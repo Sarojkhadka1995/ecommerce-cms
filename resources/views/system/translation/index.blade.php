@@ -95,7 +95,7 @@
                                         <td>{{ $item->key }}</td>
                                         <td>
                                             @if (hasPermission($indexUrl . '/' . $item->id, 'put'))
-                                            <textarea name="text" class="form-control translation-content" rows="1" data-href="{{ url('/' . PREFIX . '/translations/' . $item->id) }}" data-group="{{ Request::get('group') ?? 'backend' }}" data-locale="{{ Request::get('locale') ?? 'en' }}">{{ $item->text[Request::get('locale')] ?? $item->text['en'] }}</textarea>
+                                            <textarea name="text" class="form-control translation-content" rows="1" data-href="{{ url('/' . getSystemPrefix() . '/translations/' . $item->id) }}" data-group="{{ Request::get('group') ?? 'backend' }}" data-locale="{{ Request::get('locale') ?? 'en' }}">{{ $item->text[Request::get('locale')] ?? $item->text['en'] }}</textarea>
                                             @else
                                             {{ $item->text[Request::get('locale')] ?? $item->text['en'] }}
                                             @endif

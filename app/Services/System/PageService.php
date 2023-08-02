@@ -66,14 +66,16 @@ class PageService
     public function update($request, $id)
     {
         $page = $this->pageRepository->itemByIdentifier($id);
-       $data = $request->except('_token');
-            $data['slug'] = Str::slug($request->get('slug'));
+        $data = $request->except('_token');
+        $data['slug'] = Str::slug($request->get('slug'));
 
         if (isset($request['image'])) {
             $this->deleteImage($page->image);
             $data['image'] = $this->storeImage($data['image']);
         }
-        return $this->pageRepository->updatePage($page, $data);
+
+         $this->pageRepository->updatePage($page, $data);
+         return $page;
     }
 
     public function delete($request, $id)

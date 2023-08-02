@@ -29,6 +29,15 @@
     <script src="{{ asset('js/datepicker/date-picker/datepicker.js') }}"></script>
     <script src="{{ asset('js/datepicker/date-picker/datepicker.en.js') }}"></script>
     <script src="{{ asset('js/datepicker/date-picker/datepicker.custom.js') }}"></script>
+
+<script src="{{ asset('js/datepicker/daterange-picker/moment.min.js')}}"></script>
+    <script src="{{ asset('js/datepicker/daterange-picker/daterangepicker.js')}}"></script>
+    <script src="{{ asset('js/datepicker/daterange-picker/daterange-picker.custom.js')}}"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
     <script src="{{ asset('js/typeahead/handlebars.js') }}"></script>
     <script src="{{ asset('js/height-equal.js') }}"></script>
     <!-- Plugins JS Ends-->
@@ -38,9 +47,7 @@
     <!-- login js-->
     <!-- Plugin used-->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
-
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
 <script>
   $(function() {
@@ -68,20 +75,20 @@
     $(".page-wrapper").toggleClass("toggle-page")
   })
 
-  $('.daterange').daterangepicker({
+  $('.datepicker-here').daterangepicker({
     autoUpdateInput: false,
     locale: {
       cancelLabel: 'Clear'
     }
   });
 
-  $('.daterange').on('apply.daterangepicker', function(ev, picker) {
+  $('.datepicker-here').on('apply.daterangepicker', function(ev, picker) {
     $('#from-date').val(picker.startDate.format('YYYY-MM-DD'));
     $('#to-date').val(picker.endDate.format('YYYY-MM-DD'));
     $(this).val(picker.startDate.format('YYYY-MM-DD') + ' to ' + picker.endDate.format('YYYY-MM-DD'));
   });
 
-  $('.datepicker').daterangepicker({
+  $('.datepicker-here').daterangepicker({
     singleDatePicker: true,
     showDropdowns: true,
     autoUpdateInput: false,

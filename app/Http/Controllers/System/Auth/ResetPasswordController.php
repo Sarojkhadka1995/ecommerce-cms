@@ -53,7 +53,7 @@ class ResetPasswordController extends Controller
     public function handleSetResetPassword(setResetRequest $request)
     {
         if ($this->setResetPassword($request)) {
-            $redirect = redirect(PREFIX . '/login');
+            $redirect = redirect(getSystemPrefix() . '/login');
             $msg = ['alert-success' => 'Password has been successfully set.'];
         } else {
             $redirect = back();

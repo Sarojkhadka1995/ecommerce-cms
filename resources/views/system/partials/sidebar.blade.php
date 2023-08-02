@@ -22,14 +22,14 @@
                                     <ul class="sidebar-submenu">
                                         @foreach ($module['submodules'] as $subModule)
                                             @if (hasPermission($subModule['route'], 'get'))
-                                                <li><a href="{{url(PREFIX.$subModule['route'])}}">{{translate($subModule['name'])}}</a></li>
+                                                <li><a href="{{url(getSystemPrefix().$subModule['route'])}}">{{translate($subModule['name'])}}</a></li>
                                             @endif
                                         @endforeach
                                     </ul>
                                 </li>
                             @else
                                 <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="{{url(PREFIX.$module['route'])}}">
+                                    <a class="sidebar-link sidebar-title link-nav" href="{{url(getSystemPrefix().$module['route'])}}">
                                         @if (hasPermission($module['route'], 'get'))
                                              {!! $module['icon'] ?? '' !!} <span>{{translate($module['name'])}} </span>
                                         @endif

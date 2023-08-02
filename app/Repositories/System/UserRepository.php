@@ -6,6 +6,7 @@ use App\Exceptions\ResourceNotFoundException;
 use App\Interfaces\System\UserRepositoryInterface;
 use App\Model\Role;
 use App\Repositories\Repository;
+use App\RoleUser;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,11 +15,11 @@ class UserRepository extends Repository implements UserRepositoryInterface
     protected $user;
     protected $role;
 
-    public function __construct(User $user, Role $role)
+    public function __construct(User $user, RoleUser $role)
     {
         parent::__construct($user);
         $this->user = $user;
-        $this->role = $role;
+        $this->roleUser = $role;
     }
 
     public function getAllData($data, $selectedColumns = [], $pagination = true)
@@ -28,14 +29,12 @@ class UserRepository extends Repository implements UserRepositoryInterface
         if (isset($data->keyword) && $data->keyword !== null) {
             $query->where('name', 'LIKE', '%' . $data->keyword . '%');
         }
-        if (isset($data->role) && $data->role !== null) {
-            $query->where('role_id', $data->role);
-        }
+
         if (count($selectedColumns) > 0) {
             $query->select($selectedColumns);
         }
         if ($pagination) {
-            return $query->orderBy('id', 'DESC')->with('role')->paginate(PAGINATE);
+            return $query->orderBy('id', 'DESC')->with('roles')->paginate(PAGINATE);
         }
 
         return $query->orderBy('id', 'DESC')->with('role')->get();
@@ -78,7 +77,7 @@ class UserRepository extends Repository implements UserRepositoryInterface
 
     public function findByEmailAndToken($email, $decryptedToken)
     {
-        return  $this->model->where('email', $email)->where('token', $decryptedToken)->first();
+        return $this->model->where('email', $email)->where('token', $decryptedToken)->first();
     }
 
     public function findByEmail($email)
@@ -89,13 +88,13 @@ class UserRepository extends Repository implements UserRepositoryInterface
         }
         return $user;
     }
-
-    public function getByUserRole($roleId)
+    public function bulkUpdateUserByRole($roleId, $requestRole)
     {
-        $user = $this->model->where('role_id', $roleId)->get();
-        if (!isset($user)) {
-            throw new ResourceNotFoundException("User doesn't exist in our system.");
-        }
-        return $user;
+        return $this->model->where('role_id', $roleId)->update(['role_id' => $requestRole]);
+    }
+
+    public function getByRolePivotRoleUser($roleId)
+    {
+        return $this->roleUser->where('user_id', $roleId)->get();
     }
 }

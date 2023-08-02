@@ -2,6 +2,7 @@
 
 namespace App\Services\System;
 
+use App\Exceptions\CustomGenericException;
 use App\Exceptions\NotDeletableException;
 use App\Repositories\System\RoleRepository;
 use App\Repositories\System\UserRepository;
@@ -14,6 +15,14 @@ class RoleService extends Service
         parent::__construct($roleRepository);
         $this->userRepository = $userRepository;
         $this->roleRepository = $roleRepository;
+    }
+
+    public function indexPageData($request)
+    {
+        return [
+            'items' => $this->repository->getAllData($request),
+            'roles' => $this->roleRepository->getRoles()
+        ];
     }
 
     public function store($request)
@@ -37,7 +46,7 @@ class RoleService extends Service
     {
         $data = $request->except('_token');
         $data['permissions'] = $this->roleRepository->mapPermission($data['permissions']);
-        $checkRoleUsers = $this->userRepository->getByUserRole($id);
+        $checkRoleUsers = $this->userRepository->getByRolePivotRoleUser($id);
 
         $this->roleRepository->update($data, $id);
         $role = $this->roleRepository->itemByIdentifier($id);
@@ -55,10 +64,15 @@ class RoleService extends Service
 
     public function delete($request, $id)
     {
-        $role = $this->roleRepository->itemByIdentifier($id);
-        if ($role->users->count() > 0) {
-            throw new NotDeletableException('The role is associated to the users.');
+        try {
+            if ($request->role_id == $id) {
+                throw new CustomGenericException('The role that currently exist and the ones that have been modified must not be identical.');
+            }
+
+            $this->userRepository->bulkUpdateUserByRole($id, $request->role_id);
+            return $this->roleRepository->delete($request, $id);
+        } catch (\Exception $e) {
+            throw new CustomGenericException($e->getMessage());
         }
-        return $this->roleRepository->delete($request, $id);
     }
 }

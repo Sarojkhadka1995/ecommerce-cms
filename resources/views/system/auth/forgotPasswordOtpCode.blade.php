@@ -6,7 +6,7 @@
                 <div class="login-card">
                     <div class="login-main">
                         @include('system.partials.message')
-                        <form class="theme-form login-form" method="post" action="{{url(PREFIX.'/set-password')}}"
+                        <form class="theme-form login-form" method="post" action="{{url(getSystemPrefix().'/set-password')}}"
                               id="forgot-password-form">
                             @csrf
                             <div class="form-group">

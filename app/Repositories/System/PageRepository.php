@@ -1,17 +1,8 @@
 <?php
-
 namespace App\Repositories\System;
-
-use App\Events\UserCreated;
-use App\Exceptions\CustomGenericException;
 use App\Interfaces\System\PageRepositoryInterface;
 use App\Model\Page;
-use App\Model\Role;
 use App\Repositories\Repository;
-use Illuminate\Support\Str;
-
-
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class PageRepository extends Repository implements PageRepositoryInterface
@@ -32,11 +23,11 @@ class PageRepository extends Repository implements PageRepositoryInterface
         if (isset($data->keyword) && $data->keyword !== null) {
             $query->where('title', 'LIKE', '%' . $data->keyword . '%');
         }
-     if (count($selectedColumns) > 0) {
+        if (count($selectedColumns) > 0) {
             $query->select($selectedColumns);
         }
         if ($pagination) {
-            return $query->orderBy('id', 'DESC')->paginate(PAGINATE);
+            return $query->orderBy('id', 'DESC')->paginate(paginate());
         }
 
         return $query->orderBy('id', 'DESC')->with('role')->get();
@@ -46,21 +37,19 @@ class PageRepository extends Repository implements PageRepositoryInterface
     public function createPage($request)
     {
         return $this->model->create($request);
-
     }
 
     public function updatePage($page, $data)
     {
-      return  $page->fill($data)->save();
-
+        return  $page->update($data);
     }
 
     public function deletePage($id)
     {
-         $item = $this->itemByIdentifier($id);
+        $item = $this->itemByIdentifier($id);
         if (isset($item->image)) {
-        Storage::disk('public')->exists('uploads/page/' . $item->image)
-            ? Storage::disk('public')->delete('uploads/page/' . $item->image)
+            Storage::disk('public')->exists('uploads/page/' . $item->image)
+                ? Storage::disk('public')->delete('uploads/page/' . $item->image)
                 : '';
         }
         return $item->delete();

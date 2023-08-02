@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Model\Role;
 use App\User;
 use Config;
 use Illuminate\Database\Seeder;
@@ -16,16 +17,23 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::where('id', 1)->first();
-        if (! isset($user)) {
-            User::create([
+        $user = User::where('username', 'admin')->first();
+        $superUserRole = Role::where('name', 'superuser')->first();
+        if (!isset($user)) {
+            $data = [
                 'name' => 'Admin',
-                'email'=> Config::get('constants.ADMIN_DEFAULT_EMAIL') ?? 'admin@ekcms.com',
+                'email' => Config::get('constants.ADMIN_DEFAULT_EMAIL') ?? 'admin@ekcms.com',
                 'username' => 'admin',
                 'password' => Hash::make('123admin@'),
                 'password_resetted' => 1,
-                'role_id' => 1,
-            ]);
+            ];
+
+            $createdUser = User::create($data);
+
+            $createdUser->roles()->attach($superUserRole->id);
+
         }
+
+
     }
 }

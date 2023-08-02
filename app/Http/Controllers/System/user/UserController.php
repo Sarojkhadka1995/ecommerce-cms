@@ -38,7 +38,7 @@ class UserController extends ResourceController
 
             return view('system.auth.setPassword', $data);
         } else {
-            return redirect(PREFIX.'/home');
+            return redirect(getSystemPrefix().'/home');
         }
     }
 

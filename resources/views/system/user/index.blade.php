@@ -28,16 +28,17 @@
     <td>{{SN($pageIndex, $key)}}</td>
     <td>{{ $item->name }}</td>
     <td>
-        <a href="/{{PREFIX}}/roles?keyword={{$item->role->name}}" class="badge badge-secondary">
-            {{ $item->role->name }}
-        </a>
+        @foreach($item->roles as $role)
+        <li><a href="/{{PREFIX}}/roles?keyword={{$role->name ?? 'N/A'}}" class="badge badge-secondary">
+                {{ $role->name ?? 'N/A' }}
+            </a></li>
+        @endforeach
     </td>
     <td>
         @include('system.partials.editButton')
         @include('system.partials.deleteButton')
         @if(hasPermission($indexUrl.'/reset-password/'.$item->id, 'post'))
-        <x-system.general-modal :url="url($indexUrl.'/reset-password/'.$item->id)" :modalTitle="'Password Reset'" :modalId="'passwordReset'.$item->id"
-        :modalTriggerButton="'Reset-Password'" :buttonClass="'btn-success'" :buttonIconClass="' fa fa-refresh'" :submitButtonTitle="'Reset'">
+        <x-system.general-modal :url="url($indexUrl.'/reset-password/'.$item->id)" :modalTitle="'Password Reset'" :modalId="'passwordReset'.$item->id" :modalTriggerButton="'Reset-Password'" :buttonClass="'btn-success'" :buttonIconClass="' fa fa-refresh'" :submitButtonTitle="'Reset'">
             <x-slot name="body">
                 <input type="hidden" name="id" value="{{$item->id}}">
                 @include('system.partials.errors')
@@ -52,7 +53,8 @@
 
                 <div class="form-group row">
                     <div class="col-sm-4 col-form-label">
-                        <label for="name" class="control-label">{{translate('Confirm Password')}}</label> <span style="color:red;">*</span>
+                        <label for="name" class="control-label">{{translate('Confirm Password')}}</label>
+                        <span style="color:red;">*</span>
                     </div>
                     <div class="col-sm-6">
                         <input type="password" name="password_confirmation" class="form-control" autocomplete="off" placeholder="Enter your confirm password " required>
@@ -70,7 +72,7 @@
     let error = `{{ $errors->first('password')}}`
     let oldId = `{{ old('id') }}`
     if (error !== "") {
-        $('#passwordReset'+oldId).modal('show')
+        $('#passwordReset' + oldId).modal('show')
     }
 </script>
 @endsection

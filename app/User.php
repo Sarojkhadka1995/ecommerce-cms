@@ -21,14 +21,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'username', 'role_id', 'token', 'password_resetted','expiry_datetime','is_2fa_enabled','two_fa_expiry_time'
+        'name', 'email', 'password', 'username', 'token', 'password_resetted', 'expiry_datetime', 'is_2fa_enabled', 'two_fa_expiry_time'
     ];
 
     protected $guarded = [
         'id',
     ];
 
-    protected static $logAttributes = ['name', 'email', 'username', 'role_id','is_2fa_enabled'];
+    protected static $logAttributes = ['name', 'email', 'username', 'role_id', 'is_2fa_enabled'];
 
     protected static $ignoreChangedAttributes = ['password', 'password_resetted', 'token', 'remember_token', 'updated_at'];
 
@@ -66,10 +66,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function role()
-    {
-        return $this->belongsTo(Role::class, 'role_id', 'id');
-    }
+//    public function role()
+//    {
+//        return $this->belongsTo(Role::class, 'role_id', 'id');
+//    }
 
     public function userPasswords()
     {
@@ -94,8 +94,13 @@ class User extends Authenticatable
             $title = 'Set Password';
             $key = 'set-password';
         }
-        $link = ''.Config::get('constants.URL').'/'.Config::get('constants.PREFIX').'/'.$key.'/'.$this->email.'/'.$token.'';
+        $link = ''.Config::get('constants.URL').'/'.getSystemPrefix().'/'.$key.'/'.$this->email.'/'.$token.'';
 
-        return '<a href='.$link.'>'.$title.'</a>';
+        return '<a href=' . $link . '>' . $title . '</a>';
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_user');
     }
 }

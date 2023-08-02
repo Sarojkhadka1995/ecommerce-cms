@@ -8,6 +8,7 @@ use App\Services\Service;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 
+
 class ProfileService extends Service
 {
     public function __construct(User $user)

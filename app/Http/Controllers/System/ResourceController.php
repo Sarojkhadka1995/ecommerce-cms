@@ -117,7 +117,7 @@ class ResourceController extends Controller
     {
         return [
             'title' => 'Dashboard',
-            'link' => '/' . PREFIX . '/' . translate('home'),
+            'link' => '/' . getSystemPrefix() . '/' . translate('home'),
         ];
     }
 
@@ -177,7 +177,7 @@ class ResourceController extends Controller
      */
     public function indexUrl()
     {
-        return '/' . PREFIX . '/' . $this->moduleName();
+        return '/' . getSystemPrefix() . '/' . $this->moduleName();
     }
 
     /**

@@ -3,15 +3,28 @@
 (function($) {
     "use strict";
     $(function() {
-        $('input[name="daterange"]').daterangepicker();
+        $('input[name="daterange"]').daterangepicker({
+             timePicker: true,
+            timePickerIncrement: 30,
+             locale: {
+                format: 'YYYY-MM-DD'
+            }
+        });
+        $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('YYYY-MM-DD') + ' - ' + picker.endDate.format('YYYY-MM-DD'));
+             $('#from').val(picker.startDate.format('YYYY-MM-DD'));
+            $('#to').val(picker.endDate.format('YYYY-MM-DD'));
+        });
     });
 //Date and Time
     $(function() {
         $('input[name="daterange2"]').daterangepicker({
             timePicker: true,
+            autoUpdateInput: false,
+
             timePickerIncrement: 30,
             locale: {
-                format: 'MM/DD/YYYY h:mm A'
+                format: 'yyyy-mm-dd'
             }
         });
     });
@@ -29,49 +42,7 @@
 
 
 //Predefined Ranges
-    $(function() {
 
-        var start = moment().subtract(29, 'days');
-        var end = moment();
-
-        function cb(start, end) {
-            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        }
-
-        $('#reportrange').daterangepicker({
-            startDate: start,
-            endDate: end,
-            ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            }
-        }, cb);
-
-        cb(start, end);
-
-    });
 //Input Initially Empty
-    $(function() {
-
-        $('input[name="datefilter"]').daterangepicker({
-            autoUpdateInput: false,
-            locale: {
-                cancelLabel: 'Clear'
-            }
-        });
-
-        $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-        });
-
-        $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
-            $(this).val('');
-        });
-
-    });
 
 })(jQuery);

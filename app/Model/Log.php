@@ -5,10 +5,14 @@ namespace App\Model;
 use App\User;
 use Spatie\Activitylog\Models\Activity;
 use Spatie\Activitylog\LogOptions;
+use Illuminate\Database\Eloquent\Builder;
 
 class Log extends Activity
 {
     protected $table = 'activity_log';
+
+
+
 
     public function getModuleName($data)
     {
@@ -37,7 +41,7 @@ class Log extends Activity
 
     public function oldValues($rawValues)
     {
-        if (! isset($rawValues['old'])) {
+        if (!isset($rawValues['old'])) {
             return 'N/A';
         }
         $value = trim(json_encode($rawValues['old']), '{}');
@@ -48,7 +52,7 @@ class Log extends Activity
 
     public function newValues($rawValues)
     {
-        if (! isset($rawValues['attributes'])) {
+        if (!isset($rawValues['attributes'])) {
             return 'N/A';
         }
         $value = trim(json_encode($rawValues['attributes']), '{}');

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Exceptions\Api\ApiGenericException;
 use App\Exceptions\ResourceNotFoundException;
 use App\Interfaces\OpenInterface;
 use Config;
@@ -81,7 +82,7 @@ class Repository implements OpenInterface
 
     //delete a record
 
-    public function delete($data,$id)
+    public function delete($data, $id)
     {
         $item = $this->itemByIdentifier($id);
         return $item->delete();
@@ -94,9 +95,19 @@ class Repository implements OpenInterface
         try {
             return $this->model->findOrFail($id);
         } catch (\Exception $e) {
-            throw new ResourceNotFoundException();
+            return  throw new ResourceNotFoundException($e->getMessage());
         }
     }
+
+    public function checkById($id)
+    {
+        $data =  $this->model->whereId($id)->first();
+        if (!$data) {
+            throw new ApiGenericException('Data not found', 400);
+        }
+    }
+
+
 
     // Data for index page
 

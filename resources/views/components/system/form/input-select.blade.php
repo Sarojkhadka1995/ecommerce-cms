@@ -1,7 +1,7 @@
 <select class="form-select mb-3 {{ isset($input['error']) && $input['error'] !== '' ? 'is-invalid' : '' }}"
     {{ isset($input['disabled']) && $input['disabled'] !== '' ? 'disabled' : '' }}
     {{ isset($input['multiple']) ? 'multiple' : '' }} {{ isset($input['required']) ? 'required' : '' }}
-     data-prefix="{{ PREFIX }}" data-url="{{ url('/') }}"
+     data-prefix="{{ getSystemPrefix() }}" data-url="{{ url('/') }}"
     name="{{ $input['name'] ?? '' }}" id="{{ $input['id'] ?? ($input['name'] ?? '') }}" id="validationCustom04">
      @if (isset($input['placeholder']))
         <option value="">{{ translate($input['placeholder']) }}</option>

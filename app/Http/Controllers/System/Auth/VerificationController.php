@@ -85,7 +85,7 @@ class VerificationController extends Controller
             if (session()->get('verification_code') == $code) {
                 session()->put('request_verification_code', $code);
 
-                return redirect('/' . PREFIX . '/home');
+                return redirect('/' . getSystemPrefix() . '/home');
             } else {
                 return back()->withErrors(['alert-danger' => 'Incorrect Verification Code.']);
             }

@@ -80,7 +80,7 @@ class LoginController extends Controller
             $user = $this->loginType($request);
 
             if (Auth::attempt($user)) {
-                setRoleCache(authUser());
+                setRoleCache(authUser()->load('roles'));
                 setConfigCookie();
                 $this->createLoginLog($request);
 

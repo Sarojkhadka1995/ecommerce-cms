@@ -6,17 +6,18 @@ use App\Interfaces\OpenInterface;
 use App\Interfaces\System\RoleInterface;
 use App\Model\Role;
 use App\Repositories\Repository;
+use App\RoleUser;
 use App\User;
 
 class RoleRepository extends Repository implements RoleInterface
 {
-    protected $user;
+    protected $roleUser;
     protected $role;
 
-    public function __construct(User $user, Role $role)
+    public function __construct(RoleUser $roleUser, Role $role)
     {
         parent::__construct($role);
-        $this->user = $user;
+        $this->roleUser = $roleUser;
         $this->role = $role;
     }
 
@@ -56,12 +57,11 @@ class RoleRepository extends Repository implements RoleInterface
 
     public function getRoles()
     {
-        $mapped = [];
-        $roles = $this->model->orderBy('name', 'ASC')->get();
-        foreach ($roles as $role) {
-            $mapped[$role->id] = $role->name;
-        }
+        return $this->model->orderBy('name', 'ASC')->pluck('name', 'id')->toArray();
+    }
 
-        return $mapped;
+    public function getByRolePivotRoleUser($userId)
+    {
+        return $this->roleUser->where('user_id', $userId)->pluck('role_id')->toArray();
     }
 }
