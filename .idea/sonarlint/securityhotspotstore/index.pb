@@ -58,8 +58,6 @@ e
 5resources/views/system/layouts/layoutFooter.blade.php,f/4/f4c02e42c8ffe009e2e52bac947078ec98bd8129
 Q
 !app/Listeners/RegisteredEmail.php,3/1/318b1ca2f2d8554b7bad6b9e63ca8c52826c8737
-T
-$resources/asset/system/js/backend.js,4/9/49f6a725adf5d646552033b327dab97c564de4a7
 J
 app/Exceptions/Handler.php,3/b/3badd23b42804fa4016b5b9734a7b35c12ec27e4
 Z
@@ -82,8 +80,6 @@ Z
 *app/Repositories/System/RoleRepository.php,1/e/1e610bb60c093cf6412221dd8d74b9d08406166c
 Z
 *resources/views/system/user/form.blade.php,a/4/a4bd974d39f5836547eac662f33d949b1cf47c57
-R
-"app/Http/Middleware/Permission.php,e/4/e4b3098aee51c3ce70ca48bad18df50bb05c814e
 S
 #app/Services/System/UserService.php,9/6/967d92189b22b14b490fded6a52bd4f7de0947c9
 d
@@ -96,7 +92,5 @@ a
 1resources/views/system/auth/setPassword.blade.php,8/3/83484fc9b3b4d777957d47873971186678d5584c
 @
 public/js/app.js,3/3/33ff5b9601779f3f4bcbd328a76c18073a9a65bb
-a
-1resources/views/system/partials/sidebar.blade.php,d/7/d7088dc027c77ff434085e1b5017525422cdb941
 O
 database/seeders/RoleSeeder.php,e/e/eebbad3d7b0b679dd285a4431b6650eda7cef9db

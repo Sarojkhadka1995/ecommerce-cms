@@ -52,8 +52,6 @@ J
 0resources/views/system/layouts/listing.blade.php,5/6/56b681de52e6b8fe826683d4d4be1de035c0a677
 e
 5resources/views/system/layouts/layoutFooter.blade.php,f/4/f4c02e42c8ffe009e2e52bac947078ec98bd8129
-T
-$resources/asset/system/js/backend.js,4/9/49f6a725adf5d646552033b327dab97c564de4a7
 J
 app/Exceptions/Handler.php,3/b/3badd23b42804fa4016b5b9734a7b35c12ec27e4
 Z
@@ -80,8 +78,6 @@ Z
 app/RoleUser.php,6/8/685190a98abd44103f4ae67a7e6079856e8f195d
 S
 #app/Services/System/UserService.php,9/6/967d92189b22b14b490fded6a52bd4f7de0947c9
-R
-"app/Http/Middleware/Permission.php,e/4/e4b3098aee51c3ce70ca48bad18df50bb05c814e
 d
 4app/Http/Controllers/System/Auth/LoginController.php,0/3/03c67efc81d8e4780b318d6f5111b9b0fa686032
 d
@@ -92,7 +88,5 @@ a
 1resources/views/system/auth/setPassword.blade.php,8/3/83484fc9b3b4d777957d47873971186678d5584c
 @
 public/js/app.js,3/3/33ff5b9601779f3f4bcbd328a76c18073a9a65bb
-a
-1resources/views/system/partials/sidebar.blade.php,d/7/d7088dc027c77ff434085e1b5017525422cdb941
 O
 database/seeders/RoleSeeder.php,e/e/eebbad3d7b0b679dd285a4431b6650eda7cef9db
