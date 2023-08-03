@@ -87,9 +87,10 @@ class UserRepository extends Repository implements UserRepositoryInterface
         }
         return $user;
     }
+
     public function bulkUpdateUserByRole($roleId, $requestRole)
-    {       
-        return $this->model->where('role_id', $roleId)->update(['role_id' => $requestRole]);
+    {
+        return $this->roleUser->where('role_id', $roleId)->update(['role_id' => $requestRole]);
     }
 
     public function getByRolePivotRoleUser($roleId)

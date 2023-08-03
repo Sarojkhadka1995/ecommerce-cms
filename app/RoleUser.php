@@ -11,4 +11,6 @@ class RoleUser extends Model
 
     protected $table = 'role_user';
     protected $guarded = ['id'];
+    public $timestamps = false;
+
 }

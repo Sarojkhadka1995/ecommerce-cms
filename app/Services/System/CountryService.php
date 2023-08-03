@@ -18,7 +18,6 @@ class CountryService extends Service
         foreach ($countries as $country) {
             $countriesPair[$country[$key]] = $country[$value];
         }
-
         return $countriesPair;
     }
 }
