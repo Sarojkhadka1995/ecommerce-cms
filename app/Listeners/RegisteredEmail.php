@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\UserCreated;
 use App\Mail\system\AccountCreatedEmail;
 use App\Mail\system\PasswordSetEmail;
+use Complex\Exception;
 use Illuminate\Support\Facades\Mail;
 use Config;
 
@@ -40,7 +41,11 @@ class RegisteredEmail
             Mail::to($user->email)->send(new PasswordSetEmail($user, $encryptedToken));
         } else {
             $user->userPasswords()->create(['password' => $user->password]);
-            Mail::to($user->email)->send(new AccountCreatedEmail($user));
+            try {
+                Mail::to($user->email)->send(new AccountCreatedEmail($user));
+            }catch (\Exception $e){
+                break;
+            }
         }
     }
 }

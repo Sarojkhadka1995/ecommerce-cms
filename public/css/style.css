@@ -42649,6 +42649,14 @@ body .for-dark {
     transition: all 0.3s ease
 }
 
+.page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links .simplebar-wrapper .simplebar-mask .simplebar-content-wrapper .simplebar-content > li.sidebar-list.active > a.sidebar-link {
+    background-color: #f4f6fd !important;
+}
+
+.page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links .simplebar-wrapper .simplebar-mask .simplebar-content-wrapper .simplebar-content > li.sidebar-list.active > a.sidebar-link span {
+    color: var(--theme-deafult) !important;
+}
+
 .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links .simplebar-wrapper .simplebar-mask .simplebar-content-wrapper .simplebar-content > li:hover .sidebar-link:not(.active):hover svg {
     fill: rgba(99, 98, 231, 0.2);
     -webkit-transition: all 0.3s ease;
@@ -42662,7 +42670,7 @@ body .for-dark {
 }
 
 .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links .simplebar-wrapper .simplebar-mask .simplebar-content-wrapper .simplebar-content > li:hover .sidebar-link:not(.active):hover span {
-    color: var(--theme-deafult);
+    /*color: var(--theme-deafult);*/
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease
 }
@@ -42896,6 +42904,10 @@ body .for-dark {
     background-color: #f4f6fd
 }
 
+.page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links .simplebar-wrapper .simplebar-mask .simplebar-content-wrapper .simplebar-content > li .sidebar-link.active:not(.link-nav) {
+    background:none !important;
+}
+
 .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links .simplebar-wrapper .simplebar-mask .simplebar-content-wrapper .simplebar-content > li .sidebar-link.active .according-menu i {
     color: var(--theme-deafult)
 }
@@ -42910,6 +42922,10 @@ body .for-dark {
     color: var(--theme-deafult);
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease
+}
+
+.page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links .simplebar-wrapper .simplebar-mask .simplebar-content-wrapper .simplebar-content > li .sidebar-link.active:not(.link-nav) span {
+    color: inherit !important;
 }
 
 .page-wrapper.compact-wrapper .page-body-wrapper .mega-box.col {

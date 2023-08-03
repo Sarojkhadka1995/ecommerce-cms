@@ -46,8 +46,6 @@ X
 (app/Http/Requests/system/roleRequest.php,a/2/a214d36dab48be1a5cf24baf3c4ba0950290f22d
 f
 6resources/views/system/partials/deleteButton.blade.php,c/b/cbf8135b8892df78754279360da5855990f9ea83
-J
-app/Events/UserCreated.php,e/9/e921084e23f60f269fbff4f6e9efd828c3aa9f22
 `
 0resources/views/system/layouts/listing.blade.php,5/6/56b681de52e6b8fe826683d4d4be1de035c0a677
 e
@@ -62,8 +60,6 @@ m
 =app/Http/Controllers/System/Auth/ForgotPasswordController.php,e/5/e59c25ad60b01555f9f5e4d491155930f748ef4b
 e
 5resources/views/system/layouts/layoutHeader.blade.php,a/e/aea1ec041aa2b6b31c1b4e766a64ebf50e7d5cb3
-Q
-!app/Listeners/RegisteredEmail.php,3/1/318b1ca2f2d8554b7bad6b9e63ca8c52826c8737
 q
 Adatabase/migrations/2023_08_01_094508_remove_role_id_to_users.php,4/d/4dcd2a4205066de9d52fb50e2487a275c1e1b452
 q
@@ -72,8 +68,6 @@ Z
 *app/Repositories/System/RoleRepository.php,1/e/1e610bb60c093cf6412221dd8d74b9d08406166c
 Z
 *resources/views/system/user/form.blade.php,a/4/a4bd974d39f5836547eac662f33d949b1cf47c57
-S
-#app/Services/System/UserService.php,9/6/967d92189b22b14b490fded6a52bd4f7de0947c9
 d
 4app/Http/Controllers/System/Auth/LoginController.php,0/3/03c67efc81d8e4780b318d6f5111b9b0fa686032
 d

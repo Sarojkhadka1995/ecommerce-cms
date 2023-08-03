@@ -50,14 +50,10 @@ c
 3app/Http/Controllers/System/user/RoleController.php,3/2/324996371a4017d4b8df8c111ccd16a76085d1e2
 f
 6resources/views/system/partials/deleteButton.blade.php,c/b/cbf8135b8892df78754279360da5855990f9ea83
-J
-app/Events/UserCreated.php,e/9/e921084e23f60f269fbff4f6e9efd828c3aa9f22
 `
 0resources/views/system/layouts/listing.blade.php,5/6/56b681de52e6b8fe826683d4d4be1de035c0a677
 e
 5resources/views/system/layouts/layoutFooter.blade.php,f/4/f4c02e42c8ffe009e2e52bac947078ec98bd8129
-Q
-!app/Listeners/RegisteredEmail.php,3/1/318b1ca2f2d8554b7bad6b9e63ca8c52826c8737
 J
 app/Exceptions/Handler.php,3/b/3badd23b42804fa4016b5b9734a7b35c12ec27e4
 Z
@@ -76,8 +72,6 @@ Z
 *app/Repositories/System/RoleRepository.php,1/e/1e610bb60c093cf6412221dd8d74b9d08406166c
 Z
 *resources/views/system/user/form.blade.php,a/4/a4bd974d39f5836547eac662f33d949b1cf47c57
-S
-#app/Services/System/UserService.php,9/6/967d92189b22b14b490fded6a52bd4f7de0947c9
 d
 4app/Http/Controllers/System/Auth/LoginController.php,0/3/03c67efc81d8e4780b318d6f5111b9b0fa686032
 d
