@@ -72,10 +72,6 @@ q
 Adatabase/migrations/2023_08_01_094102_create_role_users_table.php,b/a/ba69aa3e1b0fc4dc7f83036b865af7ad79798312
 q
 Adatabase/migrations/2023_08_01_094508_remove_role_id_to_users.php,4/d/4dcd2a4205066de9d52fb50e2487a275c1e1b452
-B
-app/Model/Role.php,1/3/131181c654ad1ba6abeda01478907b1615a94342
-@
-app/RoleUser.php,6/8/685190a98abd44103f4ae67a7e6079856e8f195d
 Z
 *app/Repositories/System/RoleRepository.php,1/e/1e610bb60c093cf6412221dd8d74b9d08406166c
 Z
@@ -94,12 +90,8 @@ a
 public/js/app.js,3/3/33ff5b9601779f3f4bcbd328a76c18073a9a65bb
 O
 database/seeders/RoleSeeder.php,e/e/eebbad3d7b0b679dd285a4431b6650eda7cef9db
-<
-app/User.php,5/1/5158cc6821d0344345606af2834807beae093242
 [
 +resources/views/system/role/index.blade.php,4/a/4a8bbc36ce591fae7f8bacb93b25f86d180535fa
-Z
-*app/Repositories/System/UserRepository.php,9/4/94f88b9d4ac9552ca6fd3e802b3b03c4ca2da0e6
 Q
 !app/Helper/Ekcms/globalHelper.php,2/c/2c8ea60b95b552485f43da37af7941c5b1b77def
 [
