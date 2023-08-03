@@ -21,10 +21,14 @@ const sidebar = (function () {
         } else {
             path = lastSegment;
         }
+
         if (path !== undefined) {
-            $navSidebar.find("a[href$='" + path + "']").closest('li').addClass('active');
-            $navSidebar.find("a[href$='" + path + "']").parents().eq(2).addClass('active');
-            $navSidebar.find("a[href$='" + path + "']").closest('.collapse').collapse();
+            $navSidebar.find("a[href$='" + path + "']").closest('li').children().addClass('active');
+            $navSidebar.find("a[href$='" + path + "']").parents().eq(1).prev().addClass('active');
+            $navSidebar.find("a[href$='" + path + "']").parents().eq(1).css('display','block');
+            $("a.sidebar-link.active .according-menu .fa-angle-right").removeClass('fa-angle-right')
+            $("a.sidebar-link.active .according-menu .fa").addClass('fa-angle-down');
+
         }
     }
 
