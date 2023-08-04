@@ -61,7 +61,8 @@ pipeline {
             php artisan migrate; \
             php artisan db:seed; \
             nvm use 16.20.1; \
-            
+            npm install; \
+            npm run dev; \
             exit
             EOF '''
             }
