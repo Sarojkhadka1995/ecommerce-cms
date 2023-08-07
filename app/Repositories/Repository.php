@@ -22,14 +22,13 @@ class Repository implements OpenInterface
     }
 
     // get all data
-
     public function getAllData($data, $selectedColumns = [], $pagination = true)
     {
         $query = $this->query();
         if (count($selectedColumns) > 0) {
             $query->select($selectedColumns);
         }
-        if (isset($data->keyword) && $data->keyword !== null) {
+        if (isset($data->keyword)) {
             $query->where('name', 'LIKE', '%' . $data->keyword . '%');
         }
         if ($pagination) {
@@ -107,10 +106,7 @@ class Repository implements OpenInterface
         }
     }
 
-
-
     // Data for index page
-
     public function indexPageData($request)
     {
         return [
@@ -119,7 +115,6 @@ class Repository implements OpenInterface
     }
 
     // Data for create page
-
     public function createPageData($request)
     {
         return [
@@ -137,7 +132,6 @@ class Repository implements OpenInterface
     }
 
     // get query for modal
-
     public function query()
     {
         return $this->model->query();

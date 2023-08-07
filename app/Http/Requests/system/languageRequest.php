@@ -27,7 +27,6 @@ class languageRequest extends FormRequest
         return [
             'country_id' => ['required', new checkCountryExist],
             'language_code' => 'required|unique:languages,language_code',
-            'group' => 'required|in:backend,frontend',
         ];
     }
 
@@ -37,7 +36,6 @@ class languageRequest extends FormRequest
             'country_id.required' => 'The country field is required.',
             'language_code.required' => 'The language field is required.',
             'language_code.unique' => 'The selected language already exists.',
-
         ];
     }
 }

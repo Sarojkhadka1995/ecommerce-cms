@@ -8,24 +8,17 @@ use App\Services\Service;
 
 class LanguageService extends Service
 {
-    public function __construct(LanguageRepository $languageRepository, CountryService $countryService, CountryRepository $countryRepository)
+    protected $languageRepository;
+    protected $countryRepository;
+    protected $countryService;
+
+    public function __construct(LanguageRepository $languageRepository,
+                                CountryService     $countryService,
+                                CountryRepository  $countryRepository)
     {
-        $this->languageRepository = $languageRepository;
+        $this->repository = $languageRepository;
         $this->countryRepository = $countryRepository;
         $this->countryService = $countryService;
-    }
-
-    public function getAllData($data, $selectedColumns = [], $pagination = true)
-    {
-        return $this->languageRepository->getAllData($data);
-    }
-
-    public function indexPageData($request)
-    {
-        return [
-            'items' => $this->getAllData($request),
-            'groups' => $this->defaultLanguageGroups(),
-        ];
     }
 
     public function createPageData($request)
@@ -33,29 +26,8 @@ class LanguageService extends Service
         $countries = $this->countryRepository->getAllData($request, ['id', 'name', 'languages', 'flag'], false);
         return [
             'countriesOptions' => $this->countryService->extractKeyValuePair($countries),
-            'groups' => $this->defaultLanguageGroups(),
         ];
     }
-
-    public function store($request)
-    {
-        return $this->languageRepository->create($request);
-    }
-
-    public function delete($request, $id)
-    {
-        return $this->languageRepository->delete($request, $id);
-    }
-
-    public function defaultLanguageGroups()
-    {
-        return
-            [
-                'backend' => 'Backend',
-                'frontend' => 'Frontend',
-            ];
-    }
-
     public function getKeyValuePair($languages, $key = 'language_code', $value = 'name')
     {
         $options = [];
@@ -66,13 +38,8 @@ class LanguageService extends Service
         return $options;
     }
 
-    public function getBackendLanguages()
+    public function getBackendLanguages($group)
     {
-        return $this->languageRepository->getBackendLanguages();
-    }
-
-    public function getFrontendLanguages()
-    {
-        return $this->languageRepository->getFrontendLanguages();
+        return $this->languageRepository->getLanguages('backend');
     }
 }

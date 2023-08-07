@@ -54,8 +54,6 @@ J
 app/Exceptions/Handler.php,3/b/3badd23b42804fa4016b5b9734a7b35c12ec27e4
 Z
 *resources/views/system/role/form.blade.php,4/9/4954195a8cad582d9e67ce3df5100ae8b6940f19
-b
-2app/Http/Controllers/System/ResourceController.php,7/b/7bc1824a01d64b624fea26ac12acbc34d13e39c1
 m
 =app/Http/Controllers/System/Auth/ForgotPasswordController.php,e/5/e59c25ad60b01555f9f5e4d491155930f748ef4b
 e
@@ -90,24 +88,12 @@ Q
 routes/web.php,6/b/6b9a783d9b43fee50fd28f56dbd1856d2608f305
 O
 database/seeders/UserSeeder.php,9/a/9a5fbe4af4b23f69ef07f35a2d8a4d7c75c60797
-X
-(database/seeders/EmailTemplateSeeder.php,2/d/2de3a7c9393840cefb5846d1e6f292523c3e05b2
 S
 #database/seeders/DatabaseSeeder.php,a/c/aca1efccd4101e0c9bdd34803577859ace08ef45
 Y
 )database/seeders/CountriesTableSeeder.php,d/7/d784c4013c8d13a86ed12749cda962afaa61f247
-B
-routes/backend.php,e/2/e2e681ec50a0cf7c5bab5ceb2bb45db0b74c117d
 X
 (resources/asset/system/js/translation.js,b/4/b42da451fbb2b8e3935f16e1933dd27e1fd06841
-^
-.app/Repositories/System/LanguageRepository.php,5/f/5ffa0e696c9d92017cb3980c7a05a5b6704eb407
-W
-'app/Services/System/LanguageService.php,9/3/9315e4e283a47a44b6d74e7ef06166ca868f12c4
-H
-app/Services/Service.php,f/2/f227a0aadc255f75549324fd543836c26864c020
-k
-;app/Http/Controllers/System/language/LanguageController.php,e/a/eae4fe0425ee1ac28adad10f6a9754cbb820e04a
 ]
 -app/Repositories/System/CountryRepository.php,1/7/17c9412e608696bf94dab3bfd7deaf5dbb529549
 U
@@ -116,7 +102,5 @@ J
 resources/lang/en/auth.php,5/0/50eb9a429e5326ea182e5681a15e410f355ac1cb
 O
 resources/lang/en/passwords.php,4/9/490024d5472873cb7ea94284b96bab26a7f9fc92
-O
-app/Repositories/Repository.php,6/2/6290a2b670fd384a5473a2d8aa4df4e14bd0bba9
 I
 public/css/responsive.css,e/8/e8ae40d300699941571eec7c9170332186f7c982

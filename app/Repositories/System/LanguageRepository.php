@@ -25,13 +25,7 @@ class LanguageRepository extends Repository implements LanguageInterface
                 $q->where('name', 'LIKE', '%' . $data->keyword . '%')->orWhere('language_code', 'LIKE', '%' . $data->keyword . '%');
             });
         }
-        if (isset($data->group) && $data->group !== null) {
-            $query->where('group', $data->group);
-        } elseif (isset($data['group'])) {
-            $query->where('group', $data['group']);
-        } else {
             $query->where('group', 'backend');
-        }
         if (count($selectedColumns) > 0) {
             $query->select($selectedColumns);
         }
@@ -58,7 +52,7 @@ class LanguageRepository extends Repository implements LanguageInterface
         return $this->model->create([
             'name' => $name,
             'language_code' => $language_code,
-            'group' => $request->get('group'),
+            'group' => 'backend',
         ]);
     }
 
@@ -71,13 +65,8 @@ class LanguageRepository extends Repository implements LanguageInterface
         return $language->delete();
     }
 
-    public function getBackendLanguages()
+    public function getLanguages($group)
     {
-        return $this->model->where('group', 'backend')->get();
-    }
-
-    public function getFrontendLanguages()
-    {
-        return $this->model->where('group', 'frontend')->get();
+        return $this->model->where('group', $group)->get();
     }
 }
