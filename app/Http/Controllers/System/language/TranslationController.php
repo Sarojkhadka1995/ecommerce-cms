@@ -63,7 +63,7 @@ class TranslationController extends ResourceController
     {
         $file = $request->excel_file;
         $fileExtension = $file->getClientOriginalExtension();
-        if (! in_array($fileExtension, ['xlsx', 'xls'])) {
+        if (!in_array($fileExtension, ['xlsx', 'xls'])) {
             return back()->withErrors(['alert-danger' => 'The file type must be xls or xlsx!']);
         }
         if (! in_array($group, ['frontend', 'backend'])) {
@@ -77,11 +77,10 @@ class TranslationController extends ResourceController
                 return back()->withErrors(['alert-danger' => 'The file does not contain any translation content']);
             }
             $heading = $this->removeSpacesHeading($uploadedData[0][0]);
-            $langShortCodes = Language::where('group', $group)->pluck('language_code')->toArray();
-            array_push($langShortCodes, 'key');
+            $langShortCodes = Language::where('group', 'backend')->pluck('language_code')->toArray();
+            array_unshift($langShortCodes, 'key');
 
             $checkValid = array_diff($heading, $langShortCodes);
-
             if (count($checkValid) > 0) {
                 return back()->withErrors(['alert-danger' => 'Invalid translation content or the provided language may not be available.']);
             }
