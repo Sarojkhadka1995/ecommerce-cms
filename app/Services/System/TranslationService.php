@@ -3,36 +3,30 @@
 namespace App\Services\System;
 
 use App\Model\Language;
+use App\Repositories\System\LanguageRepository;
 use App\Repositories\System\TranslationRepository;
 use App\Services\Service;
 
 class TranslationService extends Service
 {
-    public function __construct(TranslationRepository $translationRepository, LanguageService $languageService)
-    {
-        $this->translationRepository = $translationRepository;
-        $this->languageService = $languageService;
-    }
+    protected $translationRepository;
+    protected $languageRepository;
 
-    public function getAllData($data, $selectedColumns = [], $pagination = true)
+    public function __construct(TranslationRepository $translationRepository,
+                                LanguageRepository $languageRepository)
     {
-        return $this->translationRepository->getAllData($data);
+        $this->repository = $translationRepository;
+        $this->languageRepository = $languageRepository;
     }
 
     public function indexPageData($request)
     {
-        $languages = $this->languageService->getAllData($request->only('group'), ['name', 'language_code'], false);
+        $languages = $this->languageRepository->getAllData($request, ['name', 'language_code'], false);
 
         return [
-            'items' => $this->getAllData($request),
-            'groups' => $this->languageService->defaultLanguageGroups(),
-            'locales' => $this->languageService->getKeyValuePair($languages),
+            'items' => $this->repository->getAllData($request),
+            'locales' => $this->languageRepository->getKeyValuePair($languages),
         ];
-    }
-
-    public function store($request)
-    {
-        return $this->translationRepository->create($request);
     }
     public function inserttext($content, $group)
     {
@@ -41,7 +35,6 @@ class TranslationService extends Service
         foreach ($languages as $language) {
             $text[$language] = $content;
         }
-
         return $text;
     }
 

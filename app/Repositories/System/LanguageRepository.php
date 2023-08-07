@@ -20,9 +20,10 @@ class LanguageRepository extends Repository implements LanguageInterface
     public function getAllData($data, $selectedColumns = [], $pagination = true)
     {
         $query = $this->query();
-        if (isset($data->keyword) && $data->keyword !== null) {
+        if (isset($data->keyword)) {
             $query->where(function ($q) use ($data) {
-                $q->where('name', 'LIKE', '%' . $data->keyword . '%')->orWhere('language_code', 'LIKE', '%' . $data->keyword . '%');
+                $q->where('name', 'LIKE', '%' . $data->keyword . '%')
+                    ->orWhere('language_code', 'LIKE', '%' . $data->keyword . '%');
             });
         }
             $query->where('group', 'backend');
@@ -41,17 +42,17 @@ class LanguageRepository extends Repository implements LanguageInterface
         $country = $this->countryRepository->itemByIdentifier($request->get('country_id'));
         $languages = json_decode($country->languages);
         $name = '';
-        $language_code = '';
+        $languageCode = '';
         foreach ($languages as $language) {
             if ($language->iso639_1 == $request->get('language_code')) {
                 $name = $language->name;
-                $language_code = $language->iso639_1;
+                $languageCode = $language->iso639_1;
                 break;
             }
         }
         return $this->model->create([
             'name' => $name,
-            'language_code' => $language_code,
+            'language_code' => $languageCode,
             'group' => 'backend',
         ]);
     }
@@ -68,5 +69,15 @@ class LanguageRepository extends Repository implements LanguageInterface
     public function getLanguages($group)
     {
         return $this->model->where('group', $group)->get();
+    }
+
+    public function getKeyValuePair($languages, $key = 'language_code', $value = 'name')
+    {
+        $options = [];
+        foreach ($languages as $language) {
+            $options[$language[$key]] = $language[$value];
+        }
+
+        return $options;
     }
 }

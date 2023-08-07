@@ -28,16 +28,6 @@ class LanguageService extends Service
             'countriesOptions' => $this->countryService->extractKeyValuePair($countries),
         ];
     }
-    public function getKeyValuePair($languages, $key = 'language_code', $value = 'name')
-    {
-        $options = [];
-        foreach ($languages as $language) {
-            $options[$language[$key]] = $language[$value];
-        }
-
-        return $options;
-    }
-
     public function getBackendLanguages($group)
     {
         return $this->languageRepository->getLanguages('backend');
