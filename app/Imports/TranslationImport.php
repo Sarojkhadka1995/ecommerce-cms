@@ -11,9 +11,9 @@ class TranslationImport implements ToCollection
     /**
      * @param Collection $collection
      */
-    public function __construct($group)
+    public function __construct()
     {
-        $this->group = $group;
+//
     }
 
     public function collection(Collection $rows)

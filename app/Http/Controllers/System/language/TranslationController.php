@@ -59,18 +59,15 @@ class TranslationController extends ResourceController
         return \Excel::download(new TranslationExport($group), $filename);
     }
 
-    public function uploadExcel(uploadExcel $request, $group)
+    public function uploadExcel(uploadExcel $request)
     {
         $file = $request->excel_file;
         $fileExtension = $file->getClientOriginalExtension();
         if (!in_array($fileExtension, ['xlsx', 'xls'])) {
             return back()->withErrors(['alert-danger' => 'The file type must be xls or xlsx!']);
         }
-        if (! in_array($group, ['frontend', 'backend'])) {
-            return back()->withErrors(['alert-danger' => 'Please select the valid group.']);
-        }
         try {
-            $contents = \Excel::import(new TranslationImport($group), $file);
+            $contents = \Excel::import(new TranslationImport(), $file);
             $uploadedData = $contents->toArray($contents, $file);
 
             if (count($uploadedData[0]) <= 1) {
@@ -87,7 +84,7 @@ class TranslationController extends ResourceController
 
             unset($uploadedData[0][0]); // removing header content from file
 
-            $this->parseAndUploadData($uploadedData, $heading, $group);
+            $this->parseAndUploadData($uploadedData, $heading);
 
             return back()->withErrors(['alert-success' => 'The translations successfully uploaded.']);
         } catch (\Exception $e) {
@@ -105,13 +102,13 @@ class TranslationController extends ResourceController
         return $removed;
     }
 
-    public function parseAndUploadData($data, $heading, $group)
+    public function parseAndUploadData($data, $heading)
     {
         $arrayT = [];
 
         foreach ($data[0] as $key => $value) {
             $word = strtolower(trim(str_replace('.', '', $value[0])));
-            $lang = LanguageLine::where('group', $group)->where('key', $word)->first();
+            $lang = LanguageLine::where('key', $word)->first();
             $updated = $this->formatText($value, $heading);
             if (isset($lang) || $lang !== null) {
                 $lang->update([
@@ -120,7 +117,6 @@ class TranslationController extends ResourceController
             } else {
                 LanguageLine::create([
                     'key' => $word,
-                    'group' => $group,
                     'text' => $updated,
                 ]);
             }

@@ -1,5 +1,6 @@
 @extends('system.layouts.form')
 @section('inputs')
+    @dump($errors)
 <x-system.form.form-group :input="['label'=>'Country', 'required'=>true]">
     <x-slot name="inputs">
     <x-system.form.input-select :input="['name'=>'country_id','placeholder'=>'Select Country', 'options' => $countriesOptions, 'required'=>true, 'default'=>old('country_id'), 'error'=>$errors->first('country_id')]"/>

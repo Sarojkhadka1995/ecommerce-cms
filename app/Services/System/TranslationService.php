@@ -30,7 +30,7 @@ class TranslationService extends Service
     }
     public function inserttext($content, $group)
     {
-        $languages = Language::where('group', $group)->orderBy('group', 'ASC')->pluck('language_code');
+        $languages = Language::orderBy('group', 'ASC')->pluck('language_code');
         $text = [];
         foreach ($languages as $language) {
             $text[$language] = $content;

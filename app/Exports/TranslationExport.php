@@ -14,16 +14,16 @@ class TranslationExport implements FromView, ShouldAutoSize
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function __construct($group)
+    public function __construct()
     {
-        $this->group = $group;
+        //
     }
 
     public function view(): View
     {
         return view('system.exports.translations', [
-            'translations' => LanguageLine::where('group', $this->group)->get(),
-            'languages' => Language::where('group', $this->group)->get(),
+            'translations' => LanguageLine::get(),
+            'languages' => Language::get(),
         ]);
     }
 }

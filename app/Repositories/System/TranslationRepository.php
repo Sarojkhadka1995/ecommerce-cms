@@ -21,11 +21,6 @@ class TranslationRepository extends Repository implements TranslationInterface
     if (isset($data->keyword) && $data->keyword !== null) {
       $query->where('key', 'LIKE', '%' . $data->keyword . '%');
     }
-    if (isset($data->group) && $data->group !== null) {
-      $query->where('group', $data->group);
-    } else {
-      $query->where('group', 'backend');
-    }
     if (count($selectedColumns) > 0) {
       $query->select($selectedColumns);
     }
@@ -42,18 +37,17 @@ class TranslationRepository extends Repository implements TranslationInterface
       $check = $this->model::where('key', $key)->where('group', $request->group)->first();
       if (!isset($check)) {
         return $this->model::create([
-          'group' => $request->group,
           'key' => $key,
-          'text' => $this->inserttext($key, $request->group),
+          'text' => $this->inserttext($key),
         ]);
       }
     } else {
       return true;
     }
   }
-  public function inserttext($content, $group)
+  public function inserttext($content)
   {
-    $languages = Language::where('group', $group)->orderBy('group', 'ASC')->pluck('language_code');
+    $languages = Language::orderBy('name', 'ASC')->pluck('language_code');
     $text = [];
     foreach ($languages as $language) {
       $text[$language] = $content;
@@ -64,7 +58,7 @@ class TranslationRepository extends Repository implements TranslationInterface
 
   public function update($request, $data)
   {
-    return  $data->update(['group' => $request->group, 'text' => $data]);
+    return  $data->update(['text' => $data]);
   }
 
   public function delete($request, $id)

@@ -14,20 +14,18 @@ class LanguageSeeder extends Seeder
      */
     public function run()
     {
-        $englishBackend = Language::where('id', 1)->first();
-        if (! $englishBackend) {
+        $english = Language::where('language_code', 'en')->first();
+        if (!$english) {
             Language::create([
                 'name' => 'English',
                 'language_code' => 'en',
-                'group' => 'backend',
             ]);
         }
-        $japaneseBackend = Language::where('id', 3)->first();
-        if (! $japaneseBackend) {
+        $japanese = Language::where('language_code', 'ja')->first();
+        if (!$japanese) {
             Language::create([
                 'name' => 'Japanese',
                 'language_code' => 'ja',
-                'group' => 'backend',
             ]);
         }
     }

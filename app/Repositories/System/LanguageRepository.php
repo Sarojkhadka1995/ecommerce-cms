@@ -6,6 +6,7 @@ use App\Exceptions\NotDeletableException;
 use App\Interfaces\System\LanguageInterface;
 use App\Model\Language;
 use App\Repositories\Repository;
+use Spatie\TranslationLoader\LanguageLine;
 
 class LanguageRepository extends Repository implements LanguageInterface
 {
@@ -26,7 +27,6 @@ class LanguageRepository extends Repository implements LanguageInterface
                     ->orWhere('language_code', 'LIKE', '%' . $data->keyword . '%');
             });
         }
-            $query->where('group', 'backend');
         if (count($selectedColumns) > 0) {
             $query->select($selectedColumns);
         }
@@ -53,7 +53,6 @@ class LanguageRepository extends Repository implements LanguageInterface
         return $this->model->create([
             'name' => $name,
             'language_code' => $languageCode,
-            'group' => 'backend',
         ]);
     }
 
