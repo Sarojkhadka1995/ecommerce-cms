@@ -4,8 +4,6 @@ namespace App\Imports;
 
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
-use Spatie\TranslationLoader\LanguageLine;
-
 class TranslationImport implements ToCollection
 {
     /**

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Spatie\TranslationLoader\LanguageLine;
+//use Spatie\TranslationLoader\LanguageLine;
 
 Route::get('/', function () {
     return redirect(route('login.form'));
@@ -67,9 +67,9 @@ Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix(), 'middlewar
         Route::get('pages/change-page-status', 'page\PageController@changePageStatus')->name('changePageStatus');
 
         Route::resource('categories/{id}/sub-category', 'category\SubCategoryController');
-        Route::get('/clear-lang', function () {
-            LanguageLine::truncate();
-        });
+//        Route::get('/clear-lang', function () {
+//            LanguageLine::truncate();
+//        });
 
         Route::get('/mail-test/create', 'MailTestController@create');
         Route::post('/mail-test', 'MailTestController@sendEmail');

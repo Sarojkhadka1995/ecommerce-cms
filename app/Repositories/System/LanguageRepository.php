@@ -6,8 +6,6 @@ use App\Exceptions\NotDeletableException;
 use App\Interfaces\System\LanguageInterface;
 use App\Model\Language;
 use App\Repositories\Repository;
-use Spatie\TranslationLoader\LanguageLine;
-
 class LanguageRepository extends Repository implements LanguageInterface
 {
     protected $countryRepository;

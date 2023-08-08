@@ -7,9 +7,9 @@ use App\Http\Controllers\System\ResourceController;
 use App\Http\Requests\system\uploadExcel;
 use App\Imports\TranslationImport;
 use App\Model\Language;
+use App\Model\Locale;
 use App\Services\System\TranslationService;
 use Illuminate\Http\Request;
-use Spatie\TranslationLoader\LanguageLine;
 
 class TranslationController extends ResourceController
 {
@@ -108,14 +108,14 @@ class TranslationController extends ResourceController
 
         foreach ($data[0] as $key => $value) {
             $word = strtolower(trim(str_replace('.', '', $value[0])));
-            $lang = LanguageLine::where('key', $word)->first();
+            $lang = Locale::where('key', $word)->first();
             $updated = $this->formatText($value, $heading);
             if (isset($lang) || $lang !== null) {
                 $lang->update([
                     'text' => $updated,
                 ]);
             } else {
-                LanguageLine::create([
+                Locale::create([
                     'key' => $word,
                     'text' => $updated,
                 ]);

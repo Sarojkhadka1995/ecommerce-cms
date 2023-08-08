@@ -67,8 +67,6 @@ Z
 Z
 *resources/views/system/user/form.blade.php,a/4/a4bd974d39f5836547eac662f33d949b1cf47c57
 d
-4app/Http/Controllers/System/Auth/LoginController.php,0/3/03c67efc81d8e4780b318d6f5111b9b0fa686032
-d
 4resources/views/system/auth/forgotPassword.blade.php,9/0/90101fb57db70ea7e0ca4e95ab74ec89331cb333
 \
 ,resources/views/system/auth/verify.blade.php,a/5/a54e43cf51cc387ef8c1e98bdf70413c1e9f15a6
@@ -84,8 +82,6 @@ Q
 !app/Helper/Ekcms/globalHelper.php,2/c/2c8ea60b95b552485f43da37af7941c5b1b77def
 [
 +resources/views/system/user/index.blade.php,4/8/484bb544145b3c87de33bf5be58bb01c8e12ae3d
->
-routes/web.php,6/b/6b9a783d9b43fee50fd28f56dbd1856d2608f305
 O
 database/seeders/UserSeeder.php,9/a/9a5fbe4af4b23f69ef07f35a2d8a4d7c75c60797
 S

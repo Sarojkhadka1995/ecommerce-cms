@@ -3,11 +3,11 @@
 namespace App\Services\System;
 
 use App\Exceptions\CustomGenericException;
+use App\Model\Locale;
 use App\Repositories\System\CountryRepository;
 use App\Repositories\System\LanguageRepository;
 use App\Services\Service;
 use Illuminate\Support\Facades\DB;
-use Spatie\TranslationLoader\LanguageLine;
 use File;
 
 class LanguageService extends Service
@@ -40,7 +40,7 @@ class LanguageService extends Service
             $trans = [];
             $language = $this->repository->create($request);
             $filename = $language->language_code . '.json';
-            $languageLineData = LanguageLine::pluck('key')->toArray();
+            $languageLineData = Locale::pluck('key')->toArray();
             foreach ($languageLineData as $datum) {
                 $trans[$datum] = $datum;
             }

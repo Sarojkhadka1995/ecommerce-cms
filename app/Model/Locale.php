@@ -2,11 +2,11 @@
 
 namespace App\Model;
 
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Spatie\TranslationLoader\LanguageLine;
 use Spatie\Activitylog\LogOptions;
 
-class Locale extends LanguageLine
+class Locale extends Model
 {
     use LogsActivity;
 

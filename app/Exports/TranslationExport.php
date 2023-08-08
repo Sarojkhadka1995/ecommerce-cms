@@ -3,11 +3,11 @@
 namespace App\Exports;
 
 use App\Model\Language;
+use App\Model\Locale;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use Spatie\TranslationLoader\LanguageLine;
 
 class TranslationExport implements FromView, ShouldAutoSize
 {
@@ -22,7 +22,7 @@ class TranslationExport implements FromView, ShouldAutoSize
     public function view(): View
     {
         return view('system.exports.translations', [
-            'translations' => LanguageLine::get(),
+            'translations' => Locale::get(),
             'languages' => Language::get(),
         ]);
     }
