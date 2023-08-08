@@ -52,8 +52,6 @@ J
 app/Exceptions/Handler.php,3/b/3badd23b42804fa4016b5b9734a7b35c12ec27e4
 Z
 *resources/views/system/role/form.blade.php,4/9/4954195a8cad582d9e67ce3df5100ae8b6940f19
-m
-=app/Http/Controllers/System/Auth/ForgotPasswordController.php,e/5/e59c25ad60b01555f9f5e4d491155930f748ef4b
 e
 5resources/views/system/layouts/layoutHeader.blade.php,a/e/aea1ec041aa2b6b31c1b4e766a64ebf50e7d5cb3
 q

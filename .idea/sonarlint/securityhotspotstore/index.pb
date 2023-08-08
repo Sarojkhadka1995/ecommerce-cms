@@ -58,8 +58,6 @@ Z
 *resources/views/system/role/form.blade.php,4/9/4954195a8cad582d9e67ce3df5100ae8b6940f19
 b
 2app/Http/Controllers/System/ResourceController.php,7/b/7bc1824a01d64b624fea26ac12acbc34d13e39c1
-m
-=app/Http/Controllers/System/Auth/ForgotPasswordController.php,e/5/e59c25ad60b01555f9f5e4d491155930f748ef4b
 e
 5resources/views/system/layouts/layoutHeader.blade.php,a/e/aea1ec041aa2b6b31c1b4e766a64ebf50e7d5cb3
 q

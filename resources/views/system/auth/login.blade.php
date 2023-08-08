@@ -72,7 +72,6 @@
                 passwordInput.attr("type", type === "password" ? "text" : "password");
 
                 var eyeIcon = $(this).find("i");
-                console.log(eyeIcon);
                 eyeIcon.toggleClass("fa-eye fa-eye-slash");
             });
 
