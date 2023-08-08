@@ -17,8 +17,6 @@ C
 app/Http/Kernel.php,4/0/405f423e61f666bcedb754ae8befdce9e746176e
 V
 &app/Mail/system/PasswordResetEmail.php,5/2/523aa9944b6cf15a8074b6ac021160e6bdd62e05
-d
-4resources/views/system/layouts/masterGuest.blade.php,a/4/a451f39ea310fb7820d3e836b7dd67e3e37ba0d9
 a
 1resources/views/system/partials/message.blade.php,6/f/6f1386824c42b0c0d2d0f1b1b00dc3635997b89d
 Q

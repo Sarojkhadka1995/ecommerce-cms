@@ -7,32 +7,33 @@ function translate($content, $data = [])
 {
     $key = strtolower(trim(str_replace('.', '', $content)));
 
-    if ($key !== '') {
-        if (! in_array($key, 'en')) {
-            $check = \App\Model\Locale::where('key', $key)->exists();
-            if ($check) {
-                return trans($key, $data);
-            } else {
-                if ($key !== '') {
-                    \App\Model\Locale::create([
-                        'key' => $key,
-                        'text' => insertText($content),
-                    ]);
-
-                    return $content;
-                }
-            }
-        } else {
-            $trans = trans($key, $data);
-            if ($trans == $key) {
-                return $content;
-            } else {
-                return $trans;
-            }
-        }
-    } else {
-        return $key;
-    }
+//    if ($key !== '') {
+//        if (! in_array($key, 'en')) {
+//            $check = \App\Model\Locale::where('key', $key)->exists();
+//            if ($check) {
+//                return trans($key, $data);
+//            } else {
+//                if ($key !== '') {
+//                    \App\Model\Locale::create([
+//                        'key' => $key,
+//                        'text' => insertText($content),
+//                    ]);
+//
+//                    return $content;
+//                }
+//            }
+//        } else {
+//            $trans = trans($key, $data);
+//            if ($trans == $key) {
+//                return $content;
+//            } else {
+//                return $trans;
+//            }
+//        }
+//    } else {
+//        return $key;
+//    }
+    return $key;
 }
 
 function insertText($content)

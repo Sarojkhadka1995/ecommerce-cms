@@ -151,6 +151,7 @@
           var countdownInterval = setInterval(updateCountdown, 1000); // Run the countdown every 1000 milliseconds (1 second)
       }
   </script>
+@yield('scripts')
 </body>
 
 </html>

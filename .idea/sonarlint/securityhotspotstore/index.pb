@@ -25,8 +25,6 @@ Q
 !app/Http/Middleware/antiTwoFA.php,4/2/4227e499ca9584c0af0d3e6cddc2250f1b769af2
 a
 1resources/views/system/partials/message.blade.php,6/f/6f1386824c42b0c0d2d0f1b1b00dc3635997b89d
-d
-4resources/views/system/layouts/masterGuest.blade.php,a/4/a451f39ea310fb7820d3e836b7dd67e3e37ba0d9
 o
 ?database/migrations/2023_07_24_083729_add_otp_code_to_users.php,4/7/474bdaf876566612200dd73de1a5a5a6df8cd853
 N
@@ -72,8 +70,6 @@ Z
 *app/Repositories/System/RoleRepository.php,1/e/1e610bb60c093cf6412221dd8d74b9d08406166c
 Z
 *resources/views/system/user/form.blade.php,a/4/a4bd974d39f5836547eac662f33d949b1cf47c57
-d
-4app/Http/Controllers/System/Auth/LoginController.php,0/3/03c67efc81d8e4780b318d6f5111b9b0fa686032
 d
 4resources/views/system/auth/forgotPassword.blade.php,9/0/90101fb57db70ea7e0ca4e95ab74ec89331cb333
 \
