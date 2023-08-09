@@ -36,8 +36,6 @@ a
 1app/Interfaces/System/UserRepositoryInterface.php,f/6/f6c8af3f1a20d422ed6c6c24beabed1949c5bdf2
 c
 3app/Http/Controllers/System/user/RoleController.php,3/2/324996371a4017d4b8df8c111ccd16a76085d1e2
-`
-0resources/views/system/layouts/listing.blade.php,5/6/56b681de52e6b8fe826683d4d4be1de035c0a677
 Z
 *resources/views/system/role/form.blade.php,4/9/4954195a8cad582d9e67ce3df5100ae8b6940f19
 b
