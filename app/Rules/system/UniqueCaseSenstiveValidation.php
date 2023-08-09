@@ -35,6 +35,7 @@ class UniqueCaseSenstiveValidation implements Rule
 
         $count = $query->count();
 
+        dd($value, $count);
         return $count === 0;
     }
 
