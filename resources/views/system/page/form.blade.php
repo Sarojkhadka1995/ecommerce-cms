@@ -38,7 +38,7 @@
                 'required' => 'true',
                 'label' => 'Description',
                 'editor' => true,
-                'default' => $item->description ?? '',
+                'default' =>old('description') ?? $item->description ?? '',
                 'error' => $errors->first('description'),
             ]"/>
         </x-slot>
@@ -48,7 +48,7 @@
         'required' => 'true',
         'id' => 'seoTitle',
         'label' => 'Meta Title',
-        'default' => $item->meta_title ?? old('meta_title'),
+        'default' => old('meta_title') ?? $item->meta_title ?? '',
         'error' => $errors->first('meta_title'),
     ]"/>
     <x-system.form.form-group :input="['label' => 'Meta Description']">
@@ -56,7 +56,7 @@
             <x-system.form.text-area :input="[
                 'name' => 'meta_description',
                 'label' => 'Meta Description',
-                'default' => $item->meta_description ?? '',
+                'default' => old('meta_description') ?? $item->meta_description ?? '',
                 'error' => $errors->first('meta_description'),
             ]"/>
         </x-slot>
@@ -66,7 +66,7 @@
         <label class="input-label col-sm-2 form-label">Tag</label>
         <div class="col-sm-6">
             <input type="text" class="form-control" placeholder="keywords" data-role="tagsinput" name="keywords"
-                   value="{{ isset($item) ? $item->keywords : '' }}">
+                   value="{{ old('keywords') ??  $item->keywords ?? '' }}">
         </div>
     </div>
 
