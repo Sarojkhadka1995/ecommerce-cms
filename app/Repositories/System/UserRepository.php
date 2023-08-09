@@ -25,7 +25,7 @@ class UserRepository extends Repository implements UserRepositoryInterface
     {
         $query = $this->query();
 
-        if (isset($data->keyword) && $data->keyword !== null) {
+        if (isset($data->keyword)) {
             $query->where(function ($q) use ($data) {
                 $q->orwhere('name', 'ILIKE', '%' . $data->keyword . '%')
                     ->orwhere('username', 'ILIKE', '%' . $data->keyword . '%')
@@ -45,11 +45,13 @@ class UserRepository extends Repository implements UserRepositoryInterface
         if (count($selectedColumns) > 0) {
             $query->select($selectedColumns);
         }
+
         if ($pagination) {
             return $query->orderBy('id', 'DESC')->with('roles')->paginate(PAGINATE);
         }
 
-        return $query->orderBy('id', 'DESC')->with('role')->get();
+        return $query->orderBy('id', 'DESC')
+            ->with('role')->get();
     }
 
     public function create($data)
