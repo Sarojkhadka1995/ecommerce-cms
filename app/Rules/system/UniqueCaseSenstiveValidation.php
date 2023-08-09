@@ -32,8 +32,8 @@ class UniqueCaseSenstiveValidation implements Rule
         if ($this->ignoreId !== null) {
             $query->where('id', '<>', $this->ignoreId);
         }
-        dd($query->exists());
-        return $query->exists();
+
+        return !$query->exists();
     }
 
     public function message()
