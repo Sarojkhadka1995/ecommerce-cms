@@ -1,5 +1,4 @@
 @extends('system.layouts.form')
-@dump($errors)
 @section('inputs')
     <x-system.form.form-group
         :input="[ 'name' => 'name', 'label'=> 'Name', 'required' => true, 'default' => old('name') ?? $item->name ?? '', 'error' => $errors->first('name')]"/>
