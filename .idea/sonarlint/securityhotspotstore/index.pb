@@ -27,8 +27,6 @@ N
 app/Mail/system/TwoFAEmail.php,7/9/7954439ef81024824a0880ef7ade285b026363be
 M
 app/Http/Middleware/TWOFA.php,7/6/76c589d1b660f5ca26e640baadf71c5620283932
-c
-3app/Http/Controllers/System/user/UserController.php,0/b/0bf78f7b52c3c5b51115280ca6c5ddda9d4560ba
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
@@ -50,8 +48,6 @@ q
 Adatabase/migrations/2023_08_01_094102_create_role_users_table.php,b/a/ba69aa3e1b0fc4dc7f83036b865af7ad79798312
 q
 Adatabase/migrations/2023_08_01_094508_remove_role_id_to_users.php,4/d/4dcd2a4205066de9d52fb50e2487a275c1e1b452
-Z
-*resources/views/system/user/form.blade.php,a/4/a4bd974d39f5836547eac662f33d949b1cf47c57
 d
 4resources/views/system/auth/forgotPassword.blade.php,9/0/90101fb57db70ea7e0ca4e95ab74ec89331cb333
 \

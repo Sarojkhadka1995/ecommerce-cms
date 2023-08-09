@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\system;
 
+use App\Rules\system\UniqueCaseSenstiveValidation;
 use Illuminate\Http\Request;
 
 
@@ -37,12 +38,12 @@ class pageRequest extends FormRequest
         ];
         if ($request->method() == "POST") {
             $validate = array_merge($validate, [
-                'slug' => ['required', 'string', 'max:255', Rule::unique('pages', 'slug')],
+                'slug' => ['required', 'string', 'max:255', new UniqueCaseSenstiveValidation('pages', 'slug')],
             ]);
         }
         if ($request->method() == "PUT") {
             $validate = array_merge($validate, [
-                'slug' => ['required', 'string', 'max:255', Rule::unique('pages', 'slug')->ignore($id)],
+                'slug' => ['required', 'string', 'max:255', new UniqueCaseSenstiveValidation('pages', 'slug', $id)],
             ]);
         }
         return $validate;
