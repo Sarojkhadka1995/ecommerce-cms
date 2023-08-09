@@ -40,9 +40,12 @@
                     @endif
                 @endif
 
-    @if(hasPermission('/users'))
-    <a href="/{{getSystemPrefix()}}/users?role={{$item->id}}" class="nonelink"><span class="span-icon">
-        <i class="fa fa-users" aria-hidden="true"></i>{{ $item->users->count()}}</span>
+                @if(hasPermission('/users'))
+                    <a href="/{{getSystemPrefix()}}/users?role={{$item->id}}" class="nonelink">
+                        <span class="span-icon">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            {{ $item->users->count()}}
+                        </span>
                     </a>
                 @endif
             </td>

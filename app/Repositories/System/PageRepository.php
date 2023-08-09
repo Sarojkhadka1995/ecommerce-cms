@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Repositories\System;
+
 use App\Interfaces\System\PageRepositoryInterface;
 use App\Model\Page;
 use App\Repositories\Repository;
@@ -21,7 +23,12 @@ class PageRepository extends Repository implements PageRepositoryInterface
         $query = $this->query();
 
         if (isset($data->keyword) && $data->keyword !== null) {
-            $query->where('title', 'LIKE', '%' . $data->keyword . '%');
+            $query->where(function ($q) use ($data) {
+                $q->where('title', 'ILIKE', '%' . $data->keyword . '%')
+                    ->where('slug', 'ILIKE', '%' . $data->keyword . '%')
+                    ->where('meta_title', 'ILIKE', '%' . $data->keyword . '%')
+                    ->where('keywords', 'ILIKE', '%' . $data->keyword . '%');
+            });
         }
         if (count($selectedColumns) > 0) {
             $query->select($selectedColumns);
@@ -41,17 +48,12 @@ class PageRepository extends Repository implements PageRepositoryInterface
 
     public function updatePage($page, $data)
     {
-        return  $page->update($data);
+        return $page->update($data);
     }
 
     public function deletePage($id)
     {
         $item = $this->itemByIdentifier($id);
-        if (isset($item->image)) {
-            Storage::disk('public')->exists('uploads/page/' . $item->image)
-                ? Storage::disk('public')->delete('uploads/page/' . $item->image)
-                : '';
-        }
         return $item->delete();
     }
 
