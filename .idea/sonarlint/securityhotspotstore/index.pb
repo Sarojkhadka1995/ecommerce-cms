@@ -40,12 +40,8 @@ a
 1app/Interfaces/System/UserRepositoryInterface.php,f/6/f6c8af3f1a20d422ed6c6c24beabed1949c5bdf2
 c
 3app/Http/Controllers/System/user/RoleController.php,3/2/324996371a4017d4b8df8c111ccd16a76085d1e2
-f
-6resources/views/system/partials/deleteButton.blade.php,c/b/cbf8135b8892df78754279360da5855990f9ea83
 `
 0resources/views/system/layouts/listing.blade.php,5/6/56b681de52e6b8fe826683d4d4be1de035c0a677
-e
-5resources/views/system/layouts/layoutFooter.blade.php,f/4/f4c02e42c8ffe009e2e52bac947078ec98bd8129
 Z
 *resources/views/system/role/form.blade.php,4/9/4954195a8cad582d9e67ce3df5100ae8b6940f19
 b
@@ -57,8 +53,6 @@ Adatabase/migrations/2023_08_01_094102_create_role_users_table.php,b/a/ba69aa3e
 q
 Adatabase/migrations/2023_08_01_094508_remove_role_id_to_users.php,4/d/4dcd2a4205066de9d52fb50e2487a275c1e1b452
 Z
-*app/Repositories/System/RoleRepository.php,1/e/1e610bb60c093cf6412221dd8d74b9d08406166c
-Z
 *resources/views/system/user/form.blade.php,a/4/a4bd974d39f5836547eac662f33d949b1cf47c57
 d
 4resources/views/system/auth/forgotPassword.blade.php,9/0/90101fb57db70ea7e0ca4e95ab74ec89331cb333
@@ -68,8 +62,6 @@ d
 public/js/app.js,3/3/33ff5b9601779f3f4bcbd328a76c18073a9a65bb
 O
 database/seeders/RoleSeeder.php,e/e/eebbad3d7b0b679dd285a4431b6650eda7cef9db
-[
-+resources/views/system/role/index.blade.php,4/a/4a8bbc36ce591fae7f8bacb93b25f86d180535fa
 [
 +resources/views/system/user/index.blade.php,4/8/484bb544145b3c87de33bf5be58bb01c8e12ae3d
 >

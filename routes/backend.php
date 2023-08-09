@@ -64,7 +64,7 @@ Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix(), 'middlewar
 
         Route::resource('/categories', 'category\CategoryController', ['except' => ['show']]);
         Route::resource('/pages', 'page\PageController', ['except' => ['show']]);
-        Route::get('pages/change-page-status', 'page\PageController@changePageStatus')->name('changePageStatus');
+        Route::get('pages/{id}/toggle-status', 'page\PageController@changePageStatus')->name('changeStatus');
 
         Route::resource('categories/{id}/sub-category', 'category\SubCategoryController');
         Route::get('/clear-lang', function () {

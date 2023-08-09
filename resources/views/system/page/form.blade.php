@@ -7,7 +7,7 @@
         'label' => 'Page Title',
         'default' => $item->title ?? old('title'),
         'error' => $errors->first('title'),
-    ]" />
+    ]"/>
     <x-system.form.form-group :input="[
         'name' => 'slug',
         'required' => 'true',
@@ -15,32 +15,22 @@
         'label' => 'Page Slug',
         'default' => $item->slug ?? old('slug'),
         'error' => $errors->first('slug'),
-    ]" />
-    <x-system.form.form-group :input="['name' => 'image', 'label' => 'Image']">
+    ]"/>
+    <x-system.form.form-group :input="[ 'name' => 'image', 'label'=> 'Image']">
         <x-slot name="inputs">
 
-            <x-system.form.input-file :input="[
-                'name' => 'image',
-                'label' => 'Image',
-                'accept' => 'image/*',
-                'default' => $item->image ?? '',
-                'type' => 'file',
-                'id' => 'img-icon',
-                'error' => $errors->first('image'),
-                'onchange' => 'loadIcon(event)',
-            ]" />
+            @if(isset($item->image))
+                <img id="image-preview" src="{{asset('uploads/pages/'.$item->image)}}" width="150" height="auto"
+                     alt="{{$item->title}}"/>
+            @else
+                <img id="image-preview" src="" width="150" height="auto"/>
+            @endif
 
-            <div>
-                @if (isset($item) && $item->image != null && Storage::disk('public')->exists('/uploads/page/' . $item->image))
-                    <div class="page_image">
-                        <img src="{{ Storage::disk('public')->url('uploads/page/' . $item->image) }}" alt="Profile Pic"
-                            class="img-fluid" style="max-height:150px;">
-                    </div>
-                @endif
-            </div>
+            <x-system.form.input-file
+                :input="[ 'name' => 'image','label'=> 'Image','id'=>'image-input', 'accept' => 'image/*', 'default' =>old('image') ??  $item->image ?? '' , 'error' => $errors->first('image'),'onchange'=>'loadFile(event)']"/>
         </x-slot>
-
     </x-system.form.form-group>
+
     <x-system.form.form-group :input="['label' => 'Page Description']">
         <x-slot name="inputs">
             <x-system.form.text-area :input="[
@@ -50,7 +40,7 @@
                 'editor' => true,
                 'default' => $item->description ?? '',
                 'error' => $errors->first('description'),
-            ]" />
+            ]"/>
         </x-slot>
     </x-system.form.form-group>
     <x-system.form.form-group :input="[
@@ -60,7 +50,7 @@
         'label' => 'Meta Title',
         'default' => $item->meta_title ?? old('meta_title'),
         'error' => $errors->first('meta_title'),
-    ]" />
+    ]"/>
     <x-system.form.form-group :input="['label' => 'Meta Description']">
         <x-slot name="inputs">
             <x-system.form.text-area :input="[
@@ -68,7 +58,7 @@
                 'label' => 'Meta Description',
                 'default' => $item->meta_description ?? '',
                 'error' => $errors->first('meta_description'),
-            ]" />
+            ]"/>
         </x-slot>
     </x-system.form.form-group>
 
@@ -76,26 +66,27 @@
         <label class="input-label col-sm-2 form-label">Tag</label>
         <div class="col-sm-6">
             <input type="text" class="form-control" placeholder="keywords" data-role="tagsinput" name="keywords"
-                value="{{ isset($item) ? $item->keywords : '' }}">
+                   value="{{ isset($item) ? $item->keywords : '' }}">
         </div>
     </div>
 
     <x-system.form.form-group :input="['label' => 'Status']">
         <x-slot name="inputs">
-            <x-system.form.input-radio :input="['name' => 'status', 'options' => $status, 'default' => $item->status ?? 1]" />
+            <x-system.form.input-radio
+                :input="['name' => 'status', 'options' => $status, 'default' => $item->status ?? 1]"/>
         </x-slot>
     </x-system.form.form-group>
 @endsection
 
 
 @section('scripts')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+    @include('system.partials.js.slug',['name' => 'title']);
+    @include('system.partials.js.imageLoad',['imgPreviewId' => 'image-preview','imageId' => 'image-input']);
     <script>
-        $(function() {
+        $(function () {
             $('input')
-                .on('change', function(event) {
+                .on('change', function (event) {
                     var $element = $(event.target);
                     var $container = $element.closest('.example');
 
@@ -107,22 +98,14 @@
 
                     $('code', $('pre.val', $container)).html(
                         $.isArray(val) ?
-                        JSON.stringify(val) :
-                        '"' + val.replace('"', '\\"') + '"'
+                            JSON.stringify(val) :
+                            '"' + val.replace('"', '\\"') + '"'
                     );
                     $('code', $('pre.items', $container)).html(
                         JSON.stringify($element.tagsinput('items'))
                     );
                 })
                 .trigger('change');
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('input[name="title"]').keyup(function(e) {
-                var value = $(this).val();
-                $('#slug').val(value);
-            });
         });
     </script>
 @endsection

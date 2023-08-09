@@ -27,12 +27,13 @@ class pageRequest extends FormRequest
      */
     public function rules(Request $request)
     {
+        $id = $this->route('page'); // Assuming your route parameter is named 'page'
 
         $validate = [
             'title' => 'required|string|max:255',
             'description' => 'required|max:60000',
-            'meta_title' => 'required',
-            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg',
+            'meta_title' => 'required|string|max:255',
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
         if ($request->method() == "POST") {
             $validate = array_merge($validate, [
@@ -41,7 +42,7 @@ class pageRequest extends FormRequest
         }
         if ($request->method() == "PUT") {
             $validate = array_merge($validate, [
-                'slug' => ['required', 'string', 'max:255', Rule::unique('pages', 'slug')->ignore($request->id)],
+                'slug' => ['required', 'string', 'max:255', Rule::unique('pages', 'slug')->ignore($id)],
             ]);
         }
         return $validate;

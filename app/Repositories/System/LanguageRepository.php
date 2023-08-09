@@ -22,7 +22,8 @@ class LanguageRepository extends Repository implements LanguageInterface
         $query = $this->query();
         if (isset($data->keyword) && $data->keyword !== null) {
             $query->where(function ($q) use ($data) {
-                $q->where('name', 'ILIKE', '%' . $data->keyword . '%')->orWhere('language_code', 'ILIKE', '%' . $data->keyword . '%');
+                $q->where('name', 'ILIKE', '%' . $data->keyword . '%')
+                    ->orWhere('language_code', 'ILIKE', '%' . $data->keyword . '%');
             });
         }
         if (isset($data->group) && $data->group !== null) {
