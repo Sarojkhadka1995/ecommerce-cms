@@ -4,6 +4,7 @@ namespace App\Services\System;
 
 use App\Exceptions\CustomGenericException;
 use App\Exceptions\UnauthorizedException;
+use App\Repositories\System\UserRepository;
 use App\Services\Service;
 use App\User;
 use Illuminate\Support\Facades\Hash;
@@ -11,15 +12,15 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileService extends Service
 {
-    public function __construct(User $user)
+    public function __construct(UserRepository $user)
     {
-        parent::__construct($user);
+        $this->repository = $user;
     }
 
     public function indexPageData($data)
     {
         return [
-            'item' => $this->itemByIdentifier(authUser()->id),
+            'item' => $this->repository->itemByIdentifier(authUser()->id),
         ];
     }
 
