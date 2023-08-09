@@ -40,14 +40,16 @@ class User extends Authenticatable
     {
         return logMessage('User', $this->id, $eventName);
     }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->setDescriptionForEvent(fn (string $eventName) => $this->getDescriptionForEvent($eventName))
-        ->useLogName(self::$logName)
-        ->logOnly(self::$logAttributes)
-        ->logOnlyDirty();
+            ->setDescriptionForEvent(fn(string $eventName) => $this->getDescriptionForEvent($eventName))
+            ->useLogName(self::$logName)
+            ->logOnly(self::$logAttributes)
+            ->logOnlyDirty();
     }
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -94,13 +96,22 @@ class User extends Authenticatable
             $title = 'Set Password';
             $key = 'set-password';
         }
-        $link = ''.Config::get('constants.URL').'/'.getSystemPrefix().'/'.$key.'/'.$this->email.'/'.$token.'';
-
+        $link = '' . Config::get('constants.URL') . '/' . getSystemPrefix() . '/' . $key . '/' . $this->email . '/' . $token . '';
         return '<a href=' . $link . '>' . $title . '</a>';
     }
 
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'role_user');
+    }
+
+    public function setUsernameAttribute($value)
+    {
+        $this->attributes['username'] = strtolower($value);
+    }
+
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = strtolower($value);
     }
 }
