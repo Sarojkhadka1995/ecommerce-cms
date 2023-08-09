@@ -21,7 +21,7 @@ class PageRepository extends Repository implements PageRepositoryInterface
         $query = $this->query();
 
         if (isset($data->keyword) && $data->keyword !== null) {
-            $query->where('title', 'LIKE', '%' . $data->keyword . '%');
+            $query->where('title', 'ILIKE', '%' . $data->keyword . '%');
         }
         if (count($selectedColumns) > 0) {
             $query->select($selectedColumns);
