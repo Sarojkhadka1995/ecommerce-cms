@@ -30,7 +30,7 @@ class Repository implements OpenInterface
             $query->select($selectedColumns);
         }
         if (isset($data->keyword) && $data->keyword !== null) {
-            $query->where('name', 'LIKE', '%' . $data->keyword . '%');
+            $query->where('name', 'ILIKE', '%' . $data->keyword . '%');
         }
         if ($pagination) {
             return $query->orderBy('id', 'DESC')->paginate(Config::get('constants.PAGINATION'));

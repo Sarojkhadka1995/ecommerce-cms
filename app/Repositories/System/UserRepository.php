@@ -26,7 +26,20 @@ class UserRepository extends Repository implements UserRepositoryInterface
         $query = $this->query();
 
         if (isset($data->keyword) && $data->keyword !== null) {
-            $query->where('name', 'LIKE', '%' . $data->keyword . '%');
+            $query->where(function ($q) use ($data) {
+                $q->orwhere('name', 'ILIKE', '%' . $data->keyword . '%')
+                    ->orwhere('username', 'ILIKE', '%' . $data->keyword . '%')
+                    ->orwhere('email', 'ILIKE', '%' . $data->keyword . '%')
+                    ->orwhereHas('roles', function ($q) use ($data) {
+                        $q->where('roles.name', $data->keyword);
+                    });
+            });
+        }
+
+        if (isset($data->role)) {
+            $query->whereHas('roles', function ($q) use ($data) {
+                $q->where('roles.id', $data->role);
+            });
         }
 
         if (count($selectedColumns) > 0) {

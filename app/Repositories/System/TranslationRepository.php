@@ -19,7 +19,7 @@ class TranslationRepository extends Repository implements TranslationInterface
   {
     $query = $this->query();
     if (isset($data->keyword) && $data->keyword !== null) {
-      $query->where('key', 'LIKE', '%' . $data->keyword . '%');
+      $query->where('key', 'ILIKE', '%' . $data->keyword . '%');
     }
     if (isset($data->group) && $data->group !== null) {
       $query->where('group', $data->group);

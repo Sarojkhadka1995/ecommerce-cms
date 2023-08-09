@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\system;
 
+use App\Rules\system\UniqueCaseSenstiveValidation;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
@@ -24,18 +25,20 @@ class roleRequest extends FormRequest
      */
     public function rules(Request $request)
     {
+        $id = $this->route('role'); // Assuming your route parameter is named 'page'
+
         $validate = [
             'permissions' => 'required',
         ];
 
         if ($request->method() == 'POST') {
             $validate = array_merge($validate, [
-                'name' => 'required|unique:roles,name',
+                'name' => ['required', 'string', 'max:255', new UniqueCaseSenstiveValidation('roles', 'name')],
             ]);
         }
         if ($request->method() == 'PUT') {
             $validate = array_merge($validate, [
-                'name' => 'required|unique:roles,name,'.$request->role,
+                'name' => ['required', 'string', 'max:255', new UniqueCaseSenstiveValidation('roles', 'name', $id)],
             ]);
         }
 
