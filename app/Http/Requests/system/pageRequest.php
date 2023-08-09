@@ -34,7 +34,7 @@ class pageRequest extends FormRequest
             'title' => 'required|string|max:255',
             'description' => 'required|max:60000',
             'meta_title' => 'required|string|max:255',
-            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg',
         ];
         if ($request->method() == "POST") {
             $validate = array_merge($validate, [
