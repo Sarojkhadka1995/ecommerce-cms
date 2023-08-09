@@ -33,10 +33,7 @@ class UniqueCaseSenstiveValidation implements Rule
             $query->where('id', '<>', $this->ignoreId);
         }
 
-        $count = $query->count();
-
-        dd($value, $count);
-        return $count === 0;
+        return $query->exists();
     }
 
     public function message()
