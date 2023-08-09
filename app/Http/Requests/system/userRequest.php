@@ -4,6 +4,7 @@ namespace App\Http\Requests\system;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class userRequest extends FormRequest
 {
@@ -31,14 +32,22 @@ class userRequest extends FormRequest
 
         if ($request->method() == 'POST') {
             $validate = array_merge($validate, [
-                'username' => 'required|unique:users,username',
-                'email' => 'required|email|unique:users,email',
+                'username' => ['required',
+                    Rule::unique('users')->where(function ($query) {
+                        return $query->where('username', strtolower(request()->username));
+                    })
+                ],
+                'email' => ['required', 'email',
+                    Rule::unique('users')->where(function ($query) {
+                        return $query->where('email', strtolower(request()->email));
+                    })
+                ],
             ]);
         }
         if ($request->method() == 'PUT') {
             $validate = array_merge($validate, [
-                'username' => 'required|unique:users,username,'.$request->user,
-                'email' => 'required|email|unique:users,email,'.$request->user,
+                'username' => 'required|unique:users,username,' . $request->user,
+                'email' => 'required|email|unique:users,email,' . $request->user,
             ]);
         }
 

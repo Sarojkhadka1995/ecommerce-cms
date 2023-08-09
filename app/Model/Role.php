@@ -52,4 +52,9 @@ class Role extends Model
     {
         return $ids == 1 ? false : true;
     }
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = strtolower($value);
+    }
 }
