@@ -48,8 +48,6 @@ c
 3app/Http/Controllers/System/user/RoleController.php,3/2/324996371a4017d4b8df8c111ccd16a76085d1e2
 f
 6resources/views/system/partials/deleteButton.blade.php,c/b/cbf8135b8892df78754279360da5855990f9ea83
-`
-0resources/views/system/layouts/listing.blade.php,5/6/56b681de52e6b8fe826683d4d4be1de035c0a677
 e
 5resources/views/system/layouts/layoutFooter.blade.php,f/4/f4c02e42c8ffe009e2e52bac947078ec98bd8129
 J
@@ -80,8 +78,6 @@ O
 database/seeders/RoleSeeder.php,e/e/eebbad3d7b0b679dd285a4431b6650eda7cef9db
 [
 +resources/views/system/role/index.blade.php,4/a/4a8bbc36ce591fae7f8bacb93b25f86d180535fa
-Q
-!app/Helper/Ekcms/globalHelper.php,2/c/2c8ea60b95b552485f43da37af7941c5b1b77def
 [
 +resources/views/system/user/index.blade.php,4/8/484bb544145b3c87de33bf5be58bb01c8e12ae3d
 >
@@ -94,12 +90,8 @@ S
 #database/seeders/DatabaseSeeder.php,a/c/aca1efccd4101e0c9bdd34803577859ace08ef45
 Y
 )database/seeders/CountriesTableSeeder.php,d/7/d784c4013c8d13a86ed12749cda962afaa61f247
-W
-'app/Services/System/LanguageService.php,9/3/9315e4e283a47a44b6d74e7ef06166ca868f12c4
 X
 (resources/asset/system/js/translation.js,b/4/b42da451fbb2b8e3935f16e1933dd27e1fd06841
-B
-routes/backend.php,e/2/e2e681ec50a0cf7c5bab5ceb2bb45db0b74c117d
 ^
 .app/Repositories/System/LanguageRepository.php,5/f/5ffa0e696c9d92017cb3980c7a05a5b6704eb407
 k

@@ -31,7 +31,8 @@ class Language
         } else {
             $locale = Config::get('constants.DEFAULT_LOCALE');
         }
-      //  app()->setlocale($locale);
+
+        app()->setlocale($locale);
         View::share('globalLocale', $locale);
 
         return $next($request);

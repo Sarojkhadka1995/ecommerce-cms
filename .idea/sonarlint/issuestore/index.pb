@@ -44,8 +44,6 @@ X
 (app/Http/Requests/system/roleRequest.php,a/2/a214d36dab48be1a5cf24baf3c4ba0950290f22d
 f
 6resources/views/system/partials/deleteButton.blade.php,c/b/cbf8135b8892df78754279360da5855990f9ea83
-`
-0resources/views/system/layouts/listing.blade.php,5/6/56b681de52e6b8fe826683d4d4be1de035c0a677
 e
 5resources/views/system/layouts/layoutFooter.blade.php,f/4/f4c02e42c8ffe009e2e52bac947078ec98bd8129
 J
@@ -74,8 +72,6 @@ O
 database/seeders/RoleSeeder.php,e/e/eebbad3d7b0b679dd285a4431b6650eda7cef9db
 [
 +resources/views/system/role/index.blade.php,4/a/4a8bbc36ce591fae7f8bacb93b25f86d180535fa
-Q
-!app/Helper/Ekcms/globalHelper.php,2/c/2c8ea60b95b552485f43da37af7941c5b1b77def
 [
 +resources/views/system/user/index.blade.php,4/8/484bb544145b3c87de33bf5be58bb01c8e12ae3d
 O

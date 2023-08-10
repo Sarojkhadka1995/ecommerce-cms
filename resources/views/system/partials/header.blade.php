@@ -37,7 +37,7 @@
                   </svg>
                 </div>
               </li>
-            
+
 
 
               <li class="maximize"><a class="text-dark" href="#" onclick="javascript:toggleFullScreen()">
@@ -51,6 +51,18 @@
                       </g>
                     </g>
                   </svg></a></li>
+                <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" id="localeDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     {{$globalLocale ?? ''}}
+                     </a>
+                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="localeDropDown">
+                     @foreach (globalLanguages() as $lang)
+                     <a href="{{route('set.lang', $lang->language_code ?? '')}}" class="dropdown-item">
+                     {{$lang->name??''}} ({{$lang->language_code??''}})
+                     </a>
+                     @endforeach
+                     </div>
+                </li>
               <li class="profile-nav onhover-dropdown pe-0 py-0 me-0">
                 <div class="media profile-media">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
