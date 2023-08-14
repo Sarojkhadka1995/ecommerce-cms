@@ -136,8 +136,6 @@ f
 6resources/views/system/partials/js/imageLoad.blade.php,3/b/3b5217ffe0ee3bea5737b639f4fd7d4188d6879a
 f
 6resources/views/system/partials/deleteButton.blade.php,c/b/cbf8135b8892df78754279360da5855990f9ea83
-B
-routes/backend.php,e/2/e2e681ec50a0cf7c5bab5ceb2bb45db0b74c117d
 Z
 *app/Repositories/System/PageRepository.php,2/0/20205082e7a058cb94ba03b4d914811c38f12269
 f
@@ -164,3 +162,5 @@ a
 1app/Rules/system/UniqueCaseSenstiveValidation.php,4/a/4aa3cc3afdb20249846852a20094b899c6f0f1e4
 m
 =app/Http/Controllers/System/Auth/ForgotPasswordController.php,e/5/e59c25ad60b01555f9f5e4d491155930f748ef4b
+B
+routes/backend.php,e/2/e2e681ec50a0cf7c5bab5ceb2bb45db0b74c117d

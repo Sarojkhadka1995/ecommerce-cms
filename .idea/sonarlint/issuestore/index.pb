@@ -166,3 +166,5 @@ X
 (database/seeders/EmailTemplateSeeder.php,2\d\2de3a7c9393840cefb5846d1e6f292523c3e05b2
 e
 5resources/views/system/layouts/layoutHeader.blade.php,a\e\aea1ec041aa2b6b31c1b4e766a64ebf50e7d5cb3
+B
+routes/backend.php,e/2/e2e681ec50a0cf7c5bab5ceb2bb45db0b74c117d
