@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileService extends Service
 {
-    public function __construct(User $user)
+    public function __construct(UserRe $user)
     {
         parent::__construct($user);
     }

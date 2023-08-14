@@ -90,3 +90,5 @@ O
 resources/lang/en/passwords.php,4/9/490024d5472873cb7ea94284b96bab26a7f9fc92
 I
 public/css/responsive.css,e/8/e8ae40d300699941571eec7c9170332186f7c982
+d
+4app/Http/Controllers/System/Auth/LoginController.php,0/3/03c67efc81d8e4780b318d6f5111b9b0fa686032
