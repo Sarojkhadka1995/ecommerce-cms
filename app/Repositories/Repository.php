@@ -28,8 +28,9 @@ class Repository implements OpenInterface
         if (count($selectedColumns) > 0) {
             $query->select($selectedColumns);
         }
-        if (isset($data->keyword)) {
-            $query->where('name', 'LIKE', '%' . $data->keyword . '%');
+
+        if (isset($data->keyword) && $data->keyword !== null) {
+            $query->where('name', 'ILIKE', '%' . $data->keyword . '%');
         }
         if ($pagination) {
             return $query->orderBy('id', 'DESC')->paginate(Config::get('constants.PAGINATION'));
@@ -94,13 +95,13 @@ class Repository implements OpenInterface
         try {
             return $this->model->findOrFail($id);
         } catch (\Exception $e) {
-            return  throw new ResourceNotFoundException($e->getMessage());
+            return throw new ResourceNotFoundException($e->getMessage());
         }
     }
 
     public function checkById($id)
     {
-        $data =  $this->model->whereId($id)->first();
+        $data = $this->model->whereId($id)->first();
         if (!$data) {
             throw new ApiGenericException('Data not found', 400);
         }

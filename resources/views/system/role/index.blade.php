@@ -40,9 +40,12 @@
                     @endif
                 @endif
 
-    @if(hasPermission('/users'))
-    <a href="/{{getSystemPrefix()}}/users?role={{$item->id}}" class="nonelink"><span class="span-icon">
-        <i class="fa fa-users" aria-hidden="true"></i>{{ $item->users->count()}}</span>
+                @if(hasPermission('/users'))
+                    <a href="/{{getSystemPrefix()}}/users?role={{$item->id}}" class="nonelink">
+                        <span class="span-icon">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            {{ $item->users->count()}}
+                        </span>
                     </a>
                 @endif
             </td>
@@ -58,8 +61,7 @@
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="deleteModalLabel">{{ translate('Confirm Delete') }}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         </button>
                     </div>
                     <div class="modal-body message-body">
@@ -69,10 +71,10 @@
                             :input="[ 'name' => 'role_id', 'label'=> 'Role', 'required' => true, 'default' => old('role_id') ?? '' , 'options' => $roles, 'placeholder' => 'Select role', 'error' => $errors->first('role_id')]"/>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
+                        <a href="{{$indexUrl}}" type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
                             <em class="glyph-icon icon-close"></em>
                             {{ translate('Cancel') }}
-                        </button>
+                        </a>
                         <button type="submit" class="btn btn-sm btn-danger" id="confirmDelete">
                             <em class="glyph-icon icon-trash"></em>
                             {{ translate('Delete') }}

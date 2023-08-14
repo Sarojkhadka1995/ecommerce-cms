@@ -22,15 +22,10 @@ class UserService extends Service
         $this->roleRepository = $roleRepository;
     }
 
-    public function getAllData($data, $selectedColumns = [], $pagination = true)
-    {
-        return $this->userRepository->getAllData($data);
-    }
-
     public function indexPageData($request)
     {
         return [
-            'items' => $this->getAllData($request),
+            'items' => $this->userRepository->getAllData($request),
             'roles' => $this->roleRepository->getRoles(),
         ];
     }
@@ -59,7 +54,7 @@ class UserService extends Service
             try {
                 event(new UserCreated($user, $token));
                 return $user;
-            } catch (\Exception $e) {               
+            } catch (\Exception $e) {
                 \Log::error('User creation failed: ' . $e->getMessage());
                 \DB::rollBack();
                 return throw new CustomGenericException('User creation failed. Please try again.');

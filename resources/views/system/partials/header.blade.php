@@ -77,7 +77,8 @@
                   </svg>
                 </div>
                 <ul class="profile-dropdown onhover-show-div">
-                  <li><a href="{{ route('profile') }}"><i data-feather="user"></i><span>{{__('Account')}} </span></a></li>
+                    <li><a href="{{ route('profile') }}"><i data-feather="user"></i><span>Profile </span></a></li>
+                    <li><a href="{{ route('profile.change-password-form') }}"><i data-feather="user"></i><span>Change Password </span></a></li>
                   <li><a href="{{ route('logout') }}"><i data-feather="log-in"> </i><span>Log out</span></a></li>
                 </ul>
                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

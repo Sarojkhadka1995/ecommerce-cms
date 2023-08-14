@@ -83,14 +83,6 @@ class EmailTemplateSeeder extends Seeder
                     <p>Your account has been created in ekcms. Please contact admin to get your credential.</p>
                     '.$templateFooter,
                     ],
-                    [
-                        'language_code' => 'ja',
-                        'subject' => 'Account has been created in ekcms',
-                        'template' => $templateHeader.'
-                        <p>Dear %user_name%,</p>
-                        <p>Your account has been created in ekcms. Please contact admin to get your credential.</p>
-                        '.$templateFooter,
-                    ],
                 ],
 
             ],
@@ -101,15 +93,6 @@ class EmailTemplateSeeder extends Seeder
                 'translations' => [
                     [
                         'language_code' => 'en',
-                        'subject' => 'Password set link',
-                        'template' => $templateHeader.'
-                        <p>Dear %user_name%,</p>
-                        <p>Your account has been created in ekcms. Please click the link below to set your password.</p>
-                        <p>Link : %password_set_link%</p>
-                            '.$templateFooter,
-                    ],
-                    [
-                        'language_code' => 'ja',
                         'subject' => 'Password set link',
                         'template' => $templateHeader.'
                         <p>Dear %user_name%,</p>
@@ -134,15 +117,6 @@ class EmailTemplateSeeder extends Seeder
                                         <p>Link : %password_reset_link%</p>
                                             '.$templateFooter,
                     ],
-                    [
-                        'language_code' => 'ja',
-                        'subject' => 'Password Reset Link',
-                        'template' => $templateHeader.'
-                                        <p>Dear %user_name%,</p>
-                                        <p>As per your request we have generated a password reset link. Please click the link below to reset your password.</p>
-                                        <p>Link : %password_reset_link%</p>
-                                            '.$templateFooter,
-                    ],
                 ],
 
             ],
@@ -160,20 +134,25 @@ class EmailTemplateSeeder extends Seeder
                                 <p>Code : %verification_code%</p>
                                     '.$templateFooter,
                     ],
+                ],
+            ],
+            [
+                'title' => 'Profile Update Email',
+                'code' => 'ProfileUpdateEmail',
+                'from' => $fromEmail,
+                'translations' => [
                     [
-                        'language_code' => 'ja',
-                        'subject' => 'Verification Code',
+                        'language_code' => 'en',
+                        'subject' => 'Profile Update',
                         'template' => $templateHeader.'
                                 <p>Dear %user_name%,</p>
-                                <p>Please copy the verification code below.</p>
-                                <p>Code : %verification_code%</p>
+                                <p>Your profile have been updated succesfully.</p>
                                     '.$templateFooter,
                     ],
                 ],
-
             ],
         ];
-        //  \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+         // \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         EmailTemplate::truncate();
         EmailTemplateTranslation::truncate();
         foreach ($templates as $template) {
@@ -186,6 +165,6 @@ class EmailTemplateSeeder extends Seeder
             $email = EmailTemplate::create($data);
             $email->emailTranslations()->createMany($template['translations']);
         }
-        //  \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+         // \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

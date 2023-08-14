@@ -42555,11 +42555,11 @@ body .for-dark {
 }
 
 .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .simplebar-offset {
-    height: calc(100vh - 350px)
+    /*height: calc(100vh - 350px)*/
 }
 
 .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links {
-    height: calc(100vh - 350px);
+    /*height: calc(100vh - 350px);*/
     left: -300px;
     z-index: 99;
     -webkit-transition: color 1s ease;

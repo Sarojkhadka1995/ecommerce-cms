@@ -19,7 +19,7 @@ class ConfigRepository extends Repository implements ConfigInterface
     $query = $this->query();
 
     if (isset($data->keyword) && $data->keyword !== null) {
-      $query->where('label', 'LIKE', '%' . $data->keyword . '%');
+      $query->where('label', 'ILIKE', '%' . $data->keyword . '%');
     }
     if (count($selectedColumns) > 0) {
       $query->select($selectedColumns);
@@ -31,7 +31,7 @@ class ConfigRepository extends Repository implements ConfigInterface
     return $query->orderBy('id', 'ASC')->get();
   }
   public function create($data)
-  {   
+  {
     return $this->model->create($data);
   }
 

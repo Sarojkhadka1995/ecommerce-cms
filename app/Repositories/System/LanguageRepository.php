@@ -6,6 +6,7 @@ use App\Exceptions\NotDeletableException;
 use App\Interfaces\System\LanguageInterface;
 use App\Model\Language;
 use App\Repositories\Repository;
+
 class LanguageRepository extends Repository implements LanguageInterface
 {
     protected $countryRepository;
@@ -21,8 +22,8 @@ class LanguageRepository extends Repository implements LanguageInterface
         $query = $this->query();
         if (isset($data->keyword)) {
             $query->where(function ($q) use ($data) {
-                $q->where('name', 'LIKE', '%' . $data->keyword . '%')
-                    ->orWhere('language_code', 'LIKE', '%' . $data->keyword . '%');
+                $q->where('name', 'ILIKE', '%' . $data->keyword . '%')
+                    ->orWhere('language_code', 'ILIKE', '%' . $data->keyword . '%');
             });
         }
         if (count($selectedColumns) > 0) {
