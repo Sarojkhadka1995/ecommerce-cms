@@ -20,18 +20,11 @@ class LanguageRepository extends Repository implements LanguageInterface
     public function getAllData($data, $selectedColumns = [], $pagination = true)
     {
         $query = $this->query();
-        if (isset($data->keyword) && $data->keyword !== null) {
+        if (isset($data->keyword)) {
             $query->where(function ($q) use ($data) {
                 $q->where('name', 'ILIKE', '%' . $data->keyword . '%')
                     ->orWhere('language_code', 'ILIKE', '%' . $data->keyword . '%');
             });
-        }
-        if (isset($data->group) && $data->group !== null) {
-            $query->where('group', $data->group);
-        } elseif (isset($data['group'])) {
-            $query->where('group', $data['group']);
-        } else {
-            $query->where('group', 'backend');
         }
         if (count($selectedColumns) > 0) {
             $query->select($selectedColumns);
@@ -48,18 +41,17 @@ class LanguageRepository extends Repository implements LanguageInterface
         $country = $this->countryRepository->itemByIdentifier($request->get('country_id'));
         $languages = json_decode($country->languages);
         $name = '';
-        $language_code = '';
+        $languageCode = '';
         foreach ($languages as $language) {
             if ($language->iso639_1 == $request->get('language_code')) {
                 $name = $language->name;
-                $language_code = $language->iso639_1;
+                $languageCode = $language->iso639_1;
                 break;
             }
         }
         return $this->model->create([
             'name' => $name,
-            'language_code' => $language_code,
-            'group' => $request->get('group'),
+            'language_code' => $languageCode,
         ]);
     }
 
@@ -72,13 +64,18 @@ class LanguageRepository extends Repository implements LanguageInterface
         return $language->delete();
     }
 
-    public function getBackendLanguages()
+    public function getLanguages($group)
     {
-        return $this->model->where('group', 'backend')->get();
+        return $this->model->where('group', $group)->get();
     }
 
-    public function getFrontendLanguages()
+    public function getKeyValuePair($languages, $key = 'language_code', $value = 'name')
     {
-        return $this->model->where('group', 'frontend')->get();
+        $options = [];
+        foreach ($languages as $language) {
+            $options[$language[$key]] = $language[$value];
+        }
+
+        return $options;
     }
 }

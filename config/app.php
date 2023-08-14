@@ -161,8 +161,7 @@ return [
 
         //Translation service provider replaced
 
-        // Illuminate\Translation\TranslationServiceProvider::class,
-        Spatie\TranslationLoader\TranslationServiceProvider::class,
+         Illuminate\Translation\TranslationServiceProvider::class,
 
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,

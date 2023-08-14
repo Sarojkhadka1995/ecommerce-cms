@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Spatie\TranslationLoader\LanguageLine;
+//use Spatie\TranslationLoader\LanguageLine;
 
 Route::get('/', function () {
     return redirect(route('login.form'));
@@ -11,7 +11,7 @@ Route::get(getSystemPrefix(), function () {
     return redirect(route('login.form'));
 });
 
-Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix(), 'middleware' => []], function () {
+Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix(), 'middleware' => ['languagit ']], function () {
     Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login.form');
     Route::post('/login', 'Auth\LoginController@login')->name('login');
     Route::get('forgot-password', 'Auth\ForgotPasswordController@showRequestForm')->name('forgot.password');
@@ -22,8 +22,8 @@ Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix(), 'middlewar
     Route::post('/set-password', 'Auth\ResetPasswordController@handleSetResetPassword');
     Route::get('/', 'Auth\LoginController@showLoginForm');
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-    Route::get('otp', 'Auth\ResetPasswordController@showOtpForm')->name('forgot.password.otp');
-    Route::get('resend-otp/{email}', 'Auth\ForgotPasswordController@resendOtpCode')->name('resend-otp');
+    //Route::get('otp', 'Auth\ResetPasswordController@showOtpForm')->name('forgot.password.otp');
+    //Route::get('resend-otp/{email}', 'Auth\ForgotPasswordController@resendOtpCode')->name('resend-otp');
 
     Route::group(['middleware' => ['auth', 'antitwofa']], function () {
         Route::get('/login/verify', 'Auth\VerificationController@showVerifyPage');
@@ -44,6 +44,10 @@ Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix(), 'middlewar
         Route::get('/profile', 'profile\ProfileController@index')->name('profile');
         Route::put('/profile/{id}', 'profile\ProfileController@update');
 
+        Route::get('/profile-change-password', 'profile\PasswordChangeController@index')->name('profile.change-password-form');
+        Route::put('/profile-change-password/{id}', 'profile\PasswordChangeController@update')->name('profile.change-password');
+
+
         Route::post('users/reset-password/{id}', 'user\UserController@passwordReset')->name('user.reset-password');
 
         Route::get('/login-logs', 'logs\LoginLogsController@index');
@@ -62,16 +66,8 @@ Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix(), 'middlewar
 
         Route::resource('/configs', 'systemConfig\configController');
 
-        Route::resource('/categories', 'category\CategoryController', ['except' => ['show']]);
         Route::resource('/pages', 'page\PageController', ['except' => ['show']]);
         Route::get('pages/{id}/toggle-status', 'page\PageController@changePageStatus')->name('changeStatus');
 
-        Route::resource('categories/{id}/sub-category', 'category\SubCategoryController');
-        Route::get('/clear-lang', function () {
-            LanguageLine::truncate();
-        });
-
-        Route::get('/mail-test/create', 'MailTestController@create');
-        Route::post('/mail-test', 'MailTestController@sendEmail');
     });
 });

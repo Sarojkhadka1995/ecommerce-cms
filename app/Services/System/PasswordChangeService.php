@@ -5,21 +5,14 @@ namespace App\Services\System;
 use App\Exceptions\CustomGenericException;
 use App\Exceptions\UnauthorizedException;
 use App\Http\Requests\system\profileChangePasswordRequest;
-use App\Mail\system\PasswordResetEmail;
 use App\Mail\system\ProfileUpdateEmail;
 use App\Repositories\System\UserRepository;
 use App\Services\Service;
-use App\Traits\ImageTrait;
-use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
-
-class ProfileService extends Service
+class PasswordChangeService extends Service
 {
-    use ImageTrait;
-    public $dir = '/uploads/profile';
-
     public function __construct(UserRepository $user)
     {
         $this->repository = $user;
@@ -32,22 +25,21 @@ class ProfileService extends Service
         ];
     }
 
-    public function update($request, $id)
+    public function update(ProfileChangePasswordRequest $request, $id)
     {
+        dd('asd');
         try {
             if (authUser()->id != $id) {
                 throw new UnauthorizedException('Unauthorized action performed.');
             }
-
+            $data = $request->only('password');
             $user = $this->repository->itemByIdentifier($id);
-            $data = $request->only('name', 'username', 'email', 'contact', 'image');
+            $logMsg = "New Password was <strong>created</strong> by {$user->name}";
+            storeLog($user, $logMsg);
 
-            if (isset($request['image'])) {
-                $this->removeImage($this->dir, $user->image);
-                $data['image'] = $this->uploadImage($this->dir, 'image');
-            }
-            $this->repository->update($user, $data);
-
+            $user->update([
+                'password' => Hash::make($data['password']),
+            ]);
             Mail::to($user->email)->send(new ProfileUpdateEmail($user));
             return $user;
         } catch (\Exception $e) {

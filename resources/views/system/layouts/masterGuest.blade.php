@@ -163,6 +163,7 @@
         var countdownInterval = setInterval(updateCountdown, 1000); // Run the countdown every 1000 milliseconds (1 second)
     }
 </script>
+
 <script>
     $(document).on("input", ".password, .confirm-password", function () {
         const input = $(this);

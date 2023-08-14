@@ -29,7 +29,7 @@ class userRequest extends FormRequest
         $id = $this->route('user'); // Assuming your route parameter is named 'page'
 
         $validate = [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|min:3|max:255',
             'role_id' => 'required',
         ];
 

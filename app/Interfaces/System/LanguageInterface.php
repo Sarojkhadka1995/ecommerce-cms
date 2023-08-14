@@ -6,11 +6,9 @@ interface LanguageInterface
 {
     public function getAllData($data, $selectedColumns = [], $pagination = true);
 
-    public function create($request);    
+    public function create($request);
 
     public function delete($request, $id);
-    
-    public function getBackendLanguages();
-    
-    public function getFrontendLanguages();
+
+    public function getLanguages($group);
 }
