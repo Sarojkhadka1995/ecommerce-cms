@@ -71,7 +71,7 @@ function configTypes()
 
 function globalLanguages()
 {
-    return Language::where('group', 'backend')->get();
+    return Language::get();
 }
 
 function setConfigCookie()

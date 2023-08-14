@@ -22,13 +22,13 @@ class Repository implements OpenInterface
     }
 
     // get all data
-
     public function getAllData($data, $selectedColumns = [], $pagination = true)
     {
         $query = $this->query();
         if (count($selectedColumns) > 0) {
             $query->select($selectedColumns);
         }
+
         if (isset($data->keyword) && $data->keyword !== null) {
             $query->where('name', 'ILIKE', '%' . $data->keyword . '%');
         }
@@ -95,22 +95,19 @@ class Repository implements OpenInterface
         try {
             return $this->model->findOrFail($id);
         } catch (\Exception $e) {
-            return  throw new ResourceNotFoundException($e->getMessage());
+            return throw new ResourceNotFoundException($e->getMessage());
         }
     }
 
     public function checkById($id)
     {
-        $data =  $this->model->whereId($id)->first();
+        $data = $this->model->whereId($id)->first();
         if (!$data) {
             throw new ApiGenericException('Data not found', 400);
         }
     }
 
-
-
     // Data for index page
-
     public function indexPageData($request)
     {
         return [
@@ -119,7 +116,6 @@ class Repository implements OpenInterface
     }
 
     // Data for create page
-
     public function createPageData($request)
     {
         return [
@@ -137,7 +133,6 @@ class Repository implements OpenInterface
     }
 
     // get query for modal
-
     public function query()
     {
         return $this->model->query();

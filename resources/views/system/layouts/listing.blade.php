@@ -121,18 +121,17 @@
                         @csrf
                         <div class="modal-header">
                             <h5 class="modal-title" id="statusChangeModal">{{ translate('Confirm Update') }}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             </button>
                         </div>
                         <div class="modal-body message-body">
                             <strong>{{ translate('Are you sure you want to update status?') }}</strong>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
+                            <a type="button"  href="{{$indexUrl}}" class="btn btn-sm btn-secondary" data-dismiss="modal">
                                 <em class="glyph-icon icon-close"></em>
                                 {{ translate('Cancel') }}
-                            </button>
+                            </a>
                             <button type="submit" class="btn btn-sm btn-primary" id="confirmUpdate">
                                 <em class="glyph-icon icon-trash"></em>
                                 {{ translate('Update') }}

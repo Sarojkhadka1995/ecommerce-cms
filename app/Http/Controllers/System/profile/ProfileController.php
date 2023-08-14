@@ -14,7 +14,7 @@ class ProfileController extends ResourceController
 
     public function storeValidationRequest()
     {
-        return  'App\Http\Requests\system\profileRequest';
+        return 'App\Http\Requests\system\profileRequest';
     }
 
     public function moduleName()
