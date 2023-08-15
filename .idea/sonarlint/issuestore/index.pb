@@ -106,18 +106,10 @@ f
 6resources/views/system/partials/js/imageLoad.blade.php,3/b/3b5217ffe0ee3bea5737b639f4fd7d4188d6879a
 f
 6resources/views/system/partials/deleteButton.blade.php,c/b/cbf8135b8892df78754279360da5855990f9ea83
-c
-3resources/views/system/partials/js/status.blade.php,5/9/59f4d9e608038a029005829f1a73261b50808f60
-f
-6resources/views/system/partials/statusButton.blade.php,c/4/c45034f5454fcf7bcb955558f78ee0914e7c8750
-[
-+resources/views/system/page/index.blade.php,f/0/f016d92bca55d7508d665f8cabe0ef2c4d4ded72
 a
 1app/Rules/system/UniqueCaseSenstiveValidation.php,4/a/4aa3cc3afdb20249846852a20094b899c6f0f1e4
 W
 'app/Services/System/LanguageService.php,9\3\9315e4e283a47a44b6d74e7ef06166ca868f12c4
-d
-4app/Http/Controllers/System/Auth/LoginController.php,0\3\03c67efc81d8e4780b318d6f5111b9b0fa686032
 [
 +resources/views/system/auth/login.blade.php,9\4\9412b766e59f873861c8eb5f770b4dbdead19796
 D
@@ -130,8 +122,6 @@ o
 ?database/migrations/2023_07_24_083729_add_otp_code_to_users.php,4\7\474bdaf876566612200dd73de1a5a5a6df8cd853
 X
 (app/Http/Requests/system/roleRequest.php,a\2\a214d36dab48be1a5cf24baf3c4ba0950290f22d
-S
-#app/Services/System/PageService.php,3\c\3c35ffea2fb03d941a9dfe8733381dfc46794eb2
 n
 >database/migrations/2023_08_10_215513_add_contact_on_users.php,8\8\88f5d3eb1aaa5a794e57704d161a64ada9674fce
 <
@@ -144,8 +134,6 @@ X
 (app/Http/Requests/system/userRequest.php,8\5\85bd764152996d0ead0c4f7a10dc5f312ba8bb53
 c
 3app/Http/Controllers/System/user/UserController.php,0\b\0bf78f7b52c3c5b51115280ca6c5ddda9d4560ba
-Z
-*app/Repositories/System/PageRepository.php,2\0\20205082e7a058cb94ba03b4d914811c38f12269
 I
 app/Traits/ImageTrait.php,f\2\f24fd5e6a1a052486badfa5c60689d3ee0be083c
 m
@@ -166,5 +154,7 @@ X
 (database/seeders/EmailTemplateSeeder.php,2\d\2de3a7c9393840cefb5846d1e6f292523c3e05b2
 e
 5resources/views/system/layouts/layoutHeader.blade.php,a\e\aea1ec041aa2b6b31c1b4e766a64ebf50e7d5cb3
-B
-routes/backend.php,e/2/e2e681ec50a0cf7c5bab5ceb2bb45db0b74c117d
+f
+6resources/views/system/partials/statusButton.blade.php,c\4\c45034f5454fcf7bcb955558f78ee0914e7c8750
+c
+3resources/views/system/partials/js/status.blade.php,5\9\59f4d9e608038a029005829f1a73261b50808f60
