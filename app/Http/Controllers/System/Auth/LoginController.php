@@ -7,7 +7,6 @@ use App\Exceptions\CustomGenericException;
 use App\Http\Controllers\Controller;
 use App\Mail\system\TwoFAEmail;
 use App\Model\Loginlogs;
-use App\Services\CentralAuthService;
 use App\Services\System\UserService;
 use App\Traits\CustomThrottleRequest;
 use Auth;
@@ -44,9 +43,8 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct(CentralAuthService $centralAuthService)
+    public function __construct()
     {
-        $this->centralAuthService = $centralAuthService;
     }
 
     /**
@@ -57,7 +55,6 @@ class LoginController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-
     public function showLoginForm()
     {
         if (Auth::check()) {
@@ -82,16 +79,12 @@ class LoginController extends Controller
             }
             $user = $this->loginType($request);
 
-            $response = $this->centralAuthService->authenticateUser($request->input('email'), $request->input('password'));
+            if (Auth::attempt($user)) {
+                setRoleCache(authUser()->load('roles'));
+                setConfigCookie();
+                $this->createLoginLog($request);
 
-            if ($response['authenticated']) {
-                if (Auth::attempt($user)) {
-                    setRoleCache(authUser()->load('roles'));
-                    setConfigCookie();
-                    $this->createLoginLog($request);
-
-                    return $this->sendLoginResponse($request);
-                }
+                return $this->sendLoginResponse($request);
             }
 
             $this->incrementAttempts($request, Config::get('constants.DEFAULT_LOGIN_ATTEMPT_EXPIRATION')); // decay minutes
