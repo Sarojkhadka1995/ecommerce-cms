@@ -66,8 +66,6 @@ Z
 *app/Http/Requests/system/resetPassword.php,6/2/624d733954f203bdaa673914722ca7f41d25dace
 ?
 config/auth.php,c/d/cddba0f39ef2cbe4d8189e8f5621a3bb533d6bc2
-Q
-!app/Helper/Ekcms/globalHelper.php,2/c/2c8ea60b95b552485f43da37af7941c5b1b77def
 J
 app/Exceptions/Handler.php,3/b/3badd23b42804fa4016b5b9734a7b35c12ec27e4
 l
@@ -80,8 +78,6 @@ B
 app/Model/Role.php,1/3/131181c654ad1ba6abeda01478907b1615a94342
 C
 public/js/script.js,a/4/a415e66bfdba45d232667d640b13492fa370a26f
-^
-.app/Repositories/System/LanguageRepository.php,5/f/5ffa0e696c9d92017cb3980c7a05a5b6704eb407
 a
 1resources/views/system/partials/js/slug.blade.php,8/e/8ef87a10e8cb78fa1f166f599f338920296fbd1c
 f
