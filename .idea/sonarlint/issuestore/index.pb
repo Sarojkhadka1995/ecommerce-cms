@@ -9,12 +9,8 @@ C
 app/Traits/Mail.php,e/b/eb7f5d1932ec90c558a7e74a5f592fa52b33f52e
 J
 public/js/jquery.ui.min.js,e/7/e78812c3b596270807e9617441f27215ea543bed
-C
-app/Http/Kernel.php,4/0/405f423e61f666bcedb754ae8befdce9e746176e
 a
 1resources/views/system/partials/message.blade.php,6/f/6f1386824c42b0c0d2d0f1b1b00dc3635997b89d
-Q
-!app/Http/Middleware/antiTwoFA.php,4/2/4227e499ca9584c0af0d3e6cddc2250f1b769af2
 M
 app/Http/Middleware/TWOFA.php,7/6/76c589d1b660f5ca26e640baadf71c5620283932
 :
@@ -30,8 +26,6 @@ c
 3app/Http/Controllers/System/user/RoleController.php,3/2/324996371a4017d4b8df8c111ccd16a76085d1e2
 Z
 *resources/views/system/role/form.blade.php,4/9/4954195a8cad582d9e67ce3df5100ae8b6940f19
-b
-2app/Http/Controllers/System/ResourceController.php,7/b/7bc1824a01d64b624fea26ac12acbc34d13e39c1
 q
 Adatabase/migrations/2023_08_01_094508_remove_role_id_to_users.php,4/d/4dcd2a4205066de9d52fb50e2487a275c1e1b452
 q
@@ -56,20 +50,14 @@ Y
 )database/seeders/CountriesTableSeeder.php,d/7/d784c4013c8d13a86ed12749cda962afaa61f247
 X
 (resources/asset/system/js/translation.js,b/4/b42da451fbb2b8e3935f16e1933dd27e1fd06841
-H
-app/Services/Service.php,f/2/f227a0aadc255f75549324fd543836c26864c020
 k
 ;app/Http/Controllers/System/language/LanguageController.php,e/a/eae4fe0425ee1ac28adad10f6a9754cbb820e04a
-]
--app/Repositories/System/CountryRepository.php,1/7/17c9412e608696bf94dab3bfd7deaf5dbb529549
 U
 %app/Helper/Ekcms/permissionHelper.php,c/7/c783024e040814c77b4c1df348c867ab7ad485fb
 J
 resources/lang/en/auth.php,5/0/50eb9a429e5326ea182e5681a15e410f355ac1cb
 O
 resources/lang/en/passwords.php,4/9/490024d5472873cb7ea94284b96bab26a7f9fc92
-O
-app/Repositories/Repository.php,6/2/6290a2b670fd384a5473a2d8aa4df4e14bd0bba9
 I
 public/css/responsive.css,e/8/e8ae40d300699941571eec7c9170332186f7c982
 \
@@ -90,12 +78,6 @@ d
 4resources/views/system/layouts/masterGuest.blade.php,a/4/a451f39ea310fb7820d3e836b7dd67e3e37ba0d9
 B
 app/Model/Role.php,1/3/131181c654ad1ba6abeda01478907b1615a94342
-Z
-*app/Repositories/System/RoleRepository.php,1/e/1e610bb60c093cf6412221dd8d74b9d08406166c
-a
-1app/Repositories/System/TranslationRepository.php,a/4/a4acb96e109fc8efb8be065fab0b5599f64d40bc
-e
-5resources/views/system/layouts/layoutFooter.blade.php,f/4/f4c02e42c8ffe009e2e52bac947078ec98bd8129
 C
 public/js/script.js,a/4/a415e66bfdba45d232667d640b13492fa370a26f
 ^
@@ -104,8 +86,6 @@ a
 1resources/views/system/partials/js/slug.blade.php,8/e/8ef87a10e8cb78fa1f166f599f338920296fbd1c
 f
 6resources/views/system/partials/js/imageLoad.blade.php,3/b/3b5217ffe0ee3bea5737b639f4fd7d4188d6879a
-f
-6resources/views/system/partials/deleteButton.blade.php,c/b/cbf8135b8892df78754279360da5855990f9ea83
 a
 1app/Rules/system/UniqueCaseSenstiveValidation.php,4/a/4aa3cc3afdb20249846852a20094b899c6f0f1e4
 W
@@ -114,16 +94,10 @@ W
 +resources/views/system/auth/login.blade.php,9\4\9412b766e59f873861c8eb5f770b4dbdead19796
 D
 app/Model/Locale.php,5\6\56e7d08baf4221aeff6345545803a36b7dc6c15b
-V
-&app/Helper/Ekcms/translationHelper.php,c\8\c89cb4c7e4129bbddac9e990d86c736226634823
 X
 (app/Http/Requests/system/pageRequest.php,5\d\5dd986f83f9da87f60c2151df20718b706421a0e
-o
-?database/migrations/2023_07_24_083729_add_otp_code_to_users.php,4\7\474bdaf876566612200dd73de1a5a5a6df8cd853
 X
 (app/Http/Requests/system/roleRequest.php,a\2\a214d36dab48be1a5cf24baf3c4ba0950290f22d
-n
->database/migrations/2023_08_10_215513_add_contact_on_users.php,8\8\88f5d3eb1aaa5a794e57704d161a64ada9674fce
 <
 app/User.php,5\1\5158cc6821d0344345606af2834807beae093242
 @
@@ -158,3 +132,7 @@ f
 6resources/views/system/partials/statusButton.blade.php,c\4\c45034f5454fcf7bcb955558f78ee0914e7c8750
 c
 3resources/views/system/partials/js/status.blade.php,5\9\59f4d9e608038a029005829f1a73261b50808f60
+^
+.resources/views/system/profile/index.blade.php,0\e\0e3400725120d8292191a6e69ecfc83c67846d27
+[
++app/Http/Requests/system/profileRequest.php,8\5\8530d9cb1f9acdf7e042b73db91074b9de92eca8

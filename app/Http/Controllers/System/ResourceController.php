@@ -116,7 +116,7 @@ class ResourceController extends Controller
     public static function breadcrumbBase()
     {
         return [
-            'title' => 'Dashboard',
+            'title' => ucwords('Dashboard'),
             'link' => '/' . getSystemPrefix() . '/' . translate('home'),
         ];
     }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 //use Spatie\TranslationLoader\LanguageLine;
 
 Route::get('/', function () {
@@ -69,5 +70,6 @@ Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix(), 'middlewar
         Route::resource('/pages', 'page\PageController', ['except' => ['show']]);
         Route::get('pages/{id}/toggle-status', 'page\PageController@changePageStatus')->name('changeStatus');
 
+        Route::resource('/api-logs', 'logs\ApiLogController', ['only' => ['index']]);
     });
 });

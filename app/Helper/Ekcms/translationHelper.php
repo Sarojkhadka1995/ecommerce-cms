@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\File;
 
 function translate($content, $data = [])
 {
-    $key = strtolower(trim(str_replace(".", "", $content)));
+    return strtolower(trim(str_replace(".", "", $content)));
 
-    $translations = array_keys(Locale::getTranslations(Cookie::get('lang') ?? 'en'));
+   // $translations = array_keys(Locale::getTranslations(Cookie::get('lang') ?? 'en'));
 
-    $lang = app()->getLocale();
-    $localFilePath = resource_path("lang/{$lang}.json");
-    $languageFiles = Language::distinct('language_code')->get();
+    //$lang = app()->getLocale();
+    //$localFilePath = resource_path("lang/{$lang}.json");
+    //$languageFiles = Language::distinct('language_code')->get();
 
 //    if ($key !== "") {
 //        // Check if the key exists in the translations
@@ -54,7 +54,7 @@ function translate($content, $data = [])
 //        return $key;
 //    }
 
-   return $key;
+  // return $key;
 
 //    $keys = Locale::whereJsonContains('text', $locale)
 //        ->pluck('key')
