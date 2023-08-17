@@ -11,9 +11,6 @@ class Log extends Activity
 {
     protected $table = 'activity_log';
 
-
-
-
     public function getModuleName($data)
     {
         if (isset($data)) {

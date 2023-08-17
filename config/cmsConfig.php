@@ -16,6 +16,7 @@ $emailTemplateBaseUrl = '/email-templates';
 $configBaseUrl = '/configs';
 $profileBaseUrl = '/profile';
 $pagesBaseUrl = '/pages';
+$apiBaseUrl = '/api-logs';
 
 return  [
     // routes entered in this array are accessible by any user no matter what role is given
@@ -201,6 +202,21 @@ return  [
                             'name' => 'View Activity logs',
                             'route' => [
                                 'url' => $activityLogsBaseUrl,
+                                'method' => $getMethod,
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'name' => 'Api logs',
+                    'icon' => "<i class='fas fa-chart-line'></i>",
+                    'hasSubmodules' => false,
+                    'route' => $apiBaseUrl,
+                    'permissions' => [
+                        [
+                            'name' => 'View Api logs',
+                            'route' => [
+                                'url' => $apiBaseUrl,
                                 'method' => $getMethod,
                             ],
                         ],

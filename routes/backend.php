@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 //use Spatie\TranslationLoader\LanguageLine;
 
 Route::get('/', function () {
@@ -11,7 +12,7 @@ Route::get(getSystemPrefix(), function () {
     return redirect(route('login.form'));
 });
 
-Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix(), 'middleware' => ['languagit ']], function () {
+Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix(), 'middleware' => ['language']], function () {
     Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login.form');
     Route::post('/login', 'Auth\LoginController@login')->name('login');
     Route::get('forgot-password', 'Auth\ForgotPasswordController@showRequestForm')->name('forgot.password');
@@ -69,5 +70,6 @@ Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix(), 'middlewar
         Route::resource('/pages', 'page\PageController', ['except' => ['show']]);
         Route::get('pages/{id}/toggle-status', 'page\PageController@changePageStatus')->name('changeStatus');
 
+        Route::resource('/api-logs', 'logs\ApiLogController', ['only' => ['index']]);
     });
 });

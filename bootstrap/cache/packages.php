@@ -115,4 +115,11 @@
       'Flare' => 'Spatie\\LaravelIgnition\\Facades\\Flare',
     ),
   ),
+  'spatie/laravel-translation-loader' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\TranslationLoader\\TranslationServiceProvider',
+    ),
+  ),
 );
