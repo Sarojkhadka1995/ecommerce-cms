@@ -11,12 +11,10 @@ class LogService extends Service
     {
         $this->logRepository = $logRepository;
     }
-
     public function getAllData($data, $selectedColumns = [], $pagination = true)
     {
         return $this->logRepository->getAllData($data);
     }
-
     public function indexPageData($data)
     {
         return [
