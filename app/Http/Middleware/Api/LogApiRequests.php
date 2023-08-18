@@ -19,8 +19,6 @@ class LogApiRequests
     public function handle(Request $request, Closure $next)
     {
         try {
-            $errorLogs = ErrorLog::orderBy('created_at', 'desc')->paginate(20);
-dd($errorLogs);
             $response = $next($request);
         } catch (\Exception $e) {
             throw new CustomGenericException($e->getMessage());

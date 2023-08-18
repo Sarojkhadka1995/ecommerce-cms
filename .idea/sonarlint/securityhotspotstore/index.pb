@@ -88,10 +88,6 @@ I
 public/css/responsive.css,e/8/e8ae40d300699941571eec7c9170332186f7c982
 \
 ,app/Http/Requests/system/languageRequest.php,d/7/d73c311422c5b94610c29cefe549b942b1defdc3
-d
-4app/Http/Controllers/System/Auth/LoginController.php,0/3/03c67efc81d8e4780b318d6f5111b9b0fa686032
-P
- app/Http/Middleware/Language.php,b/1/b169b2e83078d19b946c2a15c6ae4ff87b1dbc92
 [
 +resources/views/system/auth/login.blade.php,9/4/9412b766e59f873861c8eb5f770b4dbdead19796
 Z
@@ -102,8 +98,6 @@ Z
 config/app.php,7/3/734f7be25e8008acc7129e73cd116d5de913e6fd
 V
 &app/Mail/system/PasswordResetEmail.php,5/2/523aa9944b6cf15a8074b6ac021160e6bdd62e05
-Q
-!app/Helper/Ekcms/globalHelper.php,2/c/2c8ea60b95b552485f43da37af7941c5b1b77def
 J
 app/Exceptions/Handler.php,3/b/3badd23b42804fa4016b5b9734a7b35c12ec27e4
 l
@@ -120,8 +114,6 @@ X
 (database/seeders/EmailTemplateSeeder.php,2/d/2de3a7c9393840cefb5846d1e6f292523c3e05b2
 Z
 *app/Repositories/System/RoleRepository.php,1/e/1e610bb60c093cf6412221dd8d74b9d08406166c
-^
-.app/Repositories/System/LanguageRepository.php,5/f/5ffa0e696c9d92017cb3980c7a05a5b6704eb407
 a
 1app/Repositories/System/TranslationRepository.php,a/4/a4acb96e109fc8efb8be065fab0b5599f64d40bc
 e
@@ -144,8 +136,6 @@ f
 +resources/views/system/page/index.blade.php,f/0/f016d92bca55d7508d665f8cabe0ef2c4d4ded72
 c
 3resources/views/system/partials/js/status.blade.php,5/9/59f4d9e608038a029005829f1a73261b50808f60
-V
-&app/Helper/Ekcms/translationHelper.php,c/8/c89cb4c7e4129bbddac9e990d86c736226634823
 c
 3app/Http/Controllers/System/user/UserController.php,0/b/0bf78f7b52c3c5b51115280ca6c5ddda9d4560ba
 X
@@ -162,5 +152,3 @@ a
 1app/Rules/system/UniqueCaseSenstiveValidation.php,4/a/4aa3cc3afdb20249846852a20094b899c6f0f1e4
 m
 =app/Http/Controllers/System/Auth/ForgotPasswordController.php,e/5/e59c25ad60b01555f9f5e4d491155930f748ef4b
-B
-routes/backend.php,e/2/e2e681ec50a0cf7c5bab5ceb2bb45db0b74c117d
