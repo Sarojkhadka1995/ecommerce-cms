@@ -15,8 +15,6 @@ C
 app/Traits/Mail.php,e/b/eb7f5d1932ec90c558a7e74a5f592fa52b33f52e
 J
 public/js/jquery.ui.min.js,e/7/e78812c3b596270807e9617441f27215ea543bed
-C
-app/Http/Kernel.php,4/0/405f423e61f666bcedb754ae8befdce9e746176e
 Q
 !app/Http/Middleware/antiTwoFA.php,4/2/4227e499ca9584c0af0d3e6cddc2250f1b769af2
 a

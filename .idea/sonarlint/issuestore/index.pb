@@ -150,8 +150,6 @@ _
 /app/Http/Middleware/CheckForMaintenanceMode.php,5\1\517282fc128eb17514eb4e2badfd0a7cadb6db23
 ]
 -app/Http/Middleware/CheckPasswordResetted.php,6\5\65ba6ab2838452c6ffd4ab0d14fd08b04edd4431
-C
-app/Http/Kernel.php,4\0\405f423e61f666bcedb754ae8befdce9e746176e
 Y
 )app/Interfaces/System/ConfigInterface.php,c\8\c8039f3ce0dc07ebdcf591a330258623eb919a5c
 Z
@@ -180,18 +178,12 @@ S
 #app/Services/System/RoleService.php,d\8\d8fa0485f7efb657b55b8acbe2c976f35d2d408a
 Z
 *app/Services/System/SubCategoryService.php,c\5\c578e7ae84225344d7e4133d911271571a5e48de
-Z
-*app/Services/System/TranslationService.php,7\a\7a1181cea18782156172d1a846dee4a076b048f8
 H
 app/Services/Service.php,f\2\f227a0aadc255f75549324fd543836c26864c020
 W
 'app/Services/System/LoginLogService.php,a\6\a6db60ffbaed0a9b1a7493e77425ad47530154ea
 c
 3app/Http/Controllers/System/logs/LogsController.php,9\6\96a2d9b9c8a7dcfd58a8115a9f0c396dace1a96d
-Y
-)app/Interfaces/System/ApiLogInterface.php,8\5\85e29f3cd90d45c1344a743b2ca5f2fd9d453a6a
-e
-5app/Http/Controllers/System/logs/ApiLogController.php,b\f\bfd52968ef84b9bdc6426761326fec656a4f2289
 v
 Fdatabase/migrations/2014_10_12_100000_create_password_resets_table.php,e\f\eff59cfca55470b5a81fdbeb82498e8bfe5c8174
 l
@@ -209,10 +201,6 @@ Jdatabase/migrations/2023_08_07_211058_remove_group_from_language_lines.php,2\9
 d
 4resources/views/system/partials/pagination.blade.php,d\c\dc9800790b395a2e9e3ddfccaf89a7f3cfa179e1
 D
-app/Model/ApiLog.php,2\7\278751ce7a7da37d44d403bd26960935db24860e
-B
-routes/backend.php,e\2\e2e681ec50a0cf7c5bab5ceb2bb45db0b74c117d
-D
 config/constants.php,8\e\8ef8c8dfe606b6730487242cb8bd89655ec77623
 S
 #app/Http/Resources/PageResource.php,4\f\4f9f304fe57439dbe7b6e6af62ecf210ab8fcfd8
@@ -228,8 +216,6 @@ p
 @database/migrations/2020_07_03_100600_create_languages_table.php,c\c\cc8468c981340b2ee9e2f22a0ee5b3739dc85f72
 D
 config/cmsConfig.php,9\2\9216b2b3d78b8f4c40acf0c7f9e051a837cab45c
-Z
-*app/Http/Middleware/Api/LogApiRequests.php,4\2\42e192d8c0580e9a2e9fe38641544c8fe9554ae8
 `
 0resources/views/system/partials/loader.blade.php,2\4\24a29661b486e604cbbac508c0db27f46ce43b9a
 e
@@ -250,8 +236,6 @@ _
 /resources/views/system/layouts/master.blade.php,0\1\017e546649722009b47e296879b4416819333a8c
 R
 "app/Services/System/LogService.php,c\4\c4a3b5eb243ad65b37a47ecc3ece22d1434ae51f
-U
-%app/Services/System/ApiLogService.php,1\1\110188f78bb4584364341e9224ed439328a6f9b4
 Z
 *app/Repositories/System/UserRepository.php,9\4\94f88b9d4ac9552ca6fd3e802b3b03c4ca2da0e6
 F

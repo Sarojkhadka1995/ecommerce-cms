@@ -71,5 +71,6 @@ Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix(), 'middlewar
         Route::get('pages/{id}/toggle-status', 'page\PageController@changePageStatus')->name('changeStatus');
 
         Route::resource('/api-logs', 'logs\ApiLogController', ['only' => ['index']]);
+        Route::resource('/error-logs', 'logs\ErrorLogController', ['only' => ['index']]);
     });
 });
