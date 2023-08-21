@@ -100,9 +100,9 @@ class User extends Authenticatable
         return '<a href=' . $link . '>' . $title . '</a>';
     }
 
-    public function roles()
+    public function role()
     {
-        return $this->belongsToMany(Role::class, 'role_user');
+        return $this->belongsTo(Role::class, 'role_id', 'id');
     }
 
     public function setUsernameAttribute($value)

@@ -17,23 +17,17 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::where('username', 'admin')->first();
-        $superUserRole = Role::where('name', 'superuser')->first();
+        $user = User::where('id', 1)->first();
         if (!isset($user)) {
-            $data = [
+            User::create([
                 'name' => 'Admin',
-                'email' => Config::get('constants.ADMIN_DEFAULT_EMAIL') ?? 'admin@ekcms.com',
+                'email' => Config::get('constants.ADMIN_DEFAULT_EMAIL'),
                 'username' => 'admin',
                 'password' => Hash::make('123admin@'),
                 'password_resetted' => 1,
-            ];
-
-            $createdUser = User::create($data);
-
-            $createdUser->roles()->attach($superUserRole->id);
-
+                'role_id' => 1,
+                'is_2fa_enabled' => 0
+            ]);
         }
-
-
     }
 }

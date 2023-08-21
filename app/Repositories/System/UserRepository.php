@@ -29,17 +29,12 @@ class UserRepository extends Repository implements UserRepositoryInterface
             $query->where(function ($q) use ($data) {
                 $q->orwhere('name', 'ILIKE', '%' . $data->keyword . '%')
                     ->orwhere('username', 'ILIKE', '%' . $data->keyword . '%')
-                    ->orwhere('email', 'ILIKE', '%' . $data->keyword . '%')
-                    ->orwhereHas('roles', function ($q) use ($data) {
-                        $q->where('roles.name', $data->keyword);
-                    });
+                    ->orwhere('email', 'ILIKE', '%' . $data->keyword . '%');
             });
         }
 
-        if (isset($data->role)) {
-            $query->whereHas('roles', function ($q) use ($data) {
-                $q->where('roles.id', $data->role);
-            });
+        if (isset($data->role) && $data->role !== null) {
+            $query->where('role_id', $data->role);
         }
 
         if (count($selectedColumns) > 0) {
@@ -47,7 +42,7 @@ class UserRepository extends Repository implements UserRepositoryInterface
         }
 
         if ($pagination) {
-            return $query->orderBy('id', 'DESC')->with('roles')->paginate(PAGINATE);
+            return $query->orderBy('id', 'DESC')->with('role')->paginate(PAGINATE);
         }
 
         return $query->orderBy('id', 'DESC')
@@ -105,11 +100,16 @@ class UserRepository extends Repository implements UserRepositoryInterface
 
     public function bulkUpdateUserByRole($roleId, $requestRole)
     {
-        return $this->roleUser->where('role_id', $roleId)->update(['role_id' => $requestRole]);
+        return $this->model->where('role_id', $roleId)->update(['role_id' => $requestRole]);
     }
 
     public function getByRolePivotRoleUser($roleId)
     {
-        return $this->roleUser->where('user_id', $roleId)->get();
+        return $this->model->where('user_id', $roleId)->get();
+    }
+
+    public function pluckUsersWithIdAndName()
+    {
+        return $this->model->pluck('name', 'id')->toArray();
     }
 }

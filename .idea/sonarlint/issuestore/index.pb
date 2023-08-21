@@ -24,8 +24,6 @@ a
 1app/Interfaces/System/UserRepositoryInterface.php,f/6/f6c8af3f1a20d422ed6c6c24beabed1949c5bdf2
 c
 3app/Http/Controllers/System/user/RoleController.php,3/2/324996371a4017d4b8df8c111ccd16a76085d1e2
-Z
-*resources/views/system/role/form.blade.php,4/9/4954195a8cad582d9e67ce3df5100ae8b6940f19
 q
 Adatabase/migrations/2023_08_01_094508_remove_role_id_to_users.php,4/d/4dcd2a4205066de9d52fb50e2487a275c1e1b452
 q
@@ -38,16 +36,12 @@ d
 public/js/app.js,3/3/33ff5b9601779f3f4bcbd328a76c18073a9a65bb
 O
 database/seeders/RoleSeeder.php,e/e/eebbad3d7b0b679dd285a4431b6650eda7cef9db
-O
-database/seeders/UserSeeder.php,9/a/9a5fbe4af4b23f69ef07f35a2d8a4d7c75c60797
 S
 #database/seeders/DatabaseSeeder.php,a/c/aca1efccd4101e0c9bdd34803577859ace08ef45
 Y
 )database/seeders/CountriesTableSeeder.php,d/7/d784c4013c8d13a86ed12749cda962afaa61f247
 X
 (resources/asset/system/js/translation.js,b/4/b42da451fbb2b8e3935f16e1933dd27e1fd06841
-U
-%app/Helper/Ekcms/permissionHelper.php,c/7/c783024e040814c77b4c1df348c867ab7ad485fb
 J
 resources/lang/en/auth.php,5/0/50eb9a429e5326ea182e5681a15e410f355ac1cb
 O
@@ -66,8 +60,6 @@ a
 1resources/views/system/auth/setPassword.blade.php,8/3/83484fc9b3b4d777957d47873971186678d5584c
 d
 4resources/views/system/layouts/masterGuest.blade.php,a/4/a451f39ea310fb7820d3e836b7dd67e3e37ba0d9
-B
-app/Model/Role.php,1/3/131181c654ad1ba6abeda01478907b1615a94342
 C
 public/js/script.js,a/4/a415e66bfdba45d232667d640b13492fa370a26f
 a
@@ -82,8 +74,6 @@ X
 (app/Http/Requests/system/roleRequest.php,a\2\a214d36dab48be1a5cf24baf3c4ba0950290f22d
 @
 public/.htaccess,c\9\c9fe70f275af093c7fb3ed73b451fadc91069bac
-Z
-*resources/views/system/user/form.blade.php,a\4\a4bd974d39f5836547eac662f33d949b1cf47c57
 X
 (app/Http/Requests/system/userRequest.php,8\5\85bd764152996d0ead0c4f7a10dc5f312ba8bb53
 c
@@ -152,8 +142,6 @@ Z
 *app/Repositories/System/RoleRepository.php,1\e\1e610bb60c093cf6412221dd8d74b9d08406166c
 W
 'app/Services/System/CategoryService.php,f\8\f8230eee9d3ed96bb9d7d9f5d1d2dfea4d446855
-S
-#app/Services/System/RoleService.php,d\8\d8fa0485f7efb657b55b8acbe2c976f35d2d408a
 Z
 *app/Services/System/SubCategoryService.php,c\5\c578e7ae84225344d7e4133d911271571a5e48de
 c
@@ -244,8 +232,6 @@ _
 /app/Http/Requests/system/translationRequest.php,0/a/0a687e26028ae7e78b94573025a8d1a3733eecf0
 U
 %app/Http/Middleware/LogMiddleware.php,9/f/9f2e21c4065cecc6a177db653ec0062fc030b259
-C
-app/Http/Kernel.php,4/0/405f423e61f666bcedb754ae8befdce9e746176e
 D
 app/Model/Locale.php,5/6/56e7d08baf4221aeff6345545803a36b7dc6c15b
 W
