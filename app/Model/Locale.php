@@ -31,7 +31,7 @@ class Locale extends Model
 
     public function getDescriptionForEvent(string $eventName): string
     {
-        return logMessage('Locale', $this->id, $eventName);
+        return logMessage('Translation', $this->id, $eventName);
     }
 
     public function getActivitylogOptions(): LogOptions
@@ -43,29 +43,29 @@ class Locale extends Model
             ->logOnlyDirty();
     }
 
-    public static function getTranslations(string $locale): array
-    {
-        return static::query()
-            ->get()
-            ->reduce(function ($lines, self $languageLine) use ($locale) {
-                $translation = $languageLine->getTranslation($locale);
-
-                if ($translation !== null) {
-                    $lines[$languageLine->key] = $translation;
-                }
-
-                return $lines;
-            }) ?? [];
-    }
-
-    public function getTranslation(string $locale): ?string
-    {
-        if (!isset($this->text[$locale])) {
-            $fallback = config('app.fallback_locale');
-
-            return $this->text[$fallback] ?? null;
-        }
-
-        return $this->text[$locale];
-    }
+//    public static function getTranslations(string $locale): array
+//    {
+//        return static::query()
+//            ->get()
+//            ->reduce(function ($lines, self $languageLine) use ($locale) {
+//                $translation = $languageLine->getTranslation($locale);
+//
+//                if ($translation !== null) {
+//                    $lines[$languageLine->key] = $translation;
+//                }
+//
+//                return $lines;
+//            }) ?? [];
+//    }
+//
+//    public function getTranslation(string $locale): ?string
+//    {
+//        if (!isset($this->text[$locale])) {
+//            $fallback = config('app.fallback_locale');
+//
+//            return $this->text[$fallback] ?? null;
+//        }
+//
+//        return $this->text[$locale];
+//    }
 }

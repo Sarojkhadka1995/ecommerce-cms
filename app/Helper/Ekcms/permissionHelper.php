@@ -2,57 +2,60 @@
 
 function hasPermission($url, $method = 'get')
 {
-    $roles = getRoleCache(authUser());
-    $permissions = [];
-
-    if (!count($roles) < 0) {
-        $roles = authUser()->role;
+    $role = getRoleCache(authUser());
+    if (!isset($role) || $role == null) {
+        $role = authUser()->role;
     }
 
     $method = strtolower($method);
-    $splittedUrl = explode('/'.getSystemPrefix(), $url);
+    $splittedUrl = explode('/' . PREFIX, $url);
     if (count($splittedUrl) > 1) {
         $url = $splittedUrl[1];
     } else {
         $url = $splittedUrl[0];
     }
 
-    foreach ($roles as $role) {       
-        if ($role->id == 1) {
-            $permissionDeniedToSuperUserRoutes = Config::get('cmsConfig.permissionDeniedToSuperUserRoutes');
-            $checkDeniedRoute = true;
-            foreach ($permissionDeniedToSuperUserRoutes as $route) {
-                if (\Str::is($route['url'], $url) && $route['method'] == $method) {
-                    $checkDeniedRoute = false;
-                }
-            }
-
-            return $checkDeniedRoute;
-        }
-
-        $permissionIgnoredUrls = Config::get('cmsConfig.permissionGrantedbyDefaultRoutes');
-
-        $check = false;
-
-        foreach ($permissionIgnoredUrls as $piurl) {
-            if (\Str::is($piurl['url'], $url) && $piurl['method'] == $method) {
-                $check = true;
+    if ($role->id == 1) {
+        $permissionDeniedToSuperUserRoutes = Config::get('cmsConfig.permissionDeniedToSuperUserRoutes');
+        $checkDeniedRoute = true;
+        foreach ($permissionDeniedToSuperUserRoutes as $route) {
+            if (\Str::is($route['url'], $url) && $route['method'] == $method) {
+                $checkDeniedRoute = false;
             }
         }
-        if ($check) {
-            return true;
-        }
 
-        $permissions = array_merge($permissions, $role->permissions);
+        return $checkDeniedRoute;
     }
+
+    $permissionIgnoredUrls = Config::get('cmsConfig.permissionGrantedbyDefaultRoutes');
+
+    $check = false;
+
+    foreach ($permissionIgnoredUrls as $piurl) {
+        if (\Str::is($piurl['url'], $url) && $piurl['method'] == $method) {
+            $check = true;
+        }
+    }
+    if ($check) {
+        return true;
+    }
+
+    $permissions = $role->permissions;
 
     if ($permissions == null) {
         return false;
     }
 
+    // foreach ($permissions as $piurl) {
+    //     if (\Str::is($piurl['url'], $url) && $piurl['method'] == $method) {
+    //         $check = true;
+    //     }
+    // }
+
     foreach ($permissions as $piurl) {
-        if (\Str::is($piurl['url'], $url) && $piurl['method'] == $method) {
+        if (fnmatch($piurl['url'], $url, FNM_PATHNAME) && $piurl['method'] == $method) {
             $check = true;
+            break;
         }
     }
     if ($check) {
@@ -70,10 +73,27 @@ function hasPermissionOnModule($module)
     } else {
         try {
             foreach ($module['submodules'] as $submodule) {
-                $check = hasPermission($submodule['route']);
-                if ($check == true) {
-                    break;
+                /* added third level */
+                if (!$submodule['hasSubmodules']) {
+                    /* after end third level if only two levels */
+                    $check = hasPermission($submodule['route']);
+                    if ($check == true) {
+                        break;
+                    }
+                    /**/
+                } else {
+                    try {
+                        foreach ($submodule['submodules'] as $childModule) {
+                            $check = hasPermission($childModule['route']);
+                            if ($check == true) {
+                                break;
+                            }
+                        }
+                    } catch (\Exception $e) {
+                        return false;
+                    }
                 }
+                /* end third level */
             }
         } catch (\Exception $e) {
             return false;

@@ -206,7 +206,6 @@ class ResourceController extends Controller
         $data = $this->service->indexPageData($request);
         $data['breadcrumbs'] = $this->breadcrumbForIndex();
         $this->setModuleId($id);
-
         return $this->renderView('index', $data);
     }
 

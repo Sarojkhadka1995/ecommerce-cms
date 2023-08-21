@@ -33,7 +33,7 @@ class Repository implements OpenInterface
             $query->where('name', 'ILIKE', '%' . $data->keyword . '%');
         }
         if ($pagination) {
-            return $query->orderBy('id', 'DESC')->paginate(Config::get('constants.PAGINATION'));
+            return $query->orderBy('id', 'DESC')->paginate(PAGINATE);
         } else {
             return $query->orderBy('id', 'DESC')->get();
         }

@@ -9,58 +9,27 @@ use Illuminate\Support\Facades\File;
 
 function translate($content, $data = [])
 {
-    return strtolower(trim(str_replace(".", "", $content)));
+    $key = strtolower(trim(str_replace(".", "", $content)));
 
-   // $translations = array_keys(Locale::getTranslations(Cookie::get('lang') ?? 'en'));
+    $directory = resource_path('lang');
+    if (!is_dir($directory)) {
+        \File::makeDirectory($directory, $mode = 0755, true);
+    }
 
-    //$lang = app()->getLocale();
-    //$localFilePath = resource_path("lang/{$lang}.json");
-    //$languageFiles = Language::distinct('language_code')->get();
+    createOrReplaceTranslationContent($key, $content, $directory);
 
-//    if ($key !== "") {
-//        // Check if the key exists in the translations
-//        if (!in_array($key, $translations)) {
-//            $check = Locale::where('key', $key)->exists();
-//            if (!$check) {
-//                Locale::create([
-//                    'key' => $key,
-//                    'text' => insertText($content),
-//                ]);
-//
-//                foreach ($languageFiles as $name) {
-//                    // Check if the file exists
-//
-//                    $translationFilePath = resource_path("lang/{$name}.json");
-//                    $insertTranslation[$key] = $content;
-//                    if (File::exists($translationFilePath)) {
-//                        // Write the JSON data to the file
-//                        $updatedJson = json_encode($insertTranslation, JSON_PRETTY_PRINT);
-//                        file_put_contents($translationFilePath, $updatedJson);
-//                    } else {
-//                        dd($translationFilePath);
-//                        file_put_contents($translationFilePath, json_decode('{asd}'));
-//                    }
-//                }
-//            }
-//        } else {
-//            $translations = json_decode(file_get_contents($localFilePath), true);
-//            if ($translations != null && array_key_exists($key, $translations)) {
-//                return $translations[$key];
-//            } else {
-//                return $key;
-//            }
-//        }
-//    } else {
-//        return $key;
-//    }
+    $locale = app()->getLocale();
+    $jsonFileName = "{$locale}.json";
+    $jsonFilePath = "{$directory}/{$jsonFileName}";
+    $translationsJSON = file_get_contents($jsonFilePath);
 
-  // return $key;
+    // Convert JSON to an associative array
+    $translations = json_decode($translationsJSON, true);
 
-//    $keys = Locale::whereJsonContains('text', $locale)
-//        ->pluck('key')
-//        ->toArray();
-//    dd($keys);
-
+    if ($translations === null) {
+        return $key;
+    }
+    return $translations[$key];
 }
 
 function insertText($content)
@@ -71,6 +40,43 @@ function insertText($content)
         $text[$language] = $content;
     }
     return $text;
+}
+
+function createOrReplaceTranslationContent($keyword, $content, $directory)
+{
+    $langShortCodes = Language::pluck('language_code')->toArray();
+
+    foreach ($langShortCodes as $lang) {
+
+        $jsonFileName = "{$lang}.json";
+        $jsonFilePath = "{$directory}/{$jsonFileName}";
+
+        if (file_exists($jsonFilePath)) {
+            $existingContent = file_get_contents($jsonFilePath);
+            $existingTranslations = json_decode($existingContent, true);
+            if (json_last_error() === JSON_ERROR_NONE) {
+                // Check if the translation key already exists
+                if (!isset($existingTranslations[$keyword])) {
+                    $newTranslations = [
+                        $keyword => $content,
+                    ];
+
+                    $mergedTranslations = array_merge($existingTranslations, $newTranslations);
+
+                    $jsonContentString = json_encode($mergedTranslations, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                    file_put_contents($jsonFilePath, $jsonContentString);
+                }
+            }
+        } else {
+            // Create a new JSON file with initial translations
+            $initialTranslations = [
+                $keyword => $content,
+            ];
+
+            $jsonContentString = json_encode($initialTranslations, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            file_put_contents($jsonFilePath, $jsonContentString);
+        }
+    }
 }
 
 function translateValidationErrorsOfApi($content, $data = [])

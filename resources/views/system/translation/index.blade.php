@@ -8,16 +8,16 @@
                        href="{{ url($indexUrl . '/download-sample') }}" style="margin-right:3px"><i
                             class="fa fa-download" aria-hidden="true"></i> {{ translate('Download Sample') }}</a>
                 @endif
-                @if (hasPermission($indexUrl . '/download/backend'))
+                @if (hasPermission($indexUrl . '/download'))
                     <a style="margin-top: 7px; margin-right:2px; margin-left:2px"
-                       class="btn btn-primary pull-right btn-sm" href="{{ url($indexUrl . '/download/backend') }}"
+                       class="btn btn-primary pull-right btn-sm" href="{{ url($indexUrl . '/download') }}"
                        style="margin-right:3px; margin-left:3px"><i class="fa fa-download" aria-hidden="true"></i>
                         {{ translate('Download Excel') }}</a>
                 @endif
 
-                @if (hasPermission($indexUrl . '/upload/backend', 'post'))
+                @if (hasPermission($indexUrl . '/upload', 'post'))
                     <x-system.general-modal :url="url(
-                    $indexUrl . '/upload/backend',
+                    $indexUrl . '/upload',
                 )" :modalTitle="'Upload Excel'" :modalId="'uploadExcelModal'" :modalTriggerButton="'Upload excel'"
                                             :buttonClass="'btn-primary pull-right'" :buttonIconClass="'fa fa-upload'"
                                             :submitButtonTitle="'Upload'">
@@ -93,7 +93,6 @@
                                                     <textarea name="text" class="form-control translation-content"
                                                               rows="1"
                                                               data-href="{{ url('/' . getSystemPrefix() . '/translations/' . $item->id) }}"
-                                                              data-group="{{ Request::get('group') ?? 'backend' }}"
                                                               data-locale="{{ Request::get('locale') ?? 'en' }}">{{ $item->text[Request::get('locale')] ?? $item->text['en'] }}</textarea>
                                                 @else
                                                     {{ $item->text[Request::get('locale')] ?? $item->text['en'] }}

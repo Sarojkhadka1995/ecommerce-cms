@@ -28,16 +28,6 @@ class TranslationService extends Service
             'locales' => $this->languageRepository->getKeyValuePair($languages),
         ];
     }
-    public function inserttext($content, $group)
-    {
-        $languages = Language::orderBy('group', 'ASC')->pluck('language_code');
-        $text = [];
-        foreach ($languages as $language) {
-            $text[$language] = $content;
-        }
-        return $text;
-    }
-
 
     public function update($request, $id)
     {

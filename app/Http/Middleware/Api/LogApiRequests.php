@@ -18,24 +18,23 @@ class LogApiRequests
      */
     public function handle(Request $request, Closure $next)
     {
-        try {
-            $errorLogs = ErrorLog::orderBy('created_at', 'desc')->paginate(20);
-dd($errorLogs);
-            $response = $next($request);
-        } catch (\Exception $e) {
-            throw new CustomGenericException($e->getMessage());
-        }
+
+        $response = $next($request);
+        $statusCode = $response->status();
+
         // Log data
-        $log = new ApiLog();
-        $log->ip = $request->ip();
-        $log->log_date = now();
-        $log->user_agent = $request->userAgent();
-        $log->request_endpoint = $request->fullUrl();
-        $log->response_code = $response->status();
-        $log->response_time = microtime(true) - LARAVEL_START;
-        $log->request_body = json_encode($request->all());
-        $log->response_body = $response->getContent();
-        $log->save();
+        if ($statusCode >= 200 && $statusCode < 300) {
+            $log = new ApiLog();
+            $log->ip = $request->ip();
+            $log->log_date = now();
+            $log->user_agent = $request->userAgent();
+            $log->request_endpoint = $request->fullUrl();
+            $log->response_code = $response->status();
+            $log->response_time = microtime(true) - LARAVEL_START;
+            $log->request_body = json_encode($request->all());
+            $log->response_body = $response->getContent();
+            $log->save();
+        }
 
         return $response;
     }

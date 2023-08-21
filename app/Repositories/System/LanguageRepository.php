@@ -64,9 +64,9 @@ class LanguageRepository extends Repository implements LanguageInterface
         return $language->delete();
     }
 
-    public function getLanguages($group)
+    public function getLanguages()
     {
-        return $this->model->where('group', $group)->get();
+        return $this->model->get();
     }
 
     public function getKeyValuePair($languages, $key = 'language_code', $value = 'name')

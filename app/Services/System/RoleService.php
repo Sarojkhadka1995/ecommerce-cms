@@ -65,13 +65,12 @@ class RoleService extends Service
     public function delete($request, $id)
     {
         try {
-            if ($request->role_id == $id) {
-                throw new CustomGenericException('The role that currently exist and the ones that have been modified must not be identical.');
+            $role = $this->roleRepository->itemByIdentifier($id);
+            if ($role->users->count() > 0) {
+                throw new NotDeletableException('The role is associated to the users.');
             }
-            if ($request->role_id) {
-                $this->userRepository->bulkUpdateUserByRole($id, $request->role_id);
-            }
-            return $this->roleRepository->delete($request, $id);
+
+            return $role->delete();
         } catch (\Exception $e) {
             throw new CustomGenericException($e->getMessage());
         }
