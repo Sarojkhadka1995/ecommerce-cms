@@ -64,8 +64,6 @@ Z
 *app/Http/Requests/system/resetPassword.php,6/2/624d733954f203bdaa673914722ca7f41d25dace
 ?
 config/auth.php,c/d/cddba0f39ef2cbe4d8189e8f5621a3bb533d6bc2
-J
-app/Exceptions/Handler.php,3/b/3badd23b42804fa4016b5b9734a7b35c12ec27e4
 l
 <app/Http/Controllers/System/Auth/ResetPasswordController.php,d/9/d9a8689aff61d60d3b2cd8b6e86ff0cd0c4460e0
 a
@@ -214,8 +212,6 @@ O
 0app/Http/Controllers/Api/Page/PageController.php,f\0\f0df9e219fd8e85092e2b93348ccf4b73b346e11
 p
 @database/migrations/2020_07_03_100600_create_languages_table.php,c\c\cc8468c981340b2ee9e2f22a0ee5b3739dc85f72
-D
-config/cmsConfig.php,9\2\9216b2b3d78b8f4c40acf0c7f9e051a837cab45c
 `
 0resources/views/system/partials/loader.blade.php,2\4\24a29661b486e604cbbac508c0db27f46ce43b9a
 e

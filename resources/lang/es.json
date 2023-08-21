@@ -69,5 +69,13 @@
     "select type": "Select Type",
     "type": "Type",
     "browse": "Browse",
-    "select file": "Select file"
+    "select file": "Select file",
+    "login": "Login",
+    "welcome back! log in to your account": "Welcome back! Log in to your account.",
+    "email address": "Email Address",
+    "password": "Password",
+    "you are current using ip": "You are current using IP",
+    "remember password": "Remember password",
+    "forgot password?": "Forgot password?",
+    "sign in": "Sign in"
 }

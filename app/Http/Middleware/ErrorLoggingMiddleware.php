@@ -18,26 +18,23 @@ class ErrorLoggingMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        try {
-            return $next($request);
-        } catch (Exception $exception) {
-            $this->logError($request, $exception);
+        $response = $next($request);
+        $statusCode = $response->status();
 
-            throw $exception;
+        if ($statusCode >= 400 && $statusCode < 600) {
+            ErrorLog::create([
+                'ip' => $request->ip(),
+                'log_date' => now(),
+                'user_agent' => $request->userAgent(),
+                'request_endpoint' => $request->fullUrl(),
+                'response_code' => $response->status(),
+                'response_time' => microtime(true) - LARAVEL_START,
+                'request_body' => json_encode($request->all()),
+                'response_body' => $response->exception->getMessage(),
+            ]);
         }
-    }
 
-    private function logError($request, $exception)
-    {
-        ErrorLog::create([
-            'ip' => $request->ip(),
-            'log_date' => now(),
-            'user_agent' => $request->userAgent(),
-            'request_endpoint' => $request->fullUrl(),
-            'response_code' => $exception->getCode(),
-            'response_time' => microtime(true) - LARAVEL_START,
-            'request_body' => json_encode($request->all()),
-            'response_body' => $exception->getMessage(),
-        ]);
+        return $response;
+
     }
 }

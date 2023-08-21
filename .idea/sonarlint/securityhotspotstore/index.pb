@@ -94,8 +94,6 @@ Z
 config/app.php,7/3/734f7be25e8008acc7129e73cd116d5de913e6fd
 V
 &app/Mail/system/PasswordResetEmail.php,5/2/523aa9944b6cf15a8074b6ac021160e6bdd62e05
-J
-app/Exceptions/Handler.php,3/b/3badd23b42804fa4016b5b9734a7b35c12ec27e4
 l
 <app/Http/Controllers/System/Auth/ResetPasswordController.php,d/9/d9a8689aff61d60d3b2cd8b6e86ff0cd0c4460e0
 a
