@@ -88,8 +88,6 @@ a
 1resources/views/system/auth/setPassword.blade.php,8/3/83484fc9b3b4d777957d47873971186678d5584c
 d
 4resources/views/system/layouts/masterGuest.blade.php,a/4/a451f39ea310fb7820d3e836b7dd67e3e37ba0d9
-<
-app/User.php,5/1/5158cc6821d0344345606af2834807beae093242
 B
 app/Model/Role.php,1/3/131181c654ad1ba6abeda01478907b1615a94342
 X
@@ -160,8 +158,6 @@ m
 =resources/views/components/system/form/input-normal.blade.php,3/1/311ce1def937b9e1b20c1895d33bc135e2112281
 D
 app/Model/Locale.php,5/6/56e7d08baf4221aeff6345545803a36b7dc6c15b
-G
-app/Model/Loginlogs.php,a/e/ae826db6290e818b07cd09573dee5851c55b25bd
 k
 ;app/Http/Controllers/System/language/LanguageController.php,e/a/eae4fe0425ee1ac28adad10f6a9754cbb820e04a
 Z

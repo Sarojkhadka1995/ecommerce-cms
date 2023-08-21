@@ -80,8 +80,6 @@ X
 (app/Http/Requests/system/pageRequest.php,5\d\5dd986f83f9da87f60c2151df20718b706421a0e
 X
 (app/Http/Requests/system/roleRequest.php,a\2\a214d36dab48be1a5cf24baf3c4ba0950290f22d
-<
-app/User.php,5\1\5158cc6821d0344345606af2834807beae093242
 @
 public/.htaccess,c\9\c9fe70f275af093c7fb3ed73b451fadc91069bac
 Z
@@ -238,8 +236,6 @@ y
 Iapp/Http/Controllers/System/countryLanguage/countryLanguageController.php,b/2/b25a2a41f9c34a0a6393b60504a937e0ea14a9be
 `
 0resources/views/system/loginLogs/index.blade.php,7/0/70a15322f3d799a5a6358a38be43c582b024cc84
-G
-app/Model/Loginlogs.php,a/e/ae826db6290e818b07cd09573dee5851c55b25bd
 H
 app/Services/Service.php,f/2/f227a0aadc255f75549324fd543836c26864c020
 a
