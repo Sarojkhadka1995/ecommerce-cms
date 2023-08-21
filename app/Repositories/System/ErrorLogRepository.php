@@ -3,15 +3,11 @@
 namespace App\Repositories\System;
 
 
-use App\Interfaces\System\LogInterface;
-use App\Model\ApiLog;
+use App\Interfaces\System\ErrorLogInterface;
 use App\Model\ErrorLog;
-use App\Model\Log;
 use App\Repositories\Repository;
 use Carbon\Carbon;
-use Config;
-
-class ErrorLogRepository extends Repository implements LogInterface
+class ErrorLogRepository extends Repository implements ErrorLogInterface
 {
     public function __construct(ErrorLog $log)
     {
@@ -21,6 +17,7 @@ class ErrorLogRepository extends Repository implements LogInterface
     public function getAllData($data, $selectedColumns = [], $pagination = true)
     {
         $query = $this->query();
+
         if (count($selectedColumns) > 0) {
             $query->select($selectedColumns);
         }
@@ -36,9 +33,9 @@ class ErrorLogRepository extends Repository implements LogInterface
             $query->whereBetween('created_at', [$from, $to]);
         }
         if ($pagination) {
-            return $query->orderBy('id', 'DESC')->paginate(Config::get('constants.PAGINATION'));
+            return $query->orderBy('id', 'DESC')->paginate(PAGINATE);
         } else {
-            return $query->get();
+            return $query->orderBy('id', 'DESC')->get();
         }
     }
 }

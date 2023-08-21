@@ -69,8 +69,8 @@ class LanguageService extends Service
         return $this->repository->delete($request, $id);
     }
 
-    public function getBackendLanguages($group)
+    public function getBackendLanguages()
     {
-        return $this->languageRepository->getLanguages('backend');
+        return $this->languageRepository->getLanguages();
     }
 }

@@ -17,12 +17,6 @@ class TranslationController extends ResourceController
     {
         parent::__construct($translationService);
     }
-
-    public function storeValidationRequest()
-    {
-        return 'App\Http\Requests\system\translationRequest';
-    }
-
     public function moduleName()
     {
         return 'translations';

@@ -29,7 +29,6 @@ function translate($content, $data = [])
     if ($translations === null) {
         return $key;
     }
-
     return $translations[$key];
 }
 

@@ -34,7 +34,7 @@ class TranslationRepository extends Repository implements TranslationInterface
   {
     $key = strtolower(trim(str_replace('.', '', $request->key)));
     if ($key !== '') {
-      $check = $this->model::where('key', $key)->where('group', $request->group)->first();
+      $check = $this->model::where('key', $key)->first();
       if (!isset($check)) {
         return $this->model::create([
           'key' => $key,
@@ -47,7 +47,7 @@ class TranslationRepository extends Repository implements TranslationInterface
   }
   public function inserttext($content)
   {
-    $languages = Language::orderBy('name', 'ASC')->pluck('language_code');
+    $languages = Language::pluck('language_code');
     $text = [];
     foreach ($languages as $language) {
       $text[$language] = $content;

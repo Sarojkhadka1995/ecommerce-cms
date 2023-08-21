@@ -84,12 +84,15 @@
     "status": "Status",
     "active": "Active",
     "in-active": "In-Active",
-    "pages": "Pages ",
+    "pages": "Pages",
     "if you are sure that you want to do it, please select another role type to assign all the users of this type to when this role type is deleted": "If you are sure that you want to do it, please select another role type to assign all the users of this type to when this role type is deleted.",
     "print": "Print",
     "user": "User",
     "ip address": "Ip Address",
     "time": "Time",
     "isp": "ISP",
-    "location": "Location"
+    "location": "Location",
+    "log module": "Log Module",
+    "log message": "Log Message",
+    "changes": "Changes"
 }

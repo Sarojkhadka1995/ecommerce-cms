@@ -32,5 +32,4 @@ return [
 
     'API_URL' => env('API_URL', 'http://ip-api.com'),
     'IP_ADDRESS' => env('IP_ADDRESS', '110.44.123.47'),
-
 ];

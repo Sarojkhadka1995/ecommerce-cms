@@ -8,7 +8,6 @@ use App\Model\ApiLog;
 use App\Model\Log;
 use App\Repositories\Repository;
 use Carbon\Carbon;
-use Config;
 
 class ApiLogRepository extends Repository implements LogInterface
 {
@@ -35,7 +34,7 @@ class ApiLogRepository extends Repository implements LogInterface
             $query->whereBetween('created_at', [$from, $to]);
         }
         if ($pagination) {
-            return $query->orderBy('id', 'DESC')->paginate(Config::get('constants.PAGINATION'));
+            return $query->orderBy('id', 'DESC')->paginate(PAGINATE);
         } else {
             return $query->get();
         }
