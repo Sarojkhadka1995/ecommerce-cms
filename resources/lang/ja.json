@@ -94,5 +94,6 @@
     "location": "Location",
     "log module": "Log Module",
     "log message": "Log Message",
-    "changes": "Changes"
+    "changes": "Changes",
+    "successfully logged out!": "Successfully logged out!"
 }

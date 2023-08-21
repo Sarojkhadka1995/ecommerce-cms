@@ -36,8 +36,6 @@ a
 1app/Interfaces/System/UserRepositoryInterface.php,f/6/f6c8af3f1a20d422ed6c6c24beabed1949c5bdf2
 c
 3app/Http/Controllers/System/user/RoleController.php,3/2/324996371a4017d4b8df8c111ccd16a76085d1e2
-Z
-*resources/views/system/role/form.blade.php,4/9/4954195a8cad582d9e67ce3df5100ae8b6940f19
 e
 5resources/views/system/layouts/layoutHeader.blade.php,a/e/aea1ec041aa2b6b31c1b4e766a64ebf50e7d5cb3
 q
@@ -52,18 +50,12 @@ d
 public/js/app.js,3/3/33ff5b9601779f3f4bcbd328a76c18073a9a65bb
 O
 database/seeders/RoleSeeder.php,e/e/eebbad3d7b0b679dd285a4431b6650eda7cef9db
-[
-+resources/views/system/user/index.blade.php,4/8/484bb544145b3c87de33bf5be58bb01c8e12ae3d
-O
-database/seeders/UserSeeder.php,9/a/9a5fbe4af4b23f69ef07f35a2d8a4d7c75c60797
 S
 #database/seeders/DatabaseSeeder.php,a/c/aca1efccd4101e0c9bdd34803577859ace08ef45
 Y
 )database/seeders/CountriesTableSeeder.php,d/7/d784c4013c8d13a86ed12749cda962afaa61f247
 X
 (resources/asset/system/js/translation.js,b/4/b42da451fbb2b8e3935f16e1933dd27e1fd06841
-U
-%app/Helper/Ekcms/permissionHelper.php,c/7/c783024e040814c77b4c1df348c867ab7ad485fb
 J
 resources/lang/en/auth.php,5/0/50eb9a429e5326ea182e5681a15e410f355ac1cb
 O
@@ -88,8 +80,6 @@ a
 1resources/views/system/auth/setPassword.blade.php,8/3/83484fc9b3b4d777957d47873971186678d5584c
 d
 4resources/views/system/layouts/masterGuest.blade.php,a/4/a451f39ea310fb7820d3e836b7dd67e3e37ba0d9
-B
-app/Model/Role.php,1/3/131181c654ad1ba6abeda01478907b1615a94342
 X
 (database/seeders/EmailTemplateSeeder.php,2/d/2de3a7c9393840cefb5846d1e6f292523c3e05b2
 Z
@@ -136,8 +126,6 @@ Z
 *app/Http/Middleware/Api/LogApiRequests.php,4/2/42e192d8c0580e9a2e9fe38641544c8fe9554ae8
 D
 config/cmsConfig.php,9/2/9216b2b3d78b8f4c40acf0c7f9e051a837cab45c
-C
-app/Http/Kernel.php,4/0/405f423e61f666bcedb754ae8befdce9e746176e
 a
 1resources/views/system/partials/sidebar.blade.php,d/7/d7088dc027c77ff434085e1b5017525422cdb941
 D

@@ -12,20 +12,24 @@ function authUser()
 
 function setRoleCache($user)
 {
-    return \Cache::put('role-'.$user->id, $user->roles);
+    return \Cache::put('role-' . $user->id, $user->role);
 }
+
 function getRoleCache($user)
 {
-    return \Cache::get('role-'.$user->id);
+    return \Cache::get('role-' . $user->id);
 }
+
 function clearRoleCache($user)
 {
-    return \Cache::forget('role-'.$user->id);
+    return \Cache::forget('role-' . $user->id);
 }
+
 function frontendUser()
 {
     return Auth::guard('frontendUsers')->user();
 }
+
 function getCmsConfig($label)
 {
     $value = '';
@@ -35,7 +39,7 @@ function getCmsConfig($label)
         $con = 'logo';
     } elseif ($label == 'cms theme color') {
         $con = 'color';
-    }elseif ($label == 'cms login throttle minutes') {
+    } elseif ($label == 'cms login throttle minutes') {
         $con = 'login throttle';
     }
 
@@ -49,6 +53,7 @@ function getCmsConfig($label)
 
     return $value;
 }
+
 function generateToken($length)
 {
     return bin2hex(openssl_random_pseudo_bytes($length));
@@ -96,7 +101,7 @@ function storeLog($performedOn, $msg)
     $now = Carbon::now()->format('Y-m-d H:i:s');
     activity()
         ->performedOn($performedOn)
-        ->log($msg.' at '.$now);
+        ->log($msg . ' at ' . $now);
 }
 
 function logMessage($modelName, $modelId, $eventName)
@@ -109,7 +114,7 @@ function logMessage($modelName, $modelId, $eventName)
 
 function paginate()
 {
-    return  Config::get('constants.PAGINATE');
+    return Config::get('constants.PAGINATE');
 }
 
 function pageIndex($items)
