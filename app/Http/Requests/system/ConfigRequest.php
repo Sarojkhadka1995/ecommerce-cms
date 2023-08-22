@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\system;
 
+use App\Model\Config;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
@@ -24,6 +25,8 @@ class ConfigRequest extends FormRequest
      */
     public function rules(Request $request)
     {
+        $config = Config::where('id', $request->config)->first();
+
         $validate = [];
         if ($request->method() == 'POST') {
             $validate = [
@@ -31,14 +34,17 @@ class ConfigRequest extends FormRequest
                 'type' => 'required|in:text,textarea,file,number',
             ];
             if ($request->type == 'file') {
-                $validate = array_merge($validate, ['value' => 'required|file|mimes:jpg,png,jpeg,bmp']);
+                $validate = array_merge($validate, ['value' => 'required|image|mimes:jpg,png,jpeg,bmp']);
             } else {
                 $validate = array_merge($validate, ['value' => 'required']);
             }
         } else {
-            $validate = ['value' => 'required'];
+            if ($config->type=='file'){
+                $validate = array_merge($validate, ['value' => 'required|image|mimes:jpg,png,jpeg,bmp']);
+            }else{
+                $validate = array_merge($validate, ['value' => 'required']);
+            }
         }
-
         return $validate;
     }
 }

@@ -71,8 +71,6 @@ a
 1resources/views/system/auth/setPassword.blade.php,8/3/83484fc9b3b4d777957d47873971186678d5584c
 d
 4resources/views/system/layouts/masterGuest.blade.php,a/4/a451f39ea310fb7820d3e836b7dd67e3e37ba0d9
-e
-5resources/views/system/layouts/layoutFooter.blade.php,f/4/f4c02e42c8ffe009e2e52bac947078ec98bd8129
 C
 public/js/script.js,a/4/a415e66bfdba45d232667d640b13492fa370a26f
 @
@@ -127,8 +125,6 @@ b
 2resources/views/system/translation/index.blade.php,9/e/9eef6b220416e8692365715ab17034b12597a969
 [
 +app/Interfaces/System/LoginLogInterface.php,a/9/a96e728d58908c1dd45c68db32ce6b6f23606e75
-m
-=resources/views/components/system/form/input-normal.blade.php,3/1/311ce1def937b9e1b20c1895d33bc135e2112281
 D
 app/Model/Locale.php,5/6/56e7d08baf4221aeff6345545803a36b7dc6c15b
 k

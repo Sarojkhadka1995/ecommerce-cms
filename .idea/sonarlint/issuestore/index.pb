@@ -127,8 +127,6 @@ a
 1app/Interfaces/System/PageRepositoryInterface.php,2\b\2b02c2b53c5bf310eb8f6324cf05c1615b95b11a
 V
 &app/Interfaces/System/LogInterface.php,8\7\87f94746f2ba32fefc2e6fff87a4edb0d14dbf2f
-\
-,app/Repositories/System/ConfigRepository.php,0\d\0da171898bee77344956424b5571e8db0ad6d389
 Z
 *app/Services/System/SubCategoryService.php,c\5\c578e7ae84225344d7e4133d911271571a5e48de
 c
@@ -159,8 +157,6 @@ p
 @database/migrations/2020_07_03_100600_create_languages_table.php,c\c\cc8468c981340b2ee9e2f22a0ee5b3739dc85f72
 `
 0resources/views/system/partials/loader.blade.php,2\4\24a29661b486e604cbbac508c0db27f46ce43b9a
-e
-5resources/views/system/layouts/layoutFooter.blade.php,f\4\f4c02e42c8ffe009e2e52bac947078ec98bd8129
 d
 4resources/views/system/partials/editButton.blade.php,e\d\ed2839d83dd3372031d3dfd18ce879c50b281a09
 f
@@ -199,8 +195,6 @@ b
 2resources/views/system/translation/index.blade.php,9/e/9eef6b220416e8692365715ab17034b12597a969
 [
 +app/Interfaces/System/LoginLogInterface.php,a/9/a96e728d58908c1dd45c68db32ce6b6f23606e75
-m
-=resources/views/components/system/form/input-normal.blade.php,3/1/311ce1def937b9e1b20c1895d33bc135e2112281
 k
 ;app/Http/Controllers/System/language/LanguageController.php,e/a/eae4fe0425ee1ac28adad10f6a9754cbb820e04a
 Z
