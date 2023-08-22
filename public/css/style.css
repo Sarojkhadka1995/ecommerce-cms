@@ -49972,4 +49972,9 @@ html[dir="rtl"] .ecommerce-dashboard-section .support-sec.profile-greeting .supp
     }
 }
 
+.require:after {
+    content: "*" !important;
+    color: red;
+}
+
 /*# sourceMappingURL=style.css.map */

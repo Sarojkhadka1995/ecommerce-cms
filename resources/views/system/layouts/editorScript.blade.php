@@ -10,14 +10,14 @@
         toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
         toolbar2: "| custom-filemanager | link unlink anchor | forecolor backcolor  | print preview responsiveFilemanager code ",
 
-        image_advtab: true ,
-
-        external_filemanager_path:"/filemanager/",
-        filemanager_title:"Responsive Filemanager" ,
-        external_plugins: { "filemanager" : "/filemanager/plugin.min.js"},
-        image_title: true,
-        /* enable automatic uploads of images represented by blob or data URIs*/
-        automatic_uploads: true,
+        // image_advtab: true ,
+        //
+        // external_filemanager_path:"/filemanager/",
+        // filemanager_title:"Responsive Filemanager" ,
+        // external_plugins: { "filemanager" : "/filemanager/plugin.min.js"},
+        // image_title: true,
+        // /* enable automatic uploads of images represented by blob or data URIs*/
+        // automatic_uploads: true,
         /*
           URL of our upload handler (for more details check: https://www.tiny.cloud/docs/configure/file-image-upload/#images_upload_url)
           images_upload_url: 'postAcceptor.php',

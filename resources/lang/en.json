@@ -103,5 +103,13 @@
     "from email": "From Email",
     "subject": "Subject",
     "template": "Template",
-    "edit": "Edit"
+    "edit": "Edit",
+    "username": "Username",
+    "email": "Email",
+    "two factor authentication": "Two Factor Authentication",
+    "send activation link": "Send Activation Link",
+    "set password": "Set Password",
+    "set password ?": "Set Password ?",
+    "create": "Create",
+    "record was not found in our system": "Record was not found in our system."
 }

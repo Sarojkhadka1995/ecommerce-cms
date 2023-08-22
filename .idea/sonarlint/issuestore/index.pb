@@ -87,8 +87,6 @@ L
 app/Mail/system/TestMail.php,5\4\54685f582bfb335c1212d2aec905123c5fc38f20
 N
 app/Mail/system/TwoFAEmail.php,7\9\7954439ef81024824a0880ef7ade285b026363be
-X
-(database/seeders/EmailTemplateSeeder.php,2\d\2de3a7c9393840cefb5846d1e6f292523c3e05b2
 e
 5resources/views/system/layouts/layoutHeader.blade.php,a\e\aea1ec041aa2b6b31c1b4e766a64ebf50e7d5cb3
 f
@@ -131,8 +129,6 @@ V
 &app/Interfaces/System/LogInterface.php,8\7\87f94746f2ba32fefc2e6fff87a4edb0d14dbf2f
 \
 ,app/Repositories/System/ConfigRepository.php,0\d\0da171898bee77344956424b5571e8db0ad6d389
-Z
-*app/Repositories/System/RoleRepository.php,1\e\1e610bb60c093cf6412221dd8d74b9d08406166c
 Z
 *app/Services/System/SubCategoryService.php,c\5\c578e7ae84225344d7e4133d911271571a5e48de
 c
@@ -191,8 +187,6 @@ J
 app/Exceptions/Handler.php,3/b/3badd23b42804fa4016b5b9734a7b35c12ec27e4
 a
 1resources/views/system/partials/sidebar.blade.php,d/7/d7088dc027c77ff434085e1b5017525422cdb941
-D
-public/css/style.css,1/e/1ef0e38ec90181a17549647e1a67072ac5d804da
 I
 public/js/sidebar-menu.js,2/a/2a4375a271a23d1621dcb99c1310efc681c81f75
 a
@@ -289,5 +283,3 @@ S
 app/RoleUser.php,6/8/685190a98abd44103f4ae67a7e6079856e8f195d
 Z
 *resources/views/system/role/form.blade.php,4/9/4954195a8cad582d9e67ce3df5100ae8b6940f19
-S
-#app/Services/System/UserService.php,9/6/967d92189b22b14b490fded6a52bd4f7de0947c9

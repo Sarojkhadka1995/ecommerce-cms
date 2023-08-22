@@ -71,10 +71,6 @@ a
 1resources/views/system/auth/setPassword.blade.php,8/3/83484fc9b3b4d777957d47873971186678d5584c
 d
 4resources/views/system/layouts/masterGuest.blade.php,a/4/a451f39ea310fb7820d3e836b7dd67e3e37ba0d9
-X
-(database/seeders/EmailTemplateSeeder.php,2/d/2de3a7c9393840cefb5846d1e6f292523c3e05b2
-Z
-*app/Repositories/System/RoleRepository.php,1/e/1e610bb60c093cf6412221dd8d74b9d08406166c
 e
 5resources/views/system/layouts/layoutFooter.blade.php,f/4/f4c02e42c8ffe009e2e52bac947078ec98bd8129
 C
@@ -119,8 +115,6 @@ D
 config/cmsConfig.php,9/2/9216b2b3d78b8f4c40acf0c7f9e051a837cab45c
 a
 1resources/views/system/partials/sidebar.blade.php,d/7/d7088dc027c77ff434085e1b5017525422cdb941
-D
-public/css/style.css,1/e/1ef0e38ec90181a17549647e1a67072ac5d804da
 I
 public/js/sidebar-menu.js,2/a/2a4375a271a23d1621dcb99c1310efc681c81f75
 [
@@ -217,5 +211,3 @@ Z
 *resources/views/system/role/form.blade.php,4/9/4954195a8cad582d9e67ce3df5100ae8b6940f19
 @
 app/RoleUser.php,6/8/685190a98abd44103f4ae67a7e6079856e8f195d
-S
-#app/Services/System/UserService.php,9/6/967d92189b22b14b490fded6a52bd4f7de0947c9
