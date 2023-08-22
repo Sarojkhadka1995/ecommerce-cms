@@ -1,8 +1,4 @@
 
-<
-.env.example,d/4/d4dae00d11854b35292c2b8a30515a9a0aa2d871
-4
-.env,3/c/3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
 9
 	readme.md,2/7/275d783e298228506068436512433d343feb52aa
 B
@@ -25,9 +21,6 @@ N
 app/Mail/system/TwoFAEmail.php,7/9/7954439ef81024824a0880ef7ade285b026363be
 M
 app/Http/Middleware/TWOFA.php,7/6/76c589d1b660f5ca26e640baadf71c5620283932
-:
-
-.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 Y
 )app/Console/Commands/stubs/interface.stub,3/3/337cef5636634f9011e5577a18ff789b8006be1f
 Z
