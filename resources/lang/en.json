@@ -95,5 +95,6 @@
     "log module": "Log Module",
     "log message": "Log Message",
     "changes": "Changes",
-    "successfully logged out!": "Successfully logged out!"
+    "successfully logged out!": "Successfully logged out!",
+    "call to undefined relationship [roles] on model [app\\user]": "Call to undefined relationship [roles] on model [App\\User]."
 }
