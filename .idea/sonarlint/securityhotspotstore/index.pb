@@ -57,8 +57,6 @@ I
 public/css/responsive.css,e/8/e8ae40d300699941571eec7c9170332186f7c982
 \
 ,app/Http/Requests/system/languageRequest.php,d/7/d73c311422c5b94610c29cefe549b942b1defdc3
-[
-+resources/views/system/auth/login.blade.php,9/4/9412b766e59f873861c8eb5f770b4dbdead19796
 Z
 *app/Http/Requests/system/resetPassword.php,6/2/624d733954f203bdaa673914722ca7f41d25dace
 ?

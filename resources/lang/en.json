@@ -96,5 +96,12 @@
     "log message": "Log Message",
     "changes": "Changes",
     "successfully logged out!": "Successfully logged out!",
-    "call to undefined relationship [roles] on model [app\\user]": "Call to undefined relationship [roles] on model [App\\User]."
+    "call to undefined relationship [roles] on model [app\\user]": "Call to undefined relationship [roles] on model [App\\User].",
+    "the value field is required": "The value field is required.",
+    "title": "Title",
+    "code": "Code",
+    "from email": "From Email",
+    "subject": "Subject",
+    "template": "Template",
+    "edit": "Edit"
 }

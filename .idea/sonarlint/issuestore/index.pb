@@ -63,8 +63,6 @@ a
 1resources/views/system/partials/js/slug.blade.php,8/e/8ef87a10e8cb78fa1f166f599f338920296fbd1c
 f
 6resources/views/system/partials/js/imageLoad.blade.php,3/b/3b5217ffe0ee3bea5737b639f4fd7d4188d6879a
-[
-+resources/views/system/auth/login.blade.php,9\4\9412b766e59f873861c8eb5f770b4dbdead19796
 X
 (app/Http/Requests/system/pageRequest.php,5\d\5dd986f83f9da87f60c2151df20718b706421a0e
 X
