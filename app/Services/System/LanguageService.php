@@ -37,16 +37,17 @@ class LanguageService extends Service
     {
         try {
             DB::beginTransaction();
-            $trans = [];
             $language = $this->repository->create($request);
-            $filename = $language->language_code . '.json';
-            $languageLineData = Locale::pluck('key')->toArray();
-            foreach ($languageLineData as $datum) {
-                $trans[$datum] = $datum;
+
+            $jsonFileName = "en.json";
+            $enJsonFilePath = resource_path('lang') . '/' . $jsonFileName;
+
+            $createdFilePath = resource_path('lang') . '/' . $language->language_code . '.json';
+
+            if (file_exists($enJsonFilePath)) {
+                copy($enJsonFilePath, $createdFilePath);
             }
-            $jsonLanguageData = json_encode($trans);
-            $filePath = resource_path('lang/' . $filename);
-            File::put($filePath, $jsonLanguageData);
+
             DB::commit();
             return $language;
         } catch (\Exception $e) {
@@ -68,8 +69,8 @@ class LanguageService extends Service
         return $this->repository->delete($request, $id);
     }
 
-    public function getBackendLanguages($group)
+    public function getBackendLanguages()
     {
-        return $this->languageRepository->getLanguages('backend');
+        return $this->languageRepository->getLanguages();
     }
 }

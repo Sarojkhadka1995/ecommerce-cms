@@ -17,6 +17,7 @@ $configBaseUrl = '/configs';
 $profileBaseUrl = '/profile';
 $pagesBaseUrl = '/pages';
 $apiBaseUrl = '/api-logs';
+$errorLogsBaseUrl = '/error-logs';
 
 return  [
     // routes entered in this array are accessible by any user no matter what role is given
@@ -217,6 +218,21 @@ return  [
                             'name' => 'View Api logs',
                             'route' => [
                                 'url' => $apiBaseUrl,
+                                'method' => $getMethod,
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'name' => 'Error logs',
+                    'icon' => "<i class='fas fa-chart-line'></i>",
+                    'hasSubmodules' => false,
+                    'route' => $errorLogsBaseUrl,
+                    'permissions' => [
+                        [
+                            'name' => 'View Error logs',
+                            'route' => [
+                                'url' => $errorLogsBaseUrl,
                                 'method' => $getMethod,
                             ],
                         ],

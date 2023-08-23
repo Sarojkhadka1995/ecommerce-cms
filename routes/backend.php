@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-//use Spatie\TranslationLoader\LanguageLine;
-
 Route::get('/', function () {
     return redirect(route('login.form'));
 });
@@ -23,8 +21,6 @@ Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix(), 'middlewar
     Route::post('/set-password', 'Auth\ResetPasswordController@handleSetResetPassword');
     Route::get('/', 'Auth\LoginController@showLoginForm');
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-    //Route::get('otp', 'Auth\ResetPasswordController@showOtpForm')->name('forgot.password.otp');
-    //Route::get('resend-otp/{email}', 'Auth\ForgotPasswordController@resendOtpCode')->name('resend-otp');
 
     Route::group(['middleware' => ['auth', 'antitwofa']], function () {
         Route::get('/login/verify', 'Auth\VerificationController@showVerifyPage');
@@ -60,8 +56,8 @@ Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix(), 'middlewar
 
         Route::resource('/translations', 'language\TranslationController', ['except' => ['show', 'edit', 'create']]);
         Route::get('/translations/download-sample', 'language\TranslationController@downloadSample');
-        Route::get('/translations/download/{group}', 'language\TranslationController@downloadExcel');
-        Route::post('/translations/upload/{group}', 'language\TranslationController@uploadExcel');
+        Route::get('/translations/download', 'language\TranslationController@downloadExcel');
+        Route::post('/translations/upload', 'language\TranslationController@uploadExcel');
 
         Route::resource('/email-templates', 'systemConfig\emailTemplateController', ['except' => ['show', 'create', 'store']]);
 
@@ -71,5 +67,6 @@ Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix(), 'middlewar
         Route::get('pages/{id}/toggle-status', 'page\PageController@changePageStatus')->name('changeStatus');
 
         Route::resource('/api-logs', 'logs\ApiLogController', ['only' => ['index']]);
+        Route::resource('/error-logs', 'logs\ErrorLogController', ['only' => ['index']]);
     });
 });

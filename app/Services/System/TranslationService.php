@@ -13,7 +13,7 @@ class TranslationService extends Service
     protected $languageRepository;
 
     public function __construct(TranslationRepository $translationRepository,
-                                LanguageRepository $languageRepository)
+                                LanguageRepository    $languageRepository)
     {
         $this->repository = $translationRepository;
         $this->languageRepository = $languageRepository;
@@ -28,33 +28,43 @@ class TranslationService extends Service
             'locales' => $this->languageRepository->getKeyValuePair($languages),
         ];
     }
-    public function inserttext($content, $group)
-    {
-        $languages = Language::orderBy('group', 'ASC')->pluck('language_code');
-        $text = [];
-        foreach ($languages as $language) {
-            $text[$language] = $content;
-        }
-        return $text;
-    }
-
 
     public function update($request, $id)
     {
-        $data = $this->translationRepository->itemByIdentifier($id);
+        $currentLocale = app()->getLocale();
+        $data = $this->repository->itemByIdentifier($id);
         $currentTextArray = $data->text;
+        $currentText = $data->text[$currentLocale];
+        $currentKey = $data->key;
+
+        $jsonFileName = "{$currentLocale}.json";
+        $jsonFilePath = resource_path('lang') . '/' . $jsonFileName;
+
+        if (file_exists($jsonFilePath)) {
+            $existingContent = file_get_contents($jsonFilePath);
+            $existingTranslations = json_decode($existingContent, true);
+
+            $filteredData[$currentKey] = $currentText;
+
+            $mergedTranslations = array_merge($existingTranslations, $filteredData);
+
+            $jsonContentString = json_encode($mergedTranslations, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            file_put_contents($jsonFilePath, $jsonContentString);
+        }
+
         if (in_array($request->locale, array_keys($currentTextArray))) {
             unset($currentTextArray[$request->locale]);
             $updatedTextArray = array_merge($currentTextArray, [$request->locale => $request->text]);
         } else {
             $updatedTextArray = array_merge($currentTextArray, [$request->locale => $request->text]);
         }
-        $this->translationRepository->update($request, $updatedTextArray);
+        $data->update(['text' => $updatedTextArray]);
+
         return $data;
     }
 
     public function delete($request, $id)
     {
-        return $this->translationRepository->delete($request, $id);
+        return $this->repository->delete($request, $id);
     }
 }

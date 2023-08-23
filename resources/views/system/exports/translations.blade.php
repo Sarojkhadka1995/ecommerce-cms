@@ -16,11 +16,11 @@
     </tr>
     </thead>
     <tbody>
-    @foreach($translations as $tran)
+    @foreach($translations as $key=> $tran)
         <tr>
-            <td>{{ $tran['key'] }}</td>
+            <td>{{ $key }}</td>
             @foreach($languages as $language)
-            <td>{{$tran->text[$language->language_code] ?? $tran->text['en']}}</td>
+            <td>{{$tran[$language->language_code] ?? $tran['en']}}</td>
             @endforeach
         </tr>
     @endforeach

@@ -32,10 +32,15 @@ pipeline {
             sh '''
             ssh -tt -o StrictHostKeyChecking=no root@157.245.148.131 -p 3030 << EOF
             cd /var/www/ekcms/ekcms-larvel/dev/; \
+            git stash; \
             git pull origin dev; \
             composer install -n; \
             php artisan migrate; \
             php artisan db:seed; \
+            chown www-data:www-data -R storage/; \
+            cd resources/; \
+            chown www-data:www-data -R lang/; \
+            cd ..; \
             nvm use 16.20.1; \
             npm install; \
             npm run dev; \
@@ -56,10 +61,15 @@ pipeline {
             sh '''
             ssh -tt -o StrictHostKeyChecking=no root@157.245.148.131 -p 3030 << EOF
             cd /var/www/ekcms/ekcms-larvel/qa/; \
+            git stash; \
             git pull origin qa; \
             composer install -n; \
             php artisan migrate; \
             php artisan db:seed; \
+            chown www-data:www-data -R storage/; \
+            cd resources/; \
+            chown www-data:www-data -R lang/; \
+            cd ..; \
             nvm use 16.20.1; \
             npm install; \
             npm run dev; \
@@ -84,6 +94,10 @@ pipeline {
             composer install -n; \
             php artisan migrate; \
             php artisan db:seed; \
+            chown www-data:www-data -R storage/; \
+            cd resources/; \
+            chown www-data:www-data -R lang/; \
+            cd ..; \
             nvm use 16.20.1; \
             npm install; \
             npm run dev; \

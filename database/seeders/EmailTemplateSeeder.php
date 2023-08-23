@@ -73,6 +73,7 @@ class EmailTemplateSeeder extends Seeder
             [
                 'title' => 'Account Created Email',
                 'code' => 'AccountCreateEmail',
+                'placeholders' => '%user_name%',
                 'from' => $fromEmail,
                 'translations' => [
                     [
@@ -89,6 +90,7 @@ class EmailTemplateSeeder extends Seeder
             [
                 'title' => 'Password Set Link Email',
                 'code' => 'PasswordSetLinkEmail',
+                'placeholders' => '%user_name%,%password_set_link%',
                 'from' => $fromEmail,
                 'translations' => [
                     [
@@ -106,6 +108,7 @@ class EmailTemplateSeeder extends Seeder
             [
                 'title' => 'Password ResetLink Email',
                 'code' => 'PasswordResetLinkEmail',
+                'placeholders' => '%user_name%,%password_reset_link%',
                 'from' => $fromEmail,
                 'translations' => [
                     [
@@ -123,6 +126,7 @@ class EmailTemplateSeeder extends Seeder
             [
                 'title' => 'Two Factor Authentication Email',
                 'code' => 'TwoFAEmail',
+                'placeholders' => '%user_name%,%verification_code%',
                 'from' => $fromEmail,
                 'translations' => [
                     [
@@ -139,6 +143,7 @@ class EmailTemplateSeeder extends Seeder
             [
                 'title' => 'Profile Update Email',
                 'code' => 'ProfileUpdateEmail',
+                'placeholders' => '%user_name%',
                 'from' => $fromEmail,
                 'translations' => [
                     [
@@ -160,6 +165,7 @@ class EmailTemplateSeeder extends Seeder
                 'title' => $template['title'],
                 'code' => $template['code'],
                 'from' => $template['from'],
+                'placeholders' => $template['placeholders'],
 
             ];
             $email = EmailTemplate::create($data);

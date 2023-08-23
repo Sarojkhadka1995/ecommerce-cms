@@ -10,5 +10,5 @@ interface LanguageInterface
 
     public function delete($request, $id);
 
-    public function getLanguages($group);
+    public function getLanguages();
 }

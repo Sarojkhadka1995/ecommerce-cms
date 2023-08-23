@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'username', 'token', 'password_resetted', 'expiry_datetime', 'is_2fa_enabled', 'two_fa_expiry_time','contact','image'
+        'name', 'email', 'password', 'username', 'token', 'password_resetted', 'expiry_datetime','role_id', 'is_2fa_enabled', 'two_fa_expiry_time','contact','image'
     ];
 
     protected $guarded = [
@@ -100,9 +100,9 @@ class User extends Authenticatable
         return '<a href=' . $link . '>' . $title . '</a>';
     }
 
-    public function roles()
+    public function role()
     {
-        return $this->belongsToMany(Role::class, 'role_user');
+        return $this->belongsTo(Role::class, 'role_id', 'id');
     }
 
     public function setUsernameAttribute($value)

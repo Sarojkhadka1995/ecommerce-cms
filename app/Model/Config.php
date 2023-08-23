@@ -80,7 +80,7 @@ class Config extends Model
 
     public function isDefault($id)
     {
-        if (in_array($id, [1, 2, 3,4])) {
+        if (in_array($id, [1, 2, 3])) {
             return true;
         } else {
             return false;

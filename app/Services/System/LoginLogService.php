@@ -9,18 +9,6 @@ class LoginLogService extends Service
 {
     public function __construct(LoginLogRepository $loginLogRepository)
     {
-        $this->loginLogRepository = $loginLogRepository;
-    }
-
-    public function getAllData($data, $selectedColumns = [], $pagination = true)
-    {
-        return $this->loginLogRepository->getAllData($data);
-    }
-
-    public function indexPageData($data)
-    {
-        return [
-            'items' => $this->getAllData($data),
-        ];
+        $this->repository = $loginLogRepository;
     }
 }

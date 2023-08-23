@@ -25,7 +25,7 @@ class translationRequest extends FormRequest
     public function rules(Request $request)
     {
         return [
-            'group' => 'in:backend,frontend',
+            //
         ];
     }
 }

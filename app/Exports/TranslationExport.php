@@ -14,15 +14,15 @@ class TranslationExport implements FromView, ShouldAutoSize
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     public function view(): View
     {
         return view('system.exports.translations', [
-            'translations' => Locale::get(),
+            'translations' => $this->data,
             'languages' => Language::get(),
         ]);
     }

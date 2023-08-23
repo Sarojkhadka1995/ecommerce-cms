@@ -42900,7 +42900,7 @@ body .for-dark {
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
     position: relative;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
     background-color: #f4f6fd
 }
 
@@ -49970,6 +49970,11 @@ html[dir="rtl"] .ecommerce-dashboard-section .support-sec.profile-greeting .supp
     .box-layout .chart_data_right.second {
         display: none !important
     }
+}
+
+.require:after {
+    content: "*" !important;
+    color: red;
 }
 
 /*# sourceMappingURL=style.css.map */
