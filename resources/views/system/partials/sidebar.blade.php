@@ -5,7 +5,9 @@
                  alt="">
             <img class="img-fluid for-dark" src="{{asset('uploads/config/')}}/{{ getCmsConfig('cms logo')}}"
                  alt="">
-            <h3>{{getCmsConfig('cms title')}}</h3>
+            @if(getCmsConfig('cms title'))
+                <h3>{{getCmsConfig('cms title')}}</h3>
+            @endif
         </a>
         <div class="back-btn">
             <i class="fa fa-angle-left"></i>
