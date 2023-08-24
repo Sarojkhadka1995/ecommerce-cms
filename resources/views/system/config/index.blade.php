@@ -76,6 +76,7 @@
                                                                    onchange="submit()" class='form-control'>
                                                         @endif
                                                         @error('value')
+
                                                         <span
                                                             class="text-danger @if($item->id!=request()->config) d-none @endif">{{$message}}</span>
                                                         @enderror
@@ -145,7 +146,7 @@
                                         </x-system.form.form-inline-group>
                                     </div>
                                     <button class="btn btn-primary" type="submit"><em
-                                            class="fas fa-save"></em> {{translate('Save')}}</button>
+                                            class="fa fa-save"></em> {{translate('Save')}}</button>
                                 </form>
                             </div>
                         </div>

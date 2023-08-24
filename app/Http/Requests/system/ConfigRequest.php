@@ -39,10 +39,15 @@ class ConfigRequest extends FormRequest
                 $validate = array_merge($validate, ['value' => 'required']);
             }
         } else {
-            if ($config->type=='file'){
+            if ($config->type == 'file') {
                 $validate = array_merge($validate, ['value' => 'required|image|mimes:jpg,png,jpeg,bmp']);
-            }else{
-                $validate = array_merge($validate, ['value' => 'required']);
+            } else {
+                if($config->label == 'cms title'){
+                    $validate = array_merge($validate, ['value' => 'nullable']);
+
+                }else{
+                    $validate = array_merge($validate, ['value' => 'required']);
+                }
             }
         }
         return $validate;
