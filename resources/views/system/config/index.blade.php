@@ -36,6 +36,9 @@
                                     <tbody>
                                     @php $pageIndex = pageIndex($items); @endphp
                                     @forelse($items as $key=>$item)
+                                        @php
+                                            $inputName=  str_replace(' ','_',$item->label);
+                                        @endphp
                                         <tr>
                                             <td>{{SN($pageIndex, $key)}}</td>
                                             <td>{{$item->label}}</td>
@@ -47,7 +50,7 @@
                                                         @csrf
                                                         @method('PUT')
                                                         @if($item->isTextArea($item->type))
-                                                            <textarea name='value' class='form-control'
+                                                            <textarea name='{{$inputName}}' class='form-control'
                                                                       onchange="submit()">{{$item->value}}</textarea>
                                                         @elseif($item->isFile($item->type))
                                                             <div style="display:flex;">
@@ -56,7 +59,7 @@
                                                                      style="max-width:100px;">
                                                                 <div class="custom-file">
                                                                     <input type="file" class="custom-file-input"
-                                                                           name="value" id="customFile{{$item->id}}"
+                                                                           name='{{$inputName}}' id="customFile{{$item->id}}"
                                                                            onchange="submit()" accept="image/*">
                                                                     <label class="custom-file-label"
                                                                            for="customFile{{$item->id}}">
@@ -66,19 +69,17 @@
                                                             </div>
                                                         @elseif($item->isColorPicker($item->id))
                                                             <input type='{{$item->type}}' placeholder='Value'
-                                                                   name='value'
+                                                                   name='{{$inputName}}'
                                                                    value="{{Cookie::get('color') ?? $item->value}}"
                                                                    onchange="submit()"
                                                                    class='form-control {{ $item->isColorPicker($item->id) ? 'jscolor {hash:true}' : '' }}'>
                                                         @else
                                                             <input type='{{$item->type}}' placeholder='Value'
-                                                                   name='value' value="{{$item->value}}"
+                                                                   name='{{$inputName}}' value="{{$item->value}}"
                                                                    onchange="submit()" class='form-control'>
                                                         @endif
-                                                        @error('value')
-
-                                                        <span
-                                                            class="text-danger @if($item->id!=request()->config) d-none @endif">{{$message}}</span>
+                                                        @error("$inputName")
+                                                        <span class="text-danger">{{$message}}</span>
                                                         @enderror
                                                     </form>
                                                 @else

@@ -95,8 +95,6 @@ X
 (app/Http/Requests/system/roleRequest.php,a/2/a214d36dab48be1a5cf24baf3c4ba0950290f22d
 X
 (app/Http/Requests/system/pageRequest.php,5/d/5dd986f83f9da87f60c2151df20718b706421a0e
-I
-app/Traits/ImageTrait.php,f/2/f24fd5e6a1a052486badfa5c60689d3ee0be083c
 m
 =app/Http/Controllers/System/Auth/ForgotPasswordController.php,e/5/e59c25ad60b01555f9f5e4d491155930f748ef4b
 B
@@ -253,8 +251,6 @@ S
 package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 m
 =app/Http/Controllers/System/systemConfig/configController.php,8/9/8987fea2bb01530fa7a75608e7225d919b15b359
-U
-%app/Services/System/ConfigService.php,4/d/4d5df6092b9d9b094b2d129457be814838d05c9b
 \
 ,app/Repositories/System/ConfigRepository.php,0/d/0da171898bee77344956424b5571e8db0ad6d389
 f

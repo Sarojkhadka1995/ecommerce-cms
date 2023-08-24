@@ -25,31 +25,31 @@ class ConfigRequest extends FormRequest
      */
     public function rules(Request $request)
     {
-        $config = Config::where('id', $request->config)->first();
+        $config = Config::find($request->config);
 
-        $validate = [];
-        if ($request->method() == 'POST') {
-            $validate = [
-                'label' => 'required|unique:configs,label',
-                'type' => 'required|in:text,textarea,file,number',
-            ];
-            if ($request->type == 'file') {
-                $validate = array_merge($validate, ['value' => 'required|image|mimes:jpg,png,jpeg,bmp']);
-            } else {
-                $validate = array_merge($validate, ['value' => 'required']);
-            }
-        } else {
-            if ($config->type == 'file') {
-                $validate = array_merge($validate, ['value' => 'required|image|mimes:jpg,png,jpeg,bmp']);
-            } else {
-                if($config->label == 'cms title'){
-                    $validate = array_merge($validate, ['value' => 'nullable']);
+        $validate = [
+            'label' => 'required|unique:configs,label',
+            'type' => 'required|in:text,textarea,file,number',
+        ];
 
-                }else{
-                    $validate = array_merge($validate, ['value' => 'required']);
+        if ($config) {
+            $inputName = str_replace(' ', '_', $config->label);
+            if ($request->method() != 'POST') {
+                $validate = [
+                    $inputName => ($config->label == 'cms title') ? 'nullable' : 'required'
+                ];
+
+                if ($config->type == 'file') {
+                    $validate[$inputName] .= '|image|mimes:jpg,png,jpeg,bmp';
                 }
+            } elseif ($request->type == 'file') {
+                $validate['value'] .= '|image|mimes:jpg,png,jpeg,bmp';
+            } else {
+                $validate['value'] = 'required';
             }
         }
+
         return $validate;
+
     }
 }
