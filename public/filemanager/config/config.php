@@ -6,7 +6,7 @@ if (session_id() == '') {
 
 mb_internal_encoding('UTF-8');
 mb_http_output('UTF-8');
-mb_http_input('UTF-8');
+mb_http_input();
 mb_language('uni');
 mb_regex_encoding('UTF-8');
 ob_start('mb_output_handler');
@@ -76,7 +76,7 @@ $config = array(
     | with start and final /
     |
     */
-    'upload_dir' => '/uploads/source/',
+    'upload_dir' => '/uploads/',
     /*
     |--------------------------------------------------------------------------
     | relative path from filemanager folder to upload folder
@@ -85,7 +85,7 @@ $config = array(
     | with final /
     |
     */
-    'current_path' => '../uploads/source/',
+    'current_path' => '../uploads/',
 
     /*
     |--------------------------------------------------------------------------
@@ -568,9 +568,9 @@ return array_merge(
         'tui_defaults_config' => array(
             //'common.bi.image'                   => $config['common.bi.image'],
             //'common.bisize.width'               => $config['common.bisize.width'],
-            //'common.bisize.height'              => $config['common.bisize.height'], 
+            //'common.bisize.height'              => $config['common.bisize.height'],
             'common.backgroundImage'            => $config['common.backgroundImage'],
-            'common.backgroundColor'            => $config['common.backgroundColor'], 
+            'common.backgroundColor'            => $config['common.backgroundColor'],
             'common.border'                     => $config['common.border'],
             'header.backgroundImage'            => $config['header.backgroundImage'],
             'header.backgroundColor'            => $config['header.backgroundColor'],

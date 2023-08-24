@@ -12,9 +12,9 @@
                         <h6>{{translate('Welcome back! Log in to your account.')}}</h6>
                         @csrf
                         <div class="form-group">
-                            <label>{{translate('Email Address')}}</label>
+                            <label>{{translate('Email Address/Username')}}</label>
                             <div class="input-group"><span class="input-group-text"><i class="icon-email"></i></span>
-                                <input class="form-control" type="text" name="email" placeholder="Email address/Username" autocomplete="off">
+                                <input class="form-control" type="text" name="email" placeholder="Email Address/Username" autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group">
