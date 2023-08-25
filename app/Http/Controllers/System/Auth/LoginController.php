@@ -55,11 +55,15 @@ class LoginController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function showLoginForm()
+    public function showLoginForm(Request $request)
     {
         if (Auth::check()) {
             return redirect('/' . getSystemPrefix() . '/home');
         } else {
+            if ($request->has('redirect')) {
+                $redirectUrl = $request->redirect;
+                return view('system.auth.login', compact('redirectUrl'));
+            }
             return view('system.auth.login');
         }
     }
@@ -157,6 +161,10 @@ class LoginController extends Controller
         if (authUser()->is_2fa_enabled) {
             $this->twoFa();
             return redirect('/' . getSystemPrefix() . '/login/verify');
+        }
+
+        if ($request->has('redirect')) {
+            return redirect($request->redirect);
         }
 
         return redirect('/' . getSystemPrefix() . '/home');

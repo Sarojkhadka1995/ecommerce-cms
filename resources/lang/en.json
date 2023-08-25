@@ -147,5 +147,6 @@
     "create page": "Create Page",
     "edit page": "Edit Page",
     "delete page": "Delete Page",
-    "permissions": "Permissions"
+    "permissions": "Permissions",
+    "these credentials do not match our records": "These credentials do not match our records."
 }
