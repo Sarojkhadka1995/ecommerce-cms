@@ -15,18 +15,15 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-
         $currentUrl = url()->current(); // Get the current URL
         $pathParts = parse_url($currentUrl); // Parse the URL
         $redirectUrl = isset($pathParts['path']) ? $pathParts['path'] : ''; // Get the path
 
+        $redirectUrl = str_replace('/system', '', $redirectUrl);
+
         if (!$request->expectsJson()) {
             $loginUrl = route('login', ['redirect' => $redirectUrl]);
             return urldecode($loginUrl);
-
         }
-//        if (!$request->expectsJson()) {
-//            return route('login');
-//        }
     }
 }

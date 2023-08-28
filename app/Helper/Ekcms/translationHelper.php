@@ -32,16 +32,6 @@ function translate($content, $data = [])
     return $translations[$key];
 }
 
-function insertText($content)
-{
-    $languages = Language::pluck('language_code');
-    $text = [];
-    foreach ($languages as $language) {
-        $text[$language] = $content;
-    }
-    return $text;
-}
-
 function createOrReplaceTranslationContent($keyword, $content, $directory)
 {
     $langShortCodes = Language::pluck('language_code')->toArray();
@@ -90,3 +80,5 @@ function frontTrans($details, $data = [])
 {
     return translate($details, $data);
 }
+
+

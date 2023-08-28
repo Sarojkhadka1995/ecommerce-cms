@@ -148,5 +148,11 @@
     "edit page": "Edit Page",
     "delete page": "Delete Page",
     "permissions": "Permissions",
-    "these credentials do not match our records": "These credentials do not match our records."
+    "these credentials do not match our records": "These credentials do not match our records.",
+    "session has been expired please login again to continue": "Session has been expired. Please Login again to continue.",
+    "undefined variable $heading": "Undefined variable $heading",
+    "undefined array key \"home\"": "Undefined array key \"home\"",
+    "select country": "Select Country",
+    "country": "Country",
+    "select language": "Select Language"
 }

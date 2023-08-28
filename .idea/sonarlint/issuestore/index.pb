@@ -181,8 +181,6 @@ Z
 *app/Services/System/TranslationService.php,7/a/7a1181cea18782156172d1a846dee4a076b048f8
 [
 +app/Interfaces/System/LanguageInterface.php,4/a/4ac44d82dd94b0f9842999d770c5b0fe4622d712
-b
-2resources/views/system/translation/index.blade.php,9/e/9eef6b220416e8692365715ab17034b12597a969
 [
 +app/Interfaces/System/LoginLogInterface.php,a/9/a96e728d58908c1dd45c68db32ce6b6f23606e75
 k
@@ -205,8 +203,6 @@ D
 app/Model/Locale.php,5/6/56e7d08baf4221aeff6345545803a36b7dc6c15b
 W
 'app/Services/System/LoginLogService.php,a/6/a6db60ffbaed0a9b1a7493e77425ad47530154ea
-n
->app/Http/Controllers/System/language/TranslationController.php,3/3/33233ceca8251f2718fdbb8cd03b57bf049552e4
 ^
 .app/Http/Middleware/ErrorLoggingMiddleware.php,1/5/155f53fa21f00596586f747ece36af5377339485
 [
@@ -333,8 +329,6 @@ S
 webpack.mix.js,7/3/73a5f9e927f70e0292701d67f61dbff4fb17febc
 Z
 *resources/views/system/page/form.blade.php,4/0/40b8ee8eb397c30ec55aaf490fa215168852a679
-V
-&app/Helper/Ekcms/translationHelper.php,c/8/c89cb4c7e4129bbddac9e990d86c736226634823
 a
 1resources/views/system/partials/sidebar.blade.php,d/7/d7088dc027c77ff434085e1b5017525422cdb941
 `
@@ -350,3 +344,9 @@ Z
 ,resources/views/system/role/create.blade.php,8/d/8d6549f8062dce31356cf8616061dae635c0cbe3
 Z
 *app/Http/Requests/system/ConfigRequest.php,9/2/92b54afddcbac3608d01ea1870d2b2df3f9af006
+I
+app/Traits/ImageTrait.php,f/2/f24fd5e6a1a052486badfa5c60689d3ee0be083c
+U
+%app/Services/System/ConfigService.php,4/d/4d5df6092b9d9b094b2d129457be814838d05c9b
+T
+$app/Http/Middleware/Authenticate.php,f/7/f7ec0e145842212dd9c0763d10bb0aaa68d3280a

@@ -3,11 +3,11 @@
     @section('heading-contents')
         <div class="row">
             <div class="col-sm-12">
-                @if (hasPermission($indexUrl . '/download-sample'))
-                    <a style="margin-top: 7px;" class="btn btn-primary pull-right btn-sm"
-                       href="{{ url($indexUrl . '/download-sample') }}" style="margin-right:3px"><i
-                            class="fa fa-download" aria-hidden="true"></i> {{ translate('Download Sample') }}</a>
-                @endif
+{{--                @if (hasPermission($indexUrl . '/download-sample'))--}}
+{{--                    <a style="margin-top: 7px;" class="btn btn-primary pull-right btn-sm"--}}
+{{--                       href="{{ url($indexUrl . '/download-sample') }}" style="margin-right:3px"><i--}}
+{{--                            class="fa fa-download" aria-hidden="true"></i> {{ translate('Download Sample') }}</a>--}}
+{{--                @endif--}}
                 @if (hasPermission($indexUrl . '/download'))
                     <a style="margin-top: 7px; margin-right:2px; margin-left:2px"
                        class="btn btn-primary pull-right btn-sm" href="{{ url($indexUrl . '/download') }}"
