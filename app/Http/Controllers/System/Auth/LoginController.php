@@ -160,7 +160,7 @@ class LoginController extends Controller
             return $response;
         }
 
-        $this->createOrUpdateLanguageTranslationsDB();
+      //  $this->createOrUpdateLanguageTranslationsDB();
 
         if (authUser()->is_2fa_enabled) {
             $this->twoFa();
