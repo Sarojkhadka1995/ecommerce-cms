@@ -4,22 +4,31 @@ namespace App\Services\System;
 
 use App\Exceptions\CustomGenericException;
 use App\Exceptions\UnauthorizedException;
+use App\Http\Requests\system\profileChangePasswordRequest;
+use App\Mail\system\PasswordResetEmail;
+use App\Mail\system\ProfileUpdateEmail;
+use App\Repositories\System\UserRepository;
 use App\Services\Service;
+use App\Traits\ImageTrait;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 
 class ProfileService extends Service
 {
-    public function __construct(User $user)
+    use ImageTrait;
+    public $dir = '/uploads/profile';
+
+    public function __construct(UserRepository $user)
     {
-        parent::__construct($user);
+        $this->repository = $user;
     }
 
     public function indexPageData($data)
     {
         return [
-            'item' => $this->itemByIdentifier(authUser()->id),
+            'item' => $this->repository->itemByIdentifier(authUser()->id),
         ];
     }
 
@@ -29,14 +38,18 @@ class ProfileService extends Service
             if (authUser()->id != $id) {
                 throw new UnauthorizedException('Unauthorized action performed.');
             }
-            $data = $request->only('password');
-            $user = $this->itemByIdentifier($id);
-            $logMsg = "New Password was <strong>created</strong> by {$user->name}";
-            storeLog($user, $logMsg);
 
-            return $user->update([
-                'password' => Hash::make($data['password']),
-            ]);
+            $user = $this->repository->itemByIdentifier($id);
+            $data = $request->only('name', 'username', 'email', 'contact', 'image');
+
+            if (isset($request['image'])) {
+                $this->removeImage($this->dir, $user->image);
+                $data['image'] = $this->uploadImage($this->dir, 'image');
+            }
+            $this->repository->update($user, $data);
+
+            Mail::to($user->email)->send(new ProfileUpdateEmail($user));
+            return $user;
         } catch (\Exception $e) {
             throw new CustomGenericException($e->getMessage());
         }

@@ -43,8 +43,8 @@ class ConfigService extends Service
     }
 
     public function store($request)
-    {   
-        $data = $request->except('_token');        
+    {
+        $data = $request->except('_token');
         if (strtolower($request->type) == 'file') {
             $data['value'] = $this->uploadImage($this->dir, 'value');
         }
@@ -54,20 +54,26 @@ class ConfigService extends Service
     public function update($request, $id)
     {
         $data = $request->except('_token');
+
         $config = $this->configRepository->itemByIdentifier($id);
+        $value = str_replace(' ', '_', $config->label);
+        $data['value'] = $data[$value];
+        unset($data[$value]);
+
         if (strtolower($config->type) == 'file') {
             $this->removeImage($this->dir, $config->value);
-            $data['value'] = $this->uploadImage($this->dir, 'value');
+            $data['value'] = $this->uploadConfigImage($this->dir, $data['value']);
         }
+
         $this->configRepository->update($config, $data);
         setConfigCookie();
 
-        return $config =  $this->configRepository->itemByIdentifier($id);
+        return $config = $this->configRepository->itemByIdentifier($id);
     }
 
     public function delete($request, $id)
     {
-        $config =  $this->configRepository->itemByIdentifier($id);
+        $config = $this->configRepository->itemByIdentifier($id);
         if (in_array($id, [1, 2, 3])) {
             throw new NotDeletableException;
         }

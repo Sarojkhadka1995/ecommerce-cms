@@ -116,7 +116,7 @@ class ResourceController extends Controller
     public static function breadcrumbBase()
     {
         return [
-            'title' => 'Dashboard',
+            'title' => ucwords('Dashboard'),
             'link' => '/' . getSystemPrefix() . '/' . translate('home'),
         ];
     }
@@ -206,7 +206,6 @@ class ResourceController extends Controller
         $data = $this->service->indexPageData($request);
         $data['breadcrumbs'] = $this->breadcrumbForIndex();
         $this->setModuleId($id);
-
         return $this->renderView('index', $data);
     }
 

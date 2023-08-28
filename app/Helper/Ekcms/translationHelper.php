@@ -2,62 +2,91 @@
 
 use App\Model\Language;
 use Illuminate\Support\Facades\Cookie;
-use Spatie\TranslationLoader\LanguageLine;
+use App\Model\Locale;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\File;
 
-function translate($content, $data = [], $group = 'backend')
+function translate($content, $data = [])
 {
-    $key = strtolower(trim(str_replace('.', '', $content)));
+    $key = strtolower(trim(str_replace(".", "", $content)));
 
-    $translations = array_keys(LanguageLine::getTranslationsForGroup(Cookie::get('lang') ?? 'en', $group));
+    $directory = resource_path('lang');
+    if (!is_dir($directory)) {
+        \File::makeDirectory($directory, $mode = 0755, true);
+    }
 
-    if ($key !== '') {
-        if (! in_array($key, $translations)) {
-            $check = LanguageLine::where('key', $key)->where('group', $group)->exists();
-            if ($check) {
-                return trans($key, $data);
-            } else {
-                if ($key !== '') {
-                    LanguageLine::create([
-                        'group' => $group,
-                        'key' => $key,
-                        'text' => insertText($content, $group),
-                    ]);
+    createOrReplaceTranslationContent($key, $content, $directory);
 
-                    return $content;
-                }
-            }
-        } else {
-            $trans = trans($group.'.'.$key, $data);
-            if ($trans == $group.'.'.$key) {
-                return $content;
-            } else {
-                return $trans;
-            }
-        }
-    } else {
+    $locale = app()->getLocale();
+    $jsonFileName = "{$locale}.json";
+    $jsonFilePath = "{$directory}/{$jsonFileName}";
+    $translationsJSON = file_get_contents($jsonFilePath);
+
+    // Convert JSON to an associative array
+    $translations = json_decode($translationsJSON, true);
+
+    if ($translations === null) {
         return $key;
     }
+    return $translations[$key];
 }
 
-function insertText($content, $group)
+function insertText($content)
 {
-    $languages = Language::where('group', $group)->orderBy('group', 'ASC')->pluck('language_code');
+    $languages = Language::pluck('language_code');
     $text = [];
     foreach ($languages as $language) {
         $text[$language] = $content;
     }
-
     return $text;
 }
 
-function translateValidationErrorsOfApi($content, $data = [], $group = 'frontend')
+function createOrReplaceTranslationContent($keyword, $content, $directory)
 {
-    return translate($content, $data, $group);
+    $langShortCodes = Language::pluck('language_code')->toArray();
+
+    foreach ($langShortCodes as $lang) {
+
+        $jsonFileName = "{$lang}.json";
+        $jsonFilePath = "{$directory}/{$jsonFileName}";
+
+        if (file_exists($jsonFilePath)) {
+            $existingContent = file_get_contents($jsonFilePath);
+            $existingTranslations = json_decode($existingContent, true);
+            if (json_last_error() === JSON_ERROR_NONE) {
+                // Check if the translation key already exists
+                if (!isset($existingTranslations[$keyword])) {
+                    $newTranslations = [
+                        $keyword => $content,
+                    ];
+
+                    $mergedTranslations = array_merge($existingTranslations, $newTranslations);
+
+                    $jsonContentString = json_encode($mergedTranslations, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                    file_put_contents($jsonFilePath, $jsonContentString);
+                }
+            }
+        } else {
+            // Create a new JSON file with initial translations
+            $initialTranslations = [
+                $keyword => $content,
+            ];
+
+            $jsonContentString = json_encode($initialTranslations, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            file_put_contents($jsonFilePath, $jsonContentString);
+        }
+    }
+}
+
+function translateValidationErrorsOfApi($content, $data = [])
+{
+    return translate($content, $data);
 }
 
 //frontend tranalation function
 
-function frontTrans($details, $data = [], $group = 'frontend')
+function frontTrans($details, $data = [])
 {
-    return translate($details, $data, $group);
+    return translate($details, $data);
 }

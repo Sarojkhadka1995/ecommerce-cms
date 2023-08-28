@@ -2,30 +2,27 @@
 
 namespace App\Services\System;
 
+use App\Exceptions\CustomGenericException;
+use App\Model\Locale;
 use App\Repositories\System\CountryRepository;
 use App\Repositories\System\LanguageRepository;
 use App\Services\Service;
+use Illuminate\Support\Facades\DB;
+use File;
 
 class LanguageService extends Service
 {
-    public function __construct(LanguageRepository $languageRepository, CountryService $countryService, CountryRepository $countryRepository)
+    protected $languageRepository;
+    protected $countryRepository;
+    protected $countryService;
+
+    public function __construct(LanguageRepository $languageRepository,
+                                CountryService     $countryService,
+                                CountryRepository  $countryRepository)
     {
-        $this->languageRepository = $languageRepository;
+        $this->repository = $languageRepository;
         $this->countryRepository = $countryRepository;
         $this->countryService = $countryService;
-    }
-
-    public function getAllData($data, $selectedColumns = [], $pagination = true)
-    {
-        return $this->languageRepository->getAllData($data);
-    }
-
-    public function indexPageData($request)
-    {
-        return [
-            'items' => $this->getAllData($request),
-            'groups' => $this->defaultLanguageGroups(),
-        ];
     }
 
     public function createPageData($request)
@@ -33,46 +30,47 @@ class LanguageService extends Service
         $countries = $this->countryRepository->getAllData($request, ['id', 'name', 'languages', 'flag'], false);
         return [
             'countriesOptions' => $this->countryService->extractKeyValuePair($countries),
-            'groups' => $this->defaultLanguageGroups(),
         ];
     }
 
     public function store($request)
     {
-        return $this->languageRepository->create($request);
+        try {
+            DB::beginTransaction();
+            $language = $this->repository->create($request);
+
+            $jsonFileName = "en.json";
+            $enJsonFilePath = resource_path('lang') . '/' . $jsonFileName;
+
+            $createdFilePath = resource_path('lang') . '/' . $language->language_code . '.json';
+
+            if (file_exists($enJsonFilePath)) {
+                copy($enJsonFilePath, $createdFilePath);
+            }
+
+            DB::commit();
+            return $language;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw new CustomGenericException($e->getMessage());
+        }
     }
 
     public function delete($request, $id)
     {
-        return $this->languageRepository->delete($request, $id);
-    }
+        $item = $this->repository->itemByIdentifier($id);
+        $filename = $item->language_code . '.json';
+        $filePath = resource_path('lang/' . $filename);
 
-    public function defaultLanguageGroups()
-    {
-        return
-            [
-                'backend' => 'Backend',
-                'frontend' => 'Frontend',
-            ];
-    }
-
-    public function getKeyValuePair($languages, $key = 'language_code', $value = 'name')
-    {
-        $options = [];
-        foreach ($languages as $language) {
-            $options[$language[$key]] = $language[$value];
+        if (File::exists($filePath)) {
+            File::delete($filePath);
+            // File deleted successfully
         }
-
-        return $options;
+        return $this->repository->delete($request, $id);
     }
 
     public function getBackendLanguages()
     {
-        return $this->languageRepository->getBackendLanguages();
-    }
-
-    public function getFrontendLanguages()
-    {
-        return $this->languageRepository->getFrontendLanguages();
+        return $this->languageRepository->getLanguages();
     }
 }

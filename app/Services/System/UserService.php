@@ -22,15 +22,10 @@ class UserService extends Service
         $this->roleRepository = $roleRepository;
     }
 
-    public function getAllData($data, $selectedColumns = [], $pagination = true)
-    {
-        return $this->userRepository->getAllData($data);
-    }
-
     public function indexPageData($request)
     {
         return [
-            'items' => $this->getAllData($request),
+            'items' => $this->userRepository->getAllData($request),
             'roles' => $this->roleRepository->getRoles(),
         ];
     }
@@ -54,12 +49,10 @@ class UserService extends Service
             $token = $this->userRepository->generateToken(24);
             $data['token'] = $token;
             $user = $this->userRepository->create($data);
-            $user->roles()->attach($request->role_id);
-
             try {
                 event(new UserCreated($user, $token));
                 return $user;
-            } catch (\Exception $e) {               
+            } catch (\Exception $e) {
                 \Log::error('User creation failed: ' . $e->getMessage());
                 \DB::rollBack();
                 return throw new CustomGenericException('User creation failed. Please try again.');
@@ -88,7 +81,6 @@ class UserService extends Service
             }
             unset($data['role_id']);
             $this->userRepository->update($user, $data);
-            $user->roles()->sync($request->role_id);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -102,8 +94,6 @@ class UserService extends Service
             throw new NotDeletableException();
         }
         $user = $this->userRepository->itemByIdentifier($id);
-        $user->roles()->detach();
-
         $this->userRepository->delete($request, $id);
         return $user;
 

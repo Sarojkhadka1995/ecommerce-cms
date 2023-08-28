@@ -40,7 +40,7 @@ class Role extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'role_user');
+        return $this->hasMany(User::class, 'role_id', 'id');
     }
 
     public function isEditable($id)
@@ -51,5 +51,10 @@ class Role extends Model
     public function isDeletable($ids)
     {
         return $ids == 1 ? false : true;
+    }
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = strtolower($value);
     }
 }

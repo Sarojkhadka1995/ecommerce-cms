@@ -10,7 +10,7 @@ class PageResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
@@ -18,7 +18,7 @@ class PageResource extends JsonResource
         return [
             'title' => $this->title,
             'description' => $this->description,
-            'image' =>  Storage::disk('public')->url('uploads/page/' . $this->image) ?? '',
+            'image' => $this->image ?? '',
             'meta_title' => $this->meta_title,
             'meta_description' => $this->meta_description,
             'status' => $this->status,

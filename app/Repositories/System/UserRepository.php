@@ -25,18 +25,28 @@ class UserRepository extends Repository implements UserRepositoryInterface
     {
         $query = $this->query();
 
-        if (isset($data->keyword) && $data->keyword !== null) {
-            $query->where('name', 'LIKE', '%' . $data->keyword . '%');
+        if (isset($data->keyword)) {
+            $query->where(function ($q) use ($data) {
+                $q->orwhere('name', 'ILIKE', '%' . $data->keyword . '%')
+                    ->orwhere('username', 'ILIKE', '%' . $data->keyword . '%')
+                    ->orwhere('email', 'ILIKE', '%' . $data->keyword . '%');
+            });
+        }
+
+        if (isset($data->role) && $data->role !== null) {
+            $query->where('role_id', $data->role);
         }
 
         if (count($selectedColumns) > 0) {
             $query->select($selectedColumns);
         }
+
         if ($pagination) {
-            return $query->orderBy('id', 'DESC')->with('roles')->paginate(PAGINATE);
+            return $query->orderBy('id', 'DESC')->with('role')->paginate(PAGINATE);
         }
 
-        return $query->orderBy('id', 'DESC')->with('role')->get();
+        return $query->orderBy('id', 'DESC')
+            ->with('role')->get();
     }
 
     public function create($data)
@@ -87,13 +97,19 @@ class UserRepository extends Repository implements UserRepositoryInterface
         }
         return $user;
     }
+
     public function bulkUpdateUserByRole($roleId, $requestRole)
-    {       
+    {
         return $this->model->where('role_id', $roleId)->update(['role_id' => $requestRole]);
     }
 
     public function getByRolePivotRoleUser($roleId)
     {
-        return $this->roleUser->where('user_id', $roleId)->get();
+        return $this->model->where('user_id', $roleId)->get();
+    }
+
+    public function pluckUsersWithIdAndName()
+    {
+        return $this->model->pluck('name', 'id')->toArray();
     }
 }
