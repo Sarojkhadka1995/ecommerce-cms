@@ -4,5 +4,3 @@
   require('./config')
   require('./timeFormat')
   require('./roles')
-
-  
