@@ -9,11 +9,6 @@ class ErrorLogService extends Service
 {
     public function __construct(ErrorLogRepository $logRepository)
     {
-        $this->repository = $logRepository;
-    }
-
-    public function getAllData($data, $selectedColumns = [], $pagination = true)
-    {
-        return $this->repository->getAllData($data, [], $pagination = true);
+        parent::__construct($logRepository);
     }
 }

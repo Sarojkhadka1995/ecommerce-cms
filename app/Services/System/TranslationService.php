@@ -9,14 +9,10 @@ use App\Services\Service;
 
 class TranslationService extends Service
 {
-    protected $translationRepository;
-    protected $languageRepository;
-
-    public function __construct(TranslationRepository $translationRepository,
-                                LanguageRepository    $languageRepository)
+    public function __construct(TranslationRepository     $translationRepository,
+                                public LanguageRepository $languageRepository)
     {
-        $this->repository = $translationRepository;
-        $this->languageRepository = $languageRepository;
+        parent::__construct($translationRepository);
     }
 
     public function indexPageData($request)

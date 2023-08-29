@@ -13,16 +13,11 @@ use File;
 class LanguageService extends Service
 {
     protected $languageRepository;
-    protected $countryRepository;
-    protected $countryService;
-
-    public function __construct(LanguageRepository $languageRepository,
-                                CountryService     $countryService,
-                                CountryRepository  $countryRepository)
+    public function __construct(LanguageRepository       $languageRepository,
+                                public CountryService    $countryService,
+                                public CountryRepository $countryRepository)
     {
         $this->repository = $languageRepository;
-        $this->countryRepository = $countryRepository;
-        $this->countryService = $countryService;
     }
 
     public function createPageData($request)

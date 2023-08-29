@@ -9,6 +9,6 @@ class LoginLogService extends Service
 {
     public function __construct(LoginLogRepository $loginLogRepository)
     {
-        $this->repository = $loginLogRepository;
+        parent::__construct($loginLogRepository);
     }
 }

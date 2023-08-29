@@ -78,4 +78,9 @@ class LanguageRepository extends Repository implements LanguageInterface
 
         return $options;
     }
+
+    public function pluckLanguages()
+    {
+        return $this->model->pluck('language_code')->toArray();
+    }
 }

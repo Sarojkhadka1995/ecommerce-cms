@@ -22,7 +22,7 @@ class ProfileService extends Service
 
     public function __construct(UserRepository $user)
     {
-        $this->repository = $user;
+        parent::__construct($user);
     }
 
     public function indexPageData($data)

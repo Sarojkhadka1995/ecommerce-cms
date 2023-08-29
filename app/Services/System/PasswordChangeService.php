@@ -15,7 +15,7 @@ class PasswordChangeService extends Service
 {
     public function __construct(UserRepository $user)
     {
-        $this->repository = $user;
+        parent::__construct($user);
     }
 
     public function indexPageData($data)
@@ -27,7 +27,6 @@ class PasswordChangeService extends Service
 
     public function update(ProfileChangePasswordRequest $request, $id)
     {
-        dd('asd');
         try {
             if (authUser()->id != $id) {
                 throw new UnauthorizedException('Unauthorized action performed.');
