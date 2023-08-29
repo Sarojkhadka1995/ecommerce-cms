@@ -59,6 +59,10 @@ Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix(), 'middlewar
         Route::get('/translations/download', 'language\TranslationController@downloadExcel');
         Route::post('/translations/upload', 'language\TranslationController@uploadExcel');
 
+
+        Route::get('/clear-lang', function () {
+            \App\Model\Locale::truncate();
+        });
         Route::resource('/email-templates', 'systemConfig\emailTemplateController', ['except' => ['show', 'create', 'store']]);
 
         Route::resource('/configs', 'systemConfig\configController');

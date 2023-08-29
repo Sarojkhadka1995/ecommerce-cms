@@ -11,6 +11,9 @@
                         <h4>{{translate('Login')}}</h4>
                         <h6>{{translate('Welcome back! Log in to your account.')}}</h6>
                         @csrf
+                        @if (isset($redirectUrl))
+                            <input type="hidden" name="redirect" value="{{ $redirectUrl }}">
+                        @endif
                         <div class="form-group">
                             <label>{{translate('Email Address/Username')}}</label>
                             <div class="input-group"><span class="input-group-text"><i class="icon-email"></i></span>

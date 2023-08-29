@@ -61,7 +61,6 @@ pipeline {
             sh '''
             ssh -tt -o StrictHostKeyChecking=no root@157.245.148.131 -p 3030 << EOF
             cd /var/www/ekcms/ekcms-larvel/qa/; \
-            git stash; \
             git pull origin qa; \
             composer install -n; \
             php artisan migrate; \
