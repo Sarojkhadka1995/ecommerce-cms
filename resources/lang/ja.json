@@ -169,5 +169,6 @@
     "select language": "Select Language",
     "method not allowed": "Method not allowed.",
     "this method is not allowed": "This method is not allowed.",
-    "send": "Send"
+    "send": "Send",
+    "view audit logs": "View Audit logs"
 }
