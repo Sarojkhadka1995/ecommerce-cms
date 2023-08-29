@@ -21,4 +21,9 @@ class LogsController extends ResourceController
     {
         return 'system.log';
     }
+
+    public function moduleToTitle()
+    {
+        return 'Audit Logs';
+    }
 }

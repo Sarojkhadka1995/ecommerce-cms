@@ -195,13 +195,13 @@ return  [
                     ],
                 ],
                 [
-                    'name' => 'Activity logs',
+                    'name' => 'Audit logs',
                     'icon' => "<i class='fas fa-chart-line'></i>",
                     'hasSubmodules' => false,
                     'route' => $activityLogsBaseUrl,
                     'permissions' => [
                         [
-                            'name' => 'View Activity logs',
+                            'name' => 'View Audit logs',
                             'route' => [
                                 'url' => $activityLogsBaseUrl,
                                 'method' => $getMethod,

@@ -158,5 +158,12 @@
     "edit page": "Edit Page",
     "delete page": "Delete Page",
     "create mail": "Create Mail",
-    "permissions": "Permissions"
+    "permissions": "Permissions",
+    "audit logs": "Audit logs",
+    "select country": "Select Country",
+    "country": "Country",
+    "select language": "Select Language",
+    "method not allowed": "Method not allowed.",
+    "this method is not allowed": "This method is not allowed.",
+    "send": "Send"
 }

@@ -53,8 +53,6 @@ O
 resources/lang/en/passwords.php,4/9/490024d5472873cb7ea94284b96bab26a7f9fc92
 I
 public/css/responsive.css,e/8/e8ae40d300699941571eec7c9170332186f7c982
-\
-,app/Http/Requests/system/languageRequest.php,d/7/d73c311422c5b94610c29cefe549b942b1defdc3
 Z
 *app/Http/Requests/system/resetPassword.php,6/2/624d733954f203bdaa673914722ca7f41d25dace
 ?
@@ -89,8 +87,6 @@ B
 config/logging.php,e/1/e1f0359815a7d227715627fce9f4a59714656b81
 J
 app/Exceptions/Handler.php,3/b/3badd23b42804fa4016b5b9734a7b35c12ec27e4
-D
-config/cmsConfig.php,9/2/9216b2b3d78b8f4c40acf0c7f9e051a837cab45c
 [
 +app/Interfaces/System/LanguageInterface.php,4/a/4ac44d82dd94b0f9842999d770c5b0fe4622d712
 [
@@ -133,8 +129,6 @@ C
 .env,3/c/3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
 <
 .env.example,d/4/d4dae00d11854b35292c2b8a30515a9a0aa2d871
-^
-.resources/views/system/mailtest/form.blade.php,5/c/5cc1fe3d39384809eb5f4a249493b9b9f7490191
 T
 $public/filemanager/config/config.php,d/4/d418272292898fca8d179d8ffb3a7c5a9949e3e7
 M
@@ -189,9 +183,6 @@ a
 1resources/views/system/partials/sidebar.blade.php,d/7/d7088dc027c77ff434085e1b5017525422cdb941
 `
 0resources/views/system/partials/header.blade.php,d/d/dd2965fcedcd4feb5f2a4f94574084a4e554facb
-:
-
-.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 Z
 *resources/views/system/role/form.blade.php,4/9/4954195a8cad582d9e67ce3df5100ae8b6940f19
 Z
