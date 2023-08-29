@@ -24,7 +24,7 @@
         <x-slot name="inputs">
             <x-system.form.text-area
                 :input="['name'=>'template', 'label' => 'Template', 'editor' => true,'rows'=>10, 'default' => isset($item) ? $item->emailTranslationWithLocale->template : old('template'), 'error' => $errors->first('template')]"/>
-        <label>{{isset($item) ? $item->placeholders : null}}</label>
+            <label><strong>Placeholders: {{isset($item) ? $item->placeholders : null}}</strong></label>
         </x-slot>
     </x-system.form.form-group>
 @endsection

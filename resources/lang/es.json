@@ -104,5 +104,13 @@
     "two factor authentication": "Two Factor Authentication",
     "send activation link": "Send Activation Link",
     "set password": "Set Password",
-    "set password ?": "Set Password ?"
+    "set password ?": "Set Password ?",
+    "mail test": "Mail Test",
+    "from email": "From Email",
+    "from name": "From Name",
+    "to name": "To Name",
+    "to email": "To Email",
+    "subject": "Subject",
+    "body text": "Body Text",
+    "body": "Body"
 }

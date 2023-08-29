@@ -68,5 +68,8 @@ Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix(), 'middlewar
 
         Route::resource('/api-logs', 'logs\ApiLogController', ['only' => ['index']]);
         Route::resource('/error-logs', 'logs\ErrorLogController', ['only' => ['index']]);
+
+        Route::get('/mail-test/create', 'MailTestController@create');
+        Route::post('/mail-test', 'MailTestController@sendEmail');
     });
 });

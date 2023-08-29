@@ -147,5 +147,11 @@
     "create page": "Create Page",
     "edit page": "Edit Page",
     "delete page": "Delete Page",
-    "permissions": "Permissions"
+    "permissions": "Permissions",
+    "mail test": "Mail Test",
+    "from name": "From Name",
+    "to name": "To Name",
+    "to email": "To Email",
+    "body text": "Body Text",
+    "body": "Body"
 }

@@ -173,8 +173,6 @@ B
 config/logging.php,e/1/e1f0359815a7d227715627fce9f4a59714656b81
 Z
 *app/Http/Middleware/Api/LogApiRequests.php,4/2/42e192d8c0580e9a2e9fe38641544c8fe9554ae8
-D
-config/cmsConfig.php,9/2/9216b2b3d78b8f4c40acf0c7f9e051a837cab45c
 J
 app/Exceptions/Handler.php,3/b/3badd23b42804fa4016b5b9734a7b35c12ec27e4
 a
@@ -235,8 +233,6 @@ _
 /resources/views/system/errorLog/index.blade.php,b/c/bc698fe80d2fcfd91e2c0bea4eba5da1dbf7015a
 F
 app/Model/ErrorLog.php,f/5/f50b89a65daa54d40e57800f7a4c70cf10624c3c
-B
-routes/backend.php,e/2/e2e681ec50a0cf7c5bab5ceb2bb45db0b74c117d
 g
 7app/Http/Controllers/System/logs/ErrorLogController.php,e/f/efa9ef99ac1953d1d1dc2a9ca3290c2718111342
 ^
@@ -303,8 +299,6 @@ X
 (database/seeders/EmailTemplateSeeder.php,2/d/2de3a7c9393840cefb5846d1e6f292523c3e05b2
 j
 :resources/views/components/system/form/text-area.blade.php,c/4/c4d077c6598554f6f9dc4b9aebf858f0a766a190
-d
-4resources/views/system/email-template/form.blade.php,6/a/6a4a57d41ed01951c2564b5865c803479d0e7d0a
 Q
 !app/Helper/Ekcms/globalHelper.php,2/c/2c8ea60b95b552485f43da37af7941c5b1b77def
 D

@@ -16,6 +16,7 @@ $emailTemplateBaseUrl = '/email-templates';
 $configBaseUrl = '/configs';
 $profileBaseUrl = '/profile';
 $pagesBaseUrl = '/pages';
+$mailtestBaseUrl = '/mail-test';
 $apiBaseUrl = '/api-logs';
 $errorLogsBaseUrl = '/error-logs';
 
@@ -467,5 +468,27 @@ return  [
                 ],
             ],
         ],
+        [
+            'name' => 'Mail Test',
+            'icon' => "<i class='fa fa-envelope-o'></i>",
+            'hasSubmodules' => false,
+            'route' => $mailtestBaseUrl.'/create',
+            'permissions' => [
+                [
+                    'name' => 'Create Mail',
+                    'route' => [
+                        'url' => $mailtestBaseUrl.'/create',
+                        'method' => $getMethod,
+                    ],
+                    [
+                        'url' => $mailtestBaseUrl,
+                        'method' => $postMethod,
+                    ],
+
+                ],
+            ],
+        ],
+
+
     ],
 ];
