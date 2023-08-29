@@ -8,7 +8,7 @@ use App\Services\System\ErrorLogService;
 
 class ErrorLogController extends ResourceController
 {
-    public function __construct(ErrorLogService $logService)
+    public function __construct(private readonly ErrorLogService $logService)
     {
         parent::__construct($logService);
     }

@@ -75,8 +75,6 @@ a
 1resources/views/system/partials/js/slug.blade.php,8/e/8ef87a10e8cb78fa1f166f599f338920296fbd1c
 f
 6resources/views/system/partials/deleteButton.blade.php,c/b/cbf8135b8892df78754279360da5855990f9ea83
-Z
-*app/Repositories/System/PageRepository.php,2/0/20205082e7a058cb94ba03b4d914811c38f12269
 f
 6resources/views/system/partials/statusButton.blade.php,c/4/c45034f5454fcf7bcb955558f78ee0914e7c8750
 [
@@ -87,20 +85,14 @@ X
 (app/Http/Requests/system/userRequest.php,8/5/85bd764152996d0ead0c4f7a10dc5f312ba8bb53
 X
 (app/Http/Requests/system/roleRequest.php,a/2/a214d36dab48be1a5cf24baf3c4ba0950290f22d
-X
-(app/Http/Requests/system/pageRequest.php,5/d/5dd986f83f9da87f60c2151df20718b706421a0e
 B
 config/logging.php,e/1/e1f0359815a7d227715627fce9f4a59714656b81
 J
 app/Exceptions/Handler.php,3/b/3badd23b42804fa4016b5b9734a7b35c12ec27e4
-Z
-*app/Http/Middleware/Api/LogApiRequests.php,4/2/42e192d8c0580e9a2e9fe38641544c8fe9554ae8
 D
 config/cmsConfig.php,9/2/9216b2b3d78b8f4c40acf0c7f9e051a837cab45c
 [
 +app/Interfaces/System/LanguageInterface.php,4/a/4ac44d82dd94b0f9842999d770c5b0fe4622d712
-a
-1app/Repositories/System/TranslationRepository.php,a/4/a4acb96e109fc8efb8be065fab0b5599f64d40bc
 [
 +app/Interfaces/System/LoginLogInterface.php,a/9/a96e728d58908c1dd45c68db32ce6b6f23606e75
 D
@@ -113,16 +105,10 @@ a
 1app/Rules/system/UniqueCaseSenstiveValidation.php,4/a/4aa3cc3afdb20249846852a20094b899c6f0f1e4
 _
 /app/Http/Requests/system/translationRequest.php,0/a/0a687e26028ae7e78b94573025a8d1a3733eecf0
-U
-%app/Http/Middleware/LogMiddleware.php,9/f/9f2e21c4065cecc6a177db653ec0062fc030b259
 ^
 .app/Http/Middleware/ErrorLoggingMiddleware.php,1/5/155f53fa21f00596586f747ece36af5377339485
 [
 +app/Interfaces/System/ErrorLogInterface.php,4/4/44078b780057880ae22923199ef0e00d11c4e3d3
-\
-,app/Repositories/System/ApiLogRepository.php,f/0/f0c3bced2d306c3c5b17eafa686a255f121dd53b
-^
-.app/Repositories/System/LoginLogRepository.php,c/7/c74ea025407b1212ab01eae47c3c8460eacd65c1
 `
 0resources/views/system/layouts/listing.blade.php,5/6/56b681de52e6b8fe826683d4d4be1de035c0a677
 d
@@ -135,24 +121,14 @@ D
 config/constants.php,8/e/8ef8c8dfe606b6730487242cb8bd89655ec77623
 >
 routes/web.php,6/b/6b9a783d9b43fee50fd28f56dbd1856d2608f305
-P
- app/Http/Middleware/Language.php,b/1/b169b2e83078d19b946c2a15c6ae4ff87b1dbc92
 _
 /resources/views/system/errorLog/index.blade.php,b/c/bc698fe80d2fcfd91e2c0bea4eba5da1dbf7015a
-^
-.app/Repositories/System/ErrorLogRepository.php,f/0/f0dd2be81c5a39fce3d03a6cc0c110f137dae79b
-_
-/app/Http/Controllers/System/indexController.php,4/e/4ec4a36e6140e7ac8e20fe9f77ffcc8ec67fb8c4
-]
--app/Repositories/System/CountryRepository.php,1/7/17c9412e608696bf94dab3bfd7deaf5dbb529549
 E
 app/Model/Country.php,c/3/c395f6ad756dca1b4152ac66fea84647c86183bf
 G
 app/Model/Loginlogs.php,a/e/ae826db6290e818b07cd09573dee5851c55b25bd
 C
 app/Http/Kernel.php,4/0/405f423e61f666bcedb754ae8befdce9e746176e
-@
-app/RoleUser.php,6/8/685190a98abd44103f4ae67a7e6079856e8f195d
 4
 .env,3/c/3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
 <
@@ -169,14 +145,10 @@ M
 public/filemanager/upload.php,9/f/9fd81007296adce2a7e3e7f51430d957295b36df
 e
 5resources/views/system/layouts/editorScript.blade.php,6/c/6c4cf8dd8a62a233d0b7118d65ebdae16c4b8648
-Z
-*app/Repositories/System/RoleRepository.php,1/e/1e610bb60c093cf6412221dd8d74b9d08406166c
 <
 app/User.php,5/1/5158cc6821d0344345606af2834807beae093242
 ~
 Ndatabase/migrations/2023_08_22_125833_add_place_holders_to_email_templates.php,1/5/1541a9769d6a7c90567a4221856ecc11f70e5940
-[
-+app/Repositories/System/EmailRepository.php,1/e/1eb9c5464b0593e538ba2fede68a14538b011626
 K
 app/Model/EmailTemplate.php,f/d/fd023d5bc6fc1afd939f77ecba563b39ee567233
 X
@@ -226,8 +198,6 @@ Z
 *resources/views/system/role/edit.blade.php,0/5/05f253bc41de4cd8cf253430ae94ad8e875afe68
 \
 ,resources/views/system/role/create.blade.php,8/d/8d6549f8062dce31356cf8616061dae635c0cbe3
-Z
-*app/Http/Requests/system/ConfigRequest.php,9/2/92b54afddcbac3608d01ea1870d2b2df3f9af006
 T
 $app/Http/Middleware/Authenticate.php,f/7/f7ec0e145842212dd9c0763d10bb0aaa68d3280a
 I

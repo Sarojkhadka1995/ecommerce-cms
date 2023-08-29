@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Mail;
 
 class MailTestController extends ResourceController
 {
-    public function __construct(MailService $mailService)
+    public function __construct(private readonly MailService $mailService)
     {
         parent::__construct($mailService);
     }

@@ -9,12 +9,9 @@ use App\Repositories\Repository;
 
 class LanguageRepository extends Repository implements LanguageInterface
 {
-    protected $countryRepository;
-
-    public function __construct(Language $language, CountryRepository $countryRepository)
+    public function __construct(private readonly Language $language, private readonly CountryRepository $countryRepository)
     {
         parent::__construct($language);
-        $this->countryRepository = $countryRepository;
     }
 
     public function getAllData($data, $selectedColumns = [], $pagination = true)

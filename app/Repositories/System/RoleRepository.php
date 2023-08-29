@@ -11,14 +11,9 @@ use App\User;
 
 class RoleRepository extends Repository implements RoleInterface
 {
-    protected $roleUser;
-    protected $role;
-
-    public function __construct(RoleUser $roleUser, Role $role)
+    public function __construct(private readonly Role $role)
     {
         parent::__construct($role);
-        $this->roleUser = $roleUser;
-        $this->role = $role;
     }
 
     public function getAllData($data, $selectedColumns = [], $pagination = true)
@@ -60,8 +55,8 @@ class RoleRepository extends Repository implements RoleInterface
         return $this->model->orderBy('name', 'ASC')->pluck('name', 'id')->toArray();
     }
 
-    public function getByRolePivotRoleUser($userId)
-    {
-        return $this->roleUser->where('user_id', $userId)->pluck('role_id')->toArray();
-    }
+//    public function getByRolePivotRoleUser($userId)
+//    {
+//        return $this->roleUser->where('user_id', $userId)->pluck('role_id')->toArray();
+//    }
 }

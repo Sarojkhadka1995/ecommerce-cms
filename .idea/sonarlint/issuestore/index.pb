@@ -58,8 +58,6 @@ C
 a
 1resources/views/system/partials/js/slug.blade.php,8/e/8ef87a10e8cb78fa1f166f599f338920296fbd1c
 X
-(app/Http/Requests/system/pageRequest.php,5\d\5dd986f83f9da87f60c2151df20718b706421a0e
-X
 (app/Http/Requests/system/roleRequest.php,a\2\a214d36dab48be1a5cf24baf3c4ba0950290f22d
 @
 public/.htaccess,c\9\c9fe70f275af093c7fb3ed73b451fadc91069bac
@@ -125,8 +123,6 @@ z
 Jdatabase/migrations/2023_08_07_211058_remove_group_from_language_lines.php,2\9\29e64a04d3107f3ab25b6da2dab722e6fcd73267
 S
 #app/Http/Resources/PageResource.php,4\f\4f9f304fe57439dbe7b6e6af62ecf210ab8fcfd8
-Z
-*app/Repositories/System/PageRepository.php,2\0\20205082e7a058cb94ba03b4d914811c38f12269
 p
 @database/migrations/2020_07_03_100600_create_languages_table.php,c\c\cc8468c981340b2ee9e2f22a0ee5b3739dc85f72
 `
@@ -135,8 +131,6 @@ d
 4resources/views/system/partials/editButton.blade.php,e\d\ed2839d83dd3372031d3dfd18ce879c50b281a09
 f
 6resources/views/system/partials/deleteButton.blade.php,c\b\cbf8135b8892df78754279360da5855990f9ea83
-Y
-)app/Repositories/System/LogRepository.php,1\f\1ffff775cefa36e724fcc4c590eb52600100304f
 g
 7resources/views/components/system/search-form.blade.php,5\a\5a7c6d0fb2f340134d1d77cd662dbe2e4e0f4b64
 A
@@ -147,12 +141,8 @@ F
 app/Console/Kernel.php,7\c\7cc3fc289d685e79a47c29e2cb905c549625e76b
 B
 config/logging.php,e/1/e1f0359815a7d227715627fce9f4a59714656b81
-Z
-*app/Http/Middleware/Api/LogApiRequests.php,4/2/42e192d8c0580e9a2e9fe38641544c8fe9554ae8
 J
 app/Exceptions/Handler.php,3/b/3badd23b42804fa4016b5b9734a7b35c12ec27e4
-a
-1app/Repositories/System/TranslationRepository.php,a/4/a4acb96e109fc8efb8be065fab0b5599f64d40bc
 [
 +app/Interfaces/System/LanguageInterface.php,4/a/4ac44d82dd94b0f9842999d770c5b0fe4622d712
 [
@@ -165,18 +155,12 @@ a
 1app/Rules/system/UniqueCaseSenstiveValidation.php,4/a/4aa3cc3afdb20249846852a20094b899c6f0f1e4
 _
 /app/Http/Requests/system/translationRequest.php,0/a/0a687e26028ae7e78b94573025a8d1a3733eecf0
-U
-%app/Http/Middleware/LogMiddleware.php,9/f/9f2e21c4065cecc6a177db653ec0062fc030b259
 D
 app/Model/Locale.php,5/6/56e7d08baf4221aeff6345545803a36b7dc6c15b
 ^
 .app/Http/Middleware/ErrorLoggingMiddleware.php,1/5/155f53fa21f00596586f747ece36af5377339485
 [
 +app/Interfaces/System/ErrorLogInterface.php,4/4/44078b780057880ae22923199ef0e00d11c4e3d3
-\
-,app/Repositories/System/ApiLogRepository.php,f/0/f0c3bced2d306c3c5b17eafa686a255f121dd53b
-^
-.app/Repositories/System/LoginLogRepository.php,c/7/c74ea025407b1212ab01eae47c3c8460eacd65c1
 `
 0resources/views/system/layouts/listing.blade.php,5/6/56b681de52e6b8fe826683d4d4be1de035c0a677
 d
@@ -187,26 +171,16 @@ D
 routes/web.php,6/b/6b9a783d9b43fee50fd28f56dbd1856d2608f305
 F
 app/Model/Language.php,e/a/eafee11fa867adcd74d7de980b40fb9e32002ba0
-P
- app/Http/Middleware/Language.php,b/1/b169b2e83078d19b946c2a15c6ae4ff87b1dbc92
 _
 /resources/views/system/errorLog/index.blade.php,b/c/bc698fe80d2fcfd91e2c0bea4eba5da1dbf7015a
 F
 app/Model/ErrorLog.php,f/5/f50b89a65daa54d40e57800f7a4c70cf10624c3c
-^
-.app/Repositories/System/ErrorLogRepository.php,f/0/f0dd2be81c5a39fce3d03a6cc0c110f137dae79b
-_
-/app/Http/Controllers/System/indexController.php,4/e/4ec4a36e6140e7ac8e20fe9f77ffcc8ec67fb8c4
-]
--app/Repositories/System/CountryRepository.php,1/7/17c9412e608696bf94dab3bfd7deaf5dbb529549
 E
 app/Model/Country.php,c/3/c395f6ad756dca1b4152ac66fea84647c86183bf
 G
 app/Model/Loginlogs.php,a/e/ae826db6290e818b07cd09573dee5851c55b25bd
 C
 app/Http/Kernel.php,4/0/405f423e61f666bcedb754ae8befdce9e746176e
-@
-app/RoleUser.php,6/8/685190a98abd44103f4ae67a7e6079856e8f195d
 <
 .env.example,d/4/d4dae00d11854b35292c2b8a30515a9a0aa2d871
 4
@@ -223,16 +197,12 @@ M
 public/filemanager/upload.php,9/f/9fd81007296adce2a7e3e7f51430d957295b36df
 e
 5resources/views/system/layouts/editorScript.blade.php,6/c/6c4cf8dd8a62a233d0b7118d65ebdae16c4b8648
-Z
-*app/Repositories/System/RoleRepository.php,1/e/1e610bb60c093cf6412221dd8d74b9d08406166c
 ~
 Ndatabase/migrations/2023_08_22_125833_add_place_holders_to_email_templates.php,1/5/1541a9769d6a7c90567a4221856ecc11f70e5940
 <
 app/User.php,5/1/5158cc6821d0344345606af2834807beae093242
 K
 app/Model/EmailTemplate.php,f/d/fd023d5bc6fc1afd939f77ecba563b39ee567233
-[
-+app/Repositories/System/EmailRepository.php,1/e/1eb9c5464b0593e538ba2fede68a14538b011626
 X
 (database/seeders/EmailTemplateSeeder.php,2/d/2de3a7c9393840cefb5846d1e6f292523c3e05b2
 j
@@ -278,8 +248,6 @@ Z
 *resources/views/system/role/edit.blade.php,0/5/05f253bc41de4cd8cf253430ae94ad8e875afe68
 \
 ,resources/views/system/role/create.blade.php,8/d/8d6549f8062dce31356cf8616061dae635c0cbe3
-Z
-*app/Http/Requests/system/ConfigRequest.php,9/2/92b54afddcbac3608d01ea1870d2b2df3f9af006
 I
 app/Traits/ImageTrait.php,f/2/f24fd5e6a1a052486badfa5c60689d3ee0be083c
 T

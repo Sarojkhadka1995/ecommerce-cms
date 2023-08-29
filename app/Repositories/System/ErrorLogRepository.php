@@ -9,7 +9,7 @@ use App\Repositories\Repository;
 use Carbon\Carbon;
 class ErrorLogRepository extends Repository implements ErrorLogInterface
 {
-    public function __construct(ErrorLog $log)
+    public function __construct(private readonly ErrorLog $log)
     {
         parent::__construct($log);
     }

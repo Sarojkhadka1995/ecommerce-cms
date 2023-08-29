@@ -11,14 +11,9 @@ use Illuminate\Support\Facades\Hash;
 
 class UserRepository extends Repository implements UserRepositoryInterface
 {
-    protected $user;
-    protected $role;
-
-    public function __construct(User $user, RoleUser $role)
+    public function __construct(User $user)
     {
         parent::__construct($user);
-        $this->user = $user;
-        $this->roleUser = $role;
     }
 
     public function getAllData($data, $selectedColumns = [], $pagination = true)
@@ -105,7 +100,7 @@ class UserRepository extends Repository implements UserRepositoryInterface
 
     public function getByRolePivotRoleUser($roleId)
     {
-        return $this->model->where('user_id', $roleId)->get();
+        return $this->model->where('role_id', $roleId)->get();
     }
 
     public function pluckUsersWithIdAndName()

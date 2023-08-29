@@ -7,7 +7,7 @@ use App\Services\System\ConfigService;
 
 class configController extends ResourceController
 {
-    public function __construct(ConfigService $configService)
+    public function __construct(private readonly ConfigService $configService)
     {
         parent::__construct($configService);
     }

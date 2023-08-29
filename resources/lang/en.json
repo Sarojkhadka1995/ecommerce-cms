@@ -153,5 +153,14 @@
     "to name": "To Name",
     "to email": "To Email",
     "body text": "Body Text",
-    "body": "Body"
+    "body": "Body",
+    "page title": "Page Title",
+    "page slug": "Page Slug",
+    "image": "Image",
+    "description": "Description",
+    "page description": "Page Description",
+    "meta title": "Meta Title",
+    "meta description": "Meta Description",
+    "inactive": "Inactive",
+    "create mail": "Create Mail"
 }

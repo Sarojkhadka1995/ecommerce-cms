@@ -26,9 +26,8 @@ class ResetPasswordController extends Controller
 
     use ResetsPasswords;
 
-    public function __construct(UserService $user)
+    public function __construct(private readonly UserService $user)
     {
-        $this->service = $user;
     }
 
     public function showSetResetForm(Request $request)
@@ -39,7 +38,7 @@ class ResetPasswordController extends Controller
                 $data['title'] = 'Reset Password';
             }
 
-            $this->service->findByEmailAndToken($request->email, $request->token);
+            $this->user->findByEmailAndToken($request->email, $request->token);
 
             $data['email'] = $request->email;
             $data['token'] = $request->token;
@@ -66,7 +65,7 @@ class ResetPasswordController extends Controller
     public function setResetPassword($request)
     {
         try {
-            $user = $this->service->findByEmailAndToken($request->email, $request->token);
+            $user = $this->user->findByEmailAndToken($request->email, $request->token);
 
             $check = $this->checkOldPasswords($user, $request);
 
@@ -78,7 +77,7 @@ class ResetPasswordController extends Controller
                 $user->update([
                     'password' => $password,
                     'password_resetted' => 1,
-                    'token' => $this->service->generateToken(24),
+                    'token' => $this->user->generateToken(24),
                     'expiry_datetime' => null
                 ]);
 

@@ -14,8 +14,8 @@ use Illuminate\Http\Request;
 
 class TranslationController extends ResourceController
 {
-    public function __construct(TranslationService        $translationService,
-                                public LanguageRepository $languageRepository)
+    public function __construct(private readonly TranslationService $translationService,
+                                private readonly LanguageRepository $languageRepository)
     {
         parent::__construct($translationService);
     }

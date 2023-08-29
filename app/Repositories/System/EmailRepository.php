@@ -9,7 +9,7 @@ use App\Repositories\Repository;
 
 class EmailRepository extends Repository implements EmailInterface
 {
-    public function __construct(EmailTemplate $emailTemplate)
+    public function __construct(private readonly EmailTemplate $emailTemplate)
     {
         parent::__construct($emailTemplate);
     }

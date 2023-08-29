@@ -7,7 +7,7 @@ use App\Services\System\ApiLogService;
 
 class ApiLogController extends ResourceController
 {
-    public function __construct(ApiLogService $logService)
+    public function __construct(private readonly ApiLogService $logService)
     {
         parent::__construct($logService);
     }

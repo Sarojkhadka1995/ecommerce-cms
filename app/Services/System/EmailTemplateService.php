@@ -13,37 +13,37 @@ class EmailTemplateService extends Service
         parent::__construct($emailRepository);
     }
 
-//    public function getAllData($data, $selectedColumns = [], $pagination = true)
-//    {
-//        return $this->emailRepository->getAllData($data);
-//    }
-//
-//    public function indexPageData($request)
-//    {
-//        return [
-//            'items' => $this->getAllData($request)
-//        ];
-//    }
-//
-//    public function store($request)
-//    {
-//        return $this->emailRepository->create($request);
-//    }
-//
-//    public function editPageData($request, $id)
-//    {
-//        $email = $this->emailRepository->itemByIdentifier($id);
-//        return [
-//            'item' => $email,
-//        ];
-//    }
-//
-//    public function update($request, $id)
-//    {
-//        return $this->emailRepository->update($request, $id);
-//    }
-//    public function delete($request, $id)
-//    {
-//        return $this->emailRepository->delete($request,$id);
-//    }
+    public function getAllData($data, $selectedColumns = [], $pagination = true)
+    {
+        return $this->repository->getAllData($data);
+    }
+
+    public function indexPageData($request)
+    {
+        return [
+            'items' => $this->getAllData($request)
+        ];
+    }
+
+    public function store($request)
+    {
+        return $this->repository->create($request);
+    }
+
+    public function editPageData($request, $id)
+    {
+        $email = $this->repository->itemByIdentifier($id);
+        return [
+            'item' => $email,
+        ];
+    }
+
+    public function update($request, $id)
+    {
+        return $this->repository->update($request, $id);
+    }
+    public function delete($request, $id)
+    {
+        return $this->repository->delete($request,$id);
+    }
 }

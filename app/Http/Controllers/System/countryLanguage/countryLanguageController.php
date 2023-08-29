@@ -8,9 +8,8 @@ use App\Services\System\CountryService;
 
 class countryLanguageController extends Controller
 {
-    public function __construct(CountryRepository $countryRepository)
+    public function __construct(private readonly CountryRepository $countryRepository)
     {
-        $this->countryRepository = $countryRepository;
     }
 
     public function getLanguages($countryId)

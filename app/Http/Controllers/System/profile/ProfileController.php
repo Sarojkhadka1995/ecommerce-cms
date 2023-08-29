@@ -7,7 +7,7 @@ use App\Services\System\ProfileService;
 
 class ProfileController extends ResourceController
 {
-    public function __construct(ProfileService $profileService)
+    public function __construct(private readonly ProfileService $profileService)
     {
         parent::__construct($profileService);
     }

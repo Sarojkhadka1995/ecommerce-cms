@@ -7,7 +7,7 @@ use App\Services\System\RoleService;
 
 class RoleController extends ResourceController
 {
-    public function __construct(RoleService $roleService)
+    public function __construct(private readonly RoleService $roleService)
     {
         parent::__construct($roleService);
     }

@@ -9,7 +9,7 @@ use Carbon\Carbon;
 
 class LoginLogRepository extends Repository implements LoginLogInterface
 {
-    public function __construct(Loginlogs $loginlogs)
+    public function __construct(private readonly Loginlogs $loginlogs)
     {
         parent::__construct($loginlogs);
     }

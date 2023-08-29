@@ -9,7 +9,7 @@ use App\Services\System\ProfileService;
 
 class PasswordChangeController extends ResourceController
 {
-    public function __construct(PasswordChangeService $passwordChangeService)
+    public function __construct(private readonly PasswordChangeService $passwordChangeService)
     {
         parent::__construct($passwordChangeService);
     }

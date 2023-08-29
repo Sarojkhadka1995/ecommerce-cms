@@ -9,7 +9,7 @@ use App\Repositories\Repository;
 
 class ConfigRepository extends Repository implements ConfigInterface
 {
-  public function __construct(Config $config)
+  public function __construct(private readonly Config $config)
   {
     parent::__construct($config);
   }

@@ -11,7 +11,7 @@ use Config;
 
 class LogRepository extends Repository implements LogInterface
 {
-  public function __construct(Log $log)
+  public function __construct(private readonly Log $log)
   {
     parent::__construct($log);
   }
