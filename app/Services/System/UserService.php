@@ -66,7 +66,6 @@ class UserService extends Service
         return [
             'item' => $user,
             'roles' => $this->roleRepository->getRoles(),
-            'roleUsers' => $this->roleRepository->getByRolePivotRoleUser($id),
         ];
     }
 
