@@ -170,5 +170,10 @@
     "method not allowed": "Method not allowed.",
     "this method is not allowed": "This method is not allowed.",
     "send": "Send",
-    "view audit logs": "View Audit logs"
+    "view audit logs": "View Audit logs",
+    "failed to print logs": "Failed to print logs.",
+    "no records found": "No records found.",
+    "foreach() argument must be of type array|object, string given (view: \/applications\/mamp\/htdocs\/ekcms-laravel\/resources\/views\/system\/loginlogs\/pdfbladephp)": "foreach() argument must be of type array|object, string given (View: \/Applications\/MAMP\/htdocs\/ekcms-laravel\/resources\/views\/system\/loginLogs\/pdf.blade.php)",
+    "undefined variable $data (view: \/applications\/mamp\/htdocs\/ekcms-laravel\/resources\/views\/system\/loginlogs\/pdfbladephp)": "Undefined variable $data (View: \/Applications\/MAMP\/htdocs\/ekcms-laravel\/resources\/views\/system\/loginLogs\/pdf.blade.php)",
+    "no readertype or writertype could be detected make sure you either pass a valid extension to the filename or pass an explicit type": "No ReaderType or WriterType could be detected. Make sure you either pass a valid extension to the filename or pass an explicit type."
 }

@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Model\ApiLog;
+use App\Model\ErrorLog;
+use App\Model\Loginlogs;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
@@ -13,19 +15,20 @@ class DeleteApiLogs extends Command
      *
      * @var string
      */
-    protected $signature = 'delete:apiLogs';
+    protected $signature = 'delete:logs';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Delete API Logs';
+    protected $description = 'Delete (API,Error and Login) Logs';
 
-    public function __construct(ApiLog $apiLog)
+    public function __construct(private readonly ApiLog    $apiLog,
+                                private readonly ErrorLog  $errorLog,
+                                private readonly Loginlogs $loginlog)
     {
         parent::__construct($apiLog);
-        $this->apiLog = $apiLog;
     }
 
     /**
@@ -38,6 +41,8 @@ class DeleteApiLogs extends Command
         $oneYearAgo = Carbon::now()->subYear();
 
         $this->apiLog->where('created_at', '<', $oneYearAgo)->delete();
-        $this->info('Api Logs has been deleted.');
+        $this->errorLog->where('created_at', '<', $oneYearAgo)->delete();
+        $this->loginlog->where('created_at', '<', $oneYearAgo)->delete();
+        $this->info('(API,Error and Login) Logs has been deleted.');
     }
 }

@@ -11,11 +11,9 @@
             <input type="hidden" name="to" id="to" value="{{ Request::get('to') }}">
         </x-slot>
     </x-system.search-form>
-
-    @if (hasPermission($indexUrl . '/login-logs-download', 'get'))
+    @if (hasPermission($indexUrl . '/download-excel', 'get'))
         <a class="btn btn-sm btn-info mr-3 mb-2" type="submit"
-            href="{{ $indexUrl }}/login-logs?from_date={{ Request::get('from_date') }}&to_date={{ Request::get('to_date') }}"
-            name="exportExcel"> {{ translate('Print') }}</a>
+            href="{{ $indexUrl }}/download-excel?from_date={{ Request::get('from_date') }}&to_date={{ Request::get('to_date') }}"> {{ translate('Download Excel') }}</a>
     @endif
 @endsection
 

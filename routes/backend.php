@@ -73,6 +73,11 @@ Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix(), 'middlewar
         Route::resource('/api-logs', 'logs\ApiLogController', ['only' => ['index']]);
         Route::resource('/error-logs', 'logs\ErrorLogController', ['only' => ['index']]);
 
+        Route::get('/login-logs/download-excel', 'logs\LoginLogsController@downloadExcel');
+        Route::get('/api-logs/download-excel', 'logs\ApiLogController@downloadExcel');
+        Route::get('/error-logs/download-excel', 'logs\ErrorLogController@downloadExcel');
+        Route::get('/activity-logs/download-excel', 'logs\LogsController@downloadExcel');
+
         Route::get('/mail-test/create', 'MailTestController@create');
         Route::post('/mail-test', 'MailTestController@sendEmail');
     });
