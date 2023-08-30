@@ -185,8 +185,6 @@ b
 +resources/views/system/auth/login.blade.php,9/4/9412b766e59f873861c8eb5f770b4dbdead19796
 V
 &app/Helper/Ekcms/translationHelper.php,c/8/c89cb4c7e4129bbddac9e990d86c736226634823
-R
-"app/Services/System/LogService.php,c/4/c4a3b5eb243ad65b37a47ecc3ece22d1434ae51f
 U
 %app/Services/System/ConfigService.php,4/d/4d5df6092b9d9b094b2d129457be814838d05c9b
 S
@@ -216,8 +214,6 @@ V
 Z
 *app/Repositories/System/UserRepository.php,9/4/94f88b9d4ac9552ca6fd3e802b3b03c4ca2da0e6
 \
-,app/Repositories/System/ApiLogRepository.php,f/0/f0c3bced2d306c3c5b17eafa686a255f121dd53b
-\
 ,app/Repositories/System/ConfigRepository.php,0/d/0da171898bee77344956424b5571e8db0ad6d389
 ]
 -app/Repositories/System/CountryRepository.php,1/7/17c9412e608696bf94dab3bfd7deaf5dbb529549
@@ -225,10 +221,6 @@ Z
 +app/Repositories/System/EmailRepository.php,1/e/1eb9c5464b0593e538ba2fede68a14538b011626
 ^
 .app/Repositories/System/LanguageRepository.php,5/f/5ffa0e696c9d92017cb3980c7a05a5b6704eb407
-^
-.app/Repositories/System/LoginLogRepository.php,c/7/c74ea025407b1212ab01eae47c3c8460eacd65c1
-Y
-)app/Repositories/System/LogRepository.php,1/f/1ffff775cefa36e724fcc4c590eb52600100304f
 Z
 *app/Repositories/System/MailRepository.php,1/9/1977750d0fd7afa4ed77bf44b2c7dea40e258670
 Z

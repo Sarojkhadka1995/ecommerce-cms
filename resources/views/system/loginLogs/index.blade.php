@@ -5,6 +5,7 @@
 @section('header')
     <x-system.search-form :action="url($indexUrl)">
         <x-slot name="inputs">
+            <x-system.form.form-inline-group :input="['name' => 'keyword', 'label' => 'Search keyword', 'default' => Request::get('keyword')]" />
             <x-system.form.form-inline-group :input="['name' => 'daterange','class' => 'form-control digits','type' => 'text','label' => 'Select Date Range','data-language' => 'true','default' => Request::get('range'),'autoComplete' => 'off',
             ]" />
             <input type="hidden" name="from" id="from" value="{{ Request::get('from') }}">
@@ -13,7 +14,7 @@
     </x-system.search-form>
     @if (hasPermission($indexUrl . '/download-excel', 'get'))
         <a class="btn btn-sm btn-info mr-3 mb-2" type="submit"
-            href="{{ $indexUrl }}/download-excel?from_date={{ Request::get('from_date') }}&to_date={{ Request::get('to_date') }}"> {{ translate('Download Excel') }}</a>
+           href="{{ $indexUrl }}/download-excel?from_date={{ Request::get('from') }}&to_date={{ Request::get('to') }}&keyword={{ Request::get('keyword') }}"> {{ translate('Download Excel') }}</a>
     @endif
 @endsection
 
