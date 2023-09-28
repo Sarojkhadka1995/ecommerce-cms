@@ -77,6 +77,10 @@
         }
     })
 
+    if (localStorage.getItem("cust-dark-theme") == 'dark-only') {
+        $("body").attr("class", "dark-only");
+    }
+
     $(".toggle-button").on('click', function () {
         let sideBarState = localStorage.getItem('sidebarToggle')
         if (sideBarState == 0) localStorage.setItem('sidebarToggle', 1)

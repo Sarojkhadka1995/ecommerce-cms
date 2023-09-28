@@ -124,10 +124,49 @@
                         </svg>
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
-                        <li><a href="{{ route('profile') }}"><i data-feather="user"></i><span>Profile </span></a></li>
-                        <li><a href="{{ route('profile.change-password-form') }}"><i data-feather="user"></i><span>Change Password </span></a>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" class="feather feather-user">
+                                <path
+                                    d="M12 2C9.79086 2 8 3.79086 8 6C8 8.20914 9.79086 10 12 10C14.2091 10 16 8.20914 16 6C16 3.79086 14.2091 2 12 2Z"></path>
+                                <path d="M19 21V19C19 16.2386 15.7614 15 12 15C8.23858 15 5 16.2386 5 19V21"></path>
+                            </svg>
+                            <span>{{ucwords(authUser()->role->name)}}</span>
                         </li>
-                        <li><a href="{{ route('logout') }}"><i data-feather="log-in"> </i><span>Log out</span></a></li>
+                        <li><a href="{{ route('profile') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round" class="feather feather-edit">
+                                    <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path>
+                                    <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
+                                </svg>
+                                <span>Update Profile </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('profile.change-password-form') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round" class="feather feather-key-lock">
+                                    <path
+                                        d="M9 2V4M7 4H11M5 4H3M21 10V22H3V10M18 10V8C18 5.79 16.21 4 14 4 11.79 4 10 5.79 10 8V10M10 10H18M12 14V16M15 16H13M12 16a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path>
+                                </svg>
+                                <span>Change Password</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('logout') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round" class="feather feather-log-in">
+                                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                                    <polyline points="10 17 15 12 10 7"></polyline>
+                                    <line x1="15" y1="12" x2="3" y2="12"></line>
+                                </svg>
+                                <span>Log out</span>
+                            </a>
+                        </li>
                     </ul>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf

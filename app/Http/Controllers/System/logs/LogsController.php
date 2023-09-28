@@ -7,7 +7,7 @@ use App\Services\System\LogService;
 
 class LogsController extends ResourceController
 {
-    public function __construct(LogService $logService)
+    public function __construct(private readonly LogService $logService)
     {
         parent::__construct($logService);
     }
@@ -20,5 +20,10 @@ class LogsController extends ResourceController
     public function viewFolder()
     {
         return 'system.log';
+    }
+
+    public function moduleToTitle()
+    {
+        return 'Audit Logs';
     }
 }

@@ -12,17 +12,11 @@ use File;
 
 class LanguageService extends Service
 {
-    protected $languageRepository;
-    protected $countryRepository;
-    protected $countryService;
-
-    public function __construct(LanguageRepository $languageRepository,
-                                CountryService     $countryService,
-                                CountryRepository  $countryRepository)
+    public function __construct(private readonly LanguageRepository $languageRepository,
+                                private readonly CountryService     $countryService,
+                                private readonly CountryRepository  $countryRepository)
     {
-        $this->repository = $languageRepository;
-        $this->countryRepository = $countryRepository;
-        $this->countryService = $countryService;
+        parent::__construct($languageRepository);
     }
 
     public function createPageData($request)

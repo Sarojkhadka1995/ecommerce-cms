@@ -17,9 +17,8 @@ class Language
      * @param  \Closure  $next
      * @return mixed
      */
-    public function __construct(LanguageService $languageService)
+    public function __construct(private readonly LanguageService $languageService)
     {
-        $this->languageService = $languageService;
     }
 
     public function handle($request, Closure $next)

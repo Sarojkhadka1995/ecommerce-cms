@@ -1,7 +1,7 @@
 @if(isset($breadcrumbs))
     <ol class="breadcrumb">
         @foreach($breadcrumbs as $breadcrumb)
-            <li class="breadcrumb-item {{ isset($breadcrumb['active']) ? 'active' : '' }}">
+            <li class="breadcrumb-item {{ isset($breadcrumb['active']) && $breadcrumb['active']=='true' ? 'active' : '' }}">
                 @if(isset($breadcrumb['active']) && $breadcrumb['active'])
                     {{ translate($breadcrumb['title']) }}
                 @else

@@ -117,7 +117,7 @@ class ResourceController extends Controller
     {
         return [
             'title' => ucwords('Dashboard'),
-            'link' => '/' . getSystemPrefix() . '/' . translate('home'),
+            'link' => '/' . getSystemPrefix() . '/home',
         ];
     }
 

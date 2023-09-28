@@ -11,7 +11,7 @@ use Carbon\Carbon;
 
 class ApiLogRepository extends Repository implements LogInterface
 {
-    public function __construct(ApiLog $log)
+    public function __construct(private readonly ApiLog $log)
     {
         parent::__construct($log);
     }

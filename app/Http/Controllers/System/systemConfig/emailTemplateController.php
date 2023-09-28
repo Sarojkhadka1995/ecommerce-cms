@@ -7,7 +7,7 @@ use App\Services\System\EmailTemplateService;
 
 class emailTemplateController extends ResourceController
 {
-    public function __construct(EmailTemplateService $emailtemplateService)
+    public function __construct(private readonly EmailTemplateService $emailtemplateService)
     {
         parent::__construct($emailtemplateService);
     }

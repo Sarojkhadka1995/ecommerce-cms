@@ -6,9 +6,19 @@
 @section('header')
 <x-system.search-form :action="url($indexUrl)">
     <x-slot name="inputs">
-        <x-system.form.form-inline-group :input="['name'=>'range','class'=>'daterange','type'=>'text', 'label'=>'Select Date Range','default'=> Request::get('range'),'autoComplete'=>'off']" />
-        <input type="hidden" name="from" id="from-date" value="{{Request::get('from')}}">
-        <input type="hidden" name="to" id="to-date" value="{{Request::get('to')}}">
+        <x-system.form.form-inline-group :input="['name' => 'keyword', 'label' => 'Search keyword', 'default' => Request::get('keyword')]" />
+
+        <x-system.form.form-inline-group :input="[
+                'name' => 'daterange',
+                'class' => 'form-control digits',
+                'type' => 'text',
+                'label' => 'Select Date Range',
+                'data-language' => 'true',
+                'default' => Request::get('range'),
+                'autoComplete' => 'off',
+            ]" />
+        <input type="hidden" name="from" id="from" value="{{ Request::get('from') }}">
+        <input type="hidden" name="to" id="to" value="{{ Request::get('to') }}">
     </x-slot>
 </x-system.search-form>
 @endsection
@@ -27,7 +37,7 @@
 @php $pageIndex = pageIndex($items); @endphp
 @foreach($items as $key=>$item)
 <tr>
-    @php 
+    @php
     $oldValues = $item->oldValues($item->properties);
     $newValues = $item->newValues($item->properties);
     @endphp

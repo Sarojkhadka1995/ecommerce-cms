@@ -2,26 +2,29 @@
 
 namespace App\Services\System;
 
+use App\Exceptions\CustomGenericException;
+use App\Exports\ApiLogExport;
 use App\Repositories\System\ApiLogRepository;
-use App\Repositories\System\LogRepository;
 use App\Services\Service;
+use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ApiLogService extends Service
 {
-    public function __construct(ApiLogRepository $logRepository)
+    public function __construct(private readonly ApiLogRepository $logRepository)
     {
-        $this->logRepository = $logRepository;
+        parent::__construct($logRepository);
     }
 
-    public function getAllData($data, $selectedColumns = [], $pagination = true)
+    public function downloadExcel($request)
     {
-        return $this->logRepository->getAllData($data);
-    }
+        $data = $this->repository->getAllData($request, [], false);
 
-    public function indexPageData($data)
-    {
-        return [
-            'items' => $this->getAllData($data),
-        ];
+        if ($data->isEmpty()) {
+            throw new CustomGenericException('No records found.');
+        }
+        $fileName = 'apiLogs' . Carbon::now()->format('Ymd') . '.xlsx';
+
+        return Excel::download(new ApiLogExport($data), $fileName);
     }
 }

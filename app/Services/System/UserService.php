@@ -16,16 +16,16 @@ use Illuminate\Support\Facades\Hash;
 
 class UserService extends Service
 {
-    public function __construct(UserRepository $userRepository, RoleRepository $roleRepository)
+    public function __construct(UserRepository $userRepository,
+                               public RoleRepository $roleRepository)
     {
-        $this->userRepository = $userRepository;
-        $this->roleRepository = $roleRepository;
+        parent::__construct($userRepository);
     }
 
     public function indexPageData($request)
     {
         return [
-            'items' => $this->userRepository->getAllData($request),
+            'items' => $this->repository->getAllData($request),
             'roles' => $this->roleRepository->getRoles(),
         ];
     }
@@ -46,9 +46,9 @@ class UserService extends Service
             } else {
                 unset($data['password']);
             }
-            $token = $this->userRepository->generateToken(24);
+            $token = $this->repository->generateToken(24);
             $data['token'] = $token;
-            $user = $this->userRepository->create($data);
+            $user = $this->repository->create($data);
             try {
                 event(new UserCreated($user, $token));
                 return $user;
@@ -62,11 +62,10 @@ class UserService extends Service
 
     public function editPageData($request, $id)
     {
-        $user = $this->userRepository->itemByIdentifier($id);
+        $user = $this->repository->itemByIdentifier($id);
         return [
             'item' => $user,
             'roles' => $this->roleRepository->getRoles(),
-            'roleUsers' => $this->roleRepository->getByRolePivotRoleUser($id),
         ];
     }
 
@@ -75,12 +74,12 @@ class UserService extends Service
         try {
             DB::beginTransaction();
             $data = $request->except('_token');
-            $user = $this->userRepository->itemByIdentifier($id);
+            $user = $this->repository->itemByIdentifier($id);
             if (isset($request->role_id) && ($user->id == 1 && $request->role_id != 1)) {
                 throw new RoleNotChangeableException('The role of the specific user cannot be changed.');
             }
             unset($data['role_id']);
-            $this->userRepository->update($user, $data);
+            $this->repository->update($user, $data);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -93,8 +92,8 @@ class UserService extends Service
         if ($id == 1) {
             throw new NotDeletableException();
         }
-        $user = $this->userRepository->itemByIdentifier($id);
-        $this->userRepository->delete($request, $id);
+        $user = $this->repository->itemByIdentifier($id);
+        $this->repository->delete($request, $id);
         return $user;
 
     }
@@ -106,7 +105,7 @@ class UserService extends Service
         } catch (\Exception $e) {
             throw new EncryptedPayloadException('Invalid encrypted data');
         }
-        $user = $this->userRepository->findByEmailAndToken($email, $decryptedToken);
+        $user = $this->repository->findByEmailAndToken($email, $decryptedToken);
 
         if (!isset($user)) {
             throw new ResourceNotFoundException("User doesn't exist in our system.");
@@ -122,16 +121,16 @@ class UserService extends Service
 
     public function findByEmail($email)
     {
-        return $this->userRepository->findByEmail($email);
+        return $this->repository->findByEmail($email);
     }
 
     public function resetPassword($request)
     {
-        return $this->userRepository->resetPassword($request);
+        return $this->repository->resetPassword($request);
     }
 
     public function generateToken($length)
     {
-        return $this->userRepository->generateToken($length);
+        return $this->repository->generateToken($length);
     }
 }

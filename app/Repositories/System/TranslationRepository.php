@@ -9,9 +9,8 @@ use App\Repositories\Repository;
 
 class TranslationRepository extends Repository implements TranslationInterface
 {
-  public function __construct(Locale $locale)
+  public function __construct(private readonly Locale $locale)
   {
-
     parent::__construct($locale);
   }
 

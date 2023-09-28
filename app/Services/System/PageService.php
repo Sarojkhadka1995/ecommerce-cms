@@ -14,7 +14,6 @@ class PageService
 
     public function __construct(PageRepository $pageRepository)
     {
-
         $this->pageRepository = $pageRepository;
     }
 

@@ -9,7 +9,7 @@ class CountryService extends Service
 {
     public function __construct(CountryRepository $countryRepository)
     {
-        $this->countryRepository = $countryRepository;
+        parent::__construct($countryRepository);
     }
 
     public function extractKeyValuePair($countries, $key = 'id', $value = 'name')

@@ -9,7 +9,7 @@ use App\Repositories\Repository;
 
 class CountryRepository extends Repository implements CountryInterface
 {
-  public function __construct(Country $country)
+  public function __construct(private readonly Country $country)
   {
     parent::__construct($country);
   }

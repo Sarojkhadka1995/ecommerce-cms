@@ -20,6 +20,10 @@
             <input type="hidden" name="to" id="to" value="{{ Request::get('to') }}">
         </x-slot>
     </x-system.search-form>
+    @if (hasPermission($indexUrl . '/download-excel', 'get'))
+        <a class="btn btn-sm btn-info mr-3 mb-2" type="submit"
+           href="{{ $indexUrl }}/download-excel?from_date={{ Request::get('from') }}&to_date={{ Request::get('to') }}&keyword={{ Request::get('keyword') }}"> {{ translate('Download Excel') }}</a>
+    @endif
 @endsection
 
 @section('table-heading')

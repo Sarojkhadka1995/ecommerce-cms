@@ -8,7 +8,7 @@ use App\Services\System\UserService;
 
 class UserController extends ResourceController
 {
-    public function __construct(UserService $userService)
+    public function __construct(private readonly UserService $userService)
     {
         parent::__construct($userService);
     }

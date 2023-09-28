@@ -15,7 +15,7 @@ class Service
      */
     protected $model;
 
-    public function __construct(Repository $repository)
+    public function __construct($repository)
     {
         $this->repository = $repository;
     }

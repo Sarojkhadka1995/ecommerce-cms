@@ -8,15 +8,18 @@ use App\Http\Requests\system\uploadExcel;
 use App\Imports\TranslationImport;
 use App\Model\Language;
 use App\Model\Locale;
+use App\Repositories\System\LanguageRepository;
 use App\Services\System\TranslationService;
 use Illuminate\Http\Request;
 
 class TranslationController extends ResourceController
 {
-    public function __construct(TranslationService $translationService)
+    public function __construct(private readonly TranslationService $translationService,
+                                private readonly LanguageRepository $languageRepository)
     {
         parent::__construct($translationService);
     }
+
     public function moduleName()
     {
         return 'translations';
@@ -52,7 +55,8 @@ class TranslationController extends ResourceController
     {
         $translate = [];
         $filename = 'translation.xls';
-        $langShortCodes = Language::pluck('language_code')->toArray();
+
+        $langShortCodes = $this->languageRepository->pluckLanguages();
 
         foreach ($langShortCodes as $lang) {
             $jsonFileName = "{$lang}.json";
@@ -98,7 +102,7 @@ class TranslationController extends ResourceController
                 return back()->withErrors(['alert-danger' => 'The file does not contain any translation content']);
             }
             $heading = $this->removeSpacesHeading($uploadedData[0][0]);
-            $langShortCodes = Language::pluck('language_code')->toArray();
+            $langShortCodes = $this->languageRepository->pluckLanguages();
 
             array_unshift($langShortCodes, 'key');
 
@@ -129,7 +133,7 @@ class TranslationController extends ResourceController
 
     public function parseAndUploadData($data, $heading)
     {
-        $langShortCodes = Language::pluck('language_code')->toArray();
+        $langShortCodes = $this->languageRepository->pluckLanguages();
         $directory = resource_path('lang');
         if (!is_dir($directory)) {
             \File::makeDirectory($directory, $mode = 0755, true);
@@ -153,7 +157,7 @@ class TranslationController extends ResourceController
 
                         $jsonContentString = json_encode($mergedTranslations, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
                         file_put_contents($jsonFilePath, $jsonContentString);
-                    }else{
+                    } else {
                         $jsonContentString = json_encode($filteredData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
                         file_put_contents($jsonFilePath, $jsonContentString);
                     }

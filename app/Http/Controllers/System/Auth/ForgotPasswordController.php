@@ -30,9 +30,8 @@ class ForgotPasswordController extends Controller
 
     use SendsPasswordResetEmails, CustomThrottleRequest;
 
-    public function __construct(UserService $user)
+    public function __construct(private readonly UserService $user)
     {
-        $this->user = $user;
     }
 
     public function showRequestForm()

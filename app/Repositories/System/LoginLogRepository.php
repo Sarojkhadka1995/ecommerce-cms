@@ -9,7 +9,7 @@ use Carbon\Carbon;
 
 class LoginLogRepository extends Repository implements LoginLogInterface
 {
-    public function __construct(Loginlogs $loginlogs)
+    public function __construct(private readonly Loginlogs $loginlogs)
     {
         parent::__construct($loginlogs);
     }
@@ -20,6 +20,16 @@ class LoginLogRepository extends Repository implements LoginLogInterface
         if (count($selectedColumns) > 0) {
             $query->select($selectedColumns);
         }
+
+        if (isset($data->keyword)) {
+            $query->where(function ($q) use ($data) {
+                $q->orwhere('ip', 'ILIKE', '%' . $data->keyword . '%')
+                    ->orwhereHas('user', function ($qu) use ($data) {
+                        $qu->where('username', 'ILIKE', '%' . $data->keyword . '%');
+                    });
+            });
+        }
+
         if (isset($data->from) && isset($data->to)) {
             $from = Carbon::createFromFormat('Y-m-d H:i:s', $data->from . ' 00:00:00');
             $to = Carbon::createFromFormat('Y-m-d H:i:s', $data->to . ' 23:59:00');

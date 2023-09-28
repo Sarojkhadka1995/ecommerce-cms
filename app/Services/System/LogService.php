@@ -9,11 +9,11 @@ class LogService extends Service
 {
     public function __construct(LogRepository $logRepository)
     {
-        $this->logRepository = $logRepository;
+        parent::__construct($logRepository);
     }
     public function getAllData($data, $selectedColumns = [], $pagination = true)
     {
-        return $this->logRepository->getAllData($data);
+        return $this->repository->getAllData($data);
     }
     public function indexPageData($data)
     {

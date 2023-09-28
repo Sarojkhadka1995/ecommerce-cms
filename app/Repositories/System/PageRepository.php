@@ -9,12 +9,9 @@ use Illuminate\Support\Facades\Storage;
 
 class PageRepository extends Repository implements PageRepositoryInterface
 {
-    protected $page;
-
-    public function __construct(Page $page)
+    public function __construct(private readonly Page $page)
     {
         parent::__construct($page);
-        $this->page = $page;
     }
 
 

@@ -15,12 +15,12 @@ class ConfigService extends Service
 
     public function __construct(ConfigRepository $configRepository)
     {
-        $this->configRepository = $configRepository;
+        parent::__construct($configRepository);
     }
 
     public function getAllData($data, $selectedColumns = [], $pagination = true)
     {
-        return $this->configRepository->getAllData($data);
+        return $this->repository->getAllData($data);
     }
 
     //config type key value pair
@@ -48,14 +48,14 @@ class ConfigService extends Service
         if (strtolower($request->type) == 'file') {
             $data['value'] = $this->uploadImage($this->dir, 'value');
         }
-        return $this->configRepository->create($data);
+        return $this->repository->create($data);
     }
 
     public function update($request, $id)
     {
         $data = $request->except('_token');
 
-        $config = $this->configRepository->itemByIdentifier($id);
+        $config = $this->repository->itemByIdentifier($id);
         $value = str_replace(' ', '_', $config->label);
         $data['value'] = $data[$value];
         unset($data[$value]);
@@ -65,21 +65,21 @@ class ConfigService extends Service
             $data['value'] = $this->uploadConfigImage($this->dir, $data['value']);
         }
 
-        $this->configRepository->update($config, $data);
+        $this->repository->update($config, $data);
         setConfigCookie();
 
-        return $config = $this->configRepository->itemByIdentifier($id);
+        return $config = $this->repository->itemByIdentifier($id);
     }
 
     public function delete($request, $id)
     {
-        $config = $this->configRepository->itemByIdentifier($id);
+        $config = $this->repository->itemByIdentifier($id);
         if (in_array($id, [1, 2, 3])) {
             throw new NotDeletableException;
         }
         if (strtolower($config->type) == 'file') {
             $this->removeImage($this->dir, $config->value);
         }
-        return $this->configRepository->delete($config, $id);
+        return $this->repository->delete($config, $id);
     }
 }
