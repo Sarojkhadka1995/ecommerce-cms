@@ -21,14 +21,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'username', 'token', 'password_resetted', 'expiry_datetime', 'is_2fa_enabled', 'two_fa_expiry_time'
+        'name', 'email', 'password', 'username', 'token', 'password_resetted', 'expiry_datetime','role_id', 'is_2fa_enabled', 'two_fa_expiry_time','contact','image'
     ];
 
     protected $guarded = [
         'id',
     ];
 
-    protected static $logAttributes = ['name', 'email', 'username', 'is_2fa_enabled'];
+    protected static $logAttributes = ['name', 'email', 'username', 'is_2fa_enabled','contact'];
 
     protected static $ignoreChangedAttributes = ['password', 'password_resetted', 'token', 'remember_token', 'updated_at'];
 
@@ -40,14 +40,16 @@ class User extends Authenticatable
     {
         return logMessage('User', $this->id, $eventName);
     }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->setDescriptionForEvent(fn (string $eventName) => $this->getDescriptionForEvent($eventName))
-        ->useLogName(self::$logName)
-        ->logOnly(self::$logAttributes)
-        ->logOnlyDirty();
+            ->setDescriptionForEvent(fn(string $eventName) => $this->getDescriptionForEvent($eventName))
+            ->useLogName(self::$logName)
+            ->logOnly(self::$logAttributes)
+            ->logOnlyDirty();
     }
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -94,13 +96,22 @@ class User extends Authenticatable
             $title = 'Set Password';
             $key = 'set-password';
         }
-        $link = ''.Config::get('constants.URL').'/'.getSystemPrefix().'/'.$key.'/'.$this->email.'/'.$token.'';
-
+        $link = '' . Config::get('constants.URL') . '/' . getSystemPrefix() . '/' . $key . '/' . $this->email . '/' . $token . '';
         return '<a href=' . $link . '>' . $title . '</a>';
     }
 
-    public function roles()
+    public function role()
     {
-        return $this->belongsToMany(Role::class, 'role_user');
+        return $this->belongsTo(Role::class, 'role_id', 'id');
+    }
+
+    public function setUsernameAttribute($value)
+    {
+        $this->attributes['username'] = strtolower($value);
+    }
+
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = strtolower($value);
     }
 }

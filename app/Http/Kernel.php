@@ -2,7 +2,6 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\SessionExpired;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -24,6 +23,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\XFrameHeadersMiddleware::class,
         \App\Http\Middleware\SecureHeadersMiddleware::class,
         \App\Http\Middleware\RevalidateBackHistory::class,
+        \App\Http\Middleware\ErrorLoggingMiddleware::class
     ];
 
     /**
@@ -45,6 +45,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\Api\LogApiRequests::class,
         ],
     ];
 

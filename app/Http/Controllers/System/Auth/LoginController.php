@@ -6,6 +6,8 @@ namespace App\Http\Controllers\System\Auth;
 use App\Exceptions\CustomGenericException;
 use App\Http\Controllers\Controller;
 use App\Mail\system\TwoFAEmail;
+use App\Model\Language;
+use App\Model\Locale;
 use App\Model\Loginlogs;
 use App\Services\System\UserService;
 use App\Traits\CustomThrottleRequest;
@@ -55,11 +57,15 @@ class LoginController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function showLoginForm()
+    public function showLoginForm(Request $request)
     {
         if (Auth::check()) {
             return redirect('/' . getSystemPrefix() . '/home');
         } else {
+            if ($request->has('redirect')) {
+                $redirectUrl = $request->redirect;
+                return view('system.auth.login', compact('redirectUrl'));
+            }
             return view('system.auth.login');
         }
     }
@@ -80,7 +86,7 @@ class LoginController extends Controller
             $user = $this->loginType($request);
 
             if (Auth::attempt($user)) {
-                setRoleCache(authUser()->load('roles'));
+                setRoleCache(authUser()->load('role'));
                 setConfigCookie();
                 $this->createLoginLog($request);
 
@@ -154,9 +160,15 @@ class LoginController extends Controller
             return $response;
         }
 
+      //  $this->createOrUpdateLanguageTranslationsDB();
+
         if (authUser()->is_2fa_enabled) {
             $this->twoFa();
             return redirect('/' . getSystemPrefix() . '/login/verify');
+        }
+
+        if ($request->has('redirect')) {
+            return redirect('/' . getSystemPrefix() . $request->redirect);
         }
 
         return redirect('/' . getSystemPrefix() . '/home');
@@ -192,5 +204,63 @@ class LoginController extends Controller
         } catch (\Exception $e) {
             throw new CustomGenericException($e->getMessage());
         }
+    }
+
+
+    function createOrUpdateLanguageTranslationsDB()
+    {
+        $arrayT = [];
+        $directory = resource_path('lang');
+        if (!is_dir($directory)) {
+            \File::makeDirectory($directory, $mode = 0755, true);
+        }
+
+        $langShortCodes = Language::pluck('language_code')->toArray();
+
+        foreach ($langShortCodes as $lang) {
+            $jsonFileName = "{$lang}.json";
+            $jsonFilePath = "{$directory}/{$jsonFileName}";
+            if (file_exists($jsonFilePath)) {
+                $existingContent = file_get_contents($jsonFilePath);
+                $arrayT[$lang] = json_decode($existingContent, true);
+            }
+        }
+
+        $mergedArray = [];
+
+        foreach ($arrayT[$langShortCodes[0]] as $key => $value) {
+            $translations = [];
+
+            foreach ($langShortCodes as $language) {
+                $translations[$language] = $arrayT[$language][$key];
+            }
+
+            $mergedArray[$key] = $translations;
+        }
+
+        foreach ($mergedArray as $lanKey => $value) {
+            $item = Locale::where('key', $lanKey)->first();
+
+            if (!$item) {
+                Locale::create([
+                    'key' => $lanKey,
+                    'text' => $value,
+                ]);
+            }
+        }
+
+        return $arrayT;
+    }
+
+
+    public
+    function formatText($data, $heading)
+    {
+        $arrayT = [];
+        foreach ($data as $key => $value) {
+            $arrayT[$heading[$key]] = $value;
+        }
+        dd($arrayT);
+        return $arrayT;
     }
 }

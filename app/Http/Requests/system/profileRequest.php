@@ -3,7 +3,9 @@
 namespace App\Http\Requests\system;
 
 use App\Rules\system\checkOldPassword;
+use App\Rules\system\UniqueCaseSenstiveValidation;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class profileRequest extends FormRequest
 {
@@ -22,12 +24,21 @@ class profileRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
+//        return [
+//            'old_password' => ['required', new checkOldPassword],
+//            'password' => 'required|confirmed|min:6',
+//            'password_confirmation' => 'required',
+//        ];
+        $id = $request->id; // Assuming your route parameter is named 'page'
+
         return [
-            'old_password' => ['required', new checkOldPassword],
-            'password' => 'required|confirmed|min:6',
-            'password_confirmation' => 'required',
+            'name' => 'required|string|max:255',
+            'username' => ['required', 'string', 'max:255', new UniqueCaseSenstiveValidation('users', 'username', $id)],
+            'email' => ['required', 'string', 'max:255', new UniqueCaseSenstiveValidation('users', 'email', $id)],
+            'contact' => ['required', 'numeric', 'digits:10', new UniqueCaseSenstiveValidation('users', 'contact', $id)],
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

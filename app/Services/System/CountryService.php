@@ -9,7 +9,7 @@ class CountryService extends Service
 {
     public function __construct(CountryRepository $countryRepository)
     {
-        $this->countryRepository = $countryRepository;
+        parent::__construct($countryRepository);
     }
 
     public function extractKeyValuePair($countries, $key = 'id', $value = 'name')
@@ -18,7 +18,6 @@ class CountryService extends Service
         foreach ($countries as $country) {
             $countriesPair[$country[$key]] = $country[$value];
         }
-
         return $countriesPair;
     }
 }

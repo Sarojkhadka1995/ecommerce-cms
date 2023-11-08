@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class PageController extends ResourceController
 {
-     public function __construct(PageService $pageService)
+     public function __construct(private readonly PageService $pageService)
     {
         parent::__construct($pageService);
     }

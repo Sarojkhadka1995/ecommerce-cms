@@ -11,7 +11,7 @@ class EmailTemplate extends Model
     use LogsActivity;
 
     protected $fillable = [
-        'title', 'code', 'from',
+        'title', 'code', 'from','placeholders'
     ];
 
     protected static $logAttributes = ['title', 'code', 'from'];
@@ -29,13 +29,19 @@ class EmailTemplate extends Model
     {
         return $this->hasMany(EmailTemplateTranslation::class, 'email_template_id', 'id');
     }
+
+    public function emailTranslationWithLocale()
+    {
+        return $this->hasOne(EmailTemplateTranslation::class, 'email_template_id', 'id')->where('language_code', app()->getLocale());
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->setDescriptionForEvent(fn (string $eventName) => $this->getDescriptionForEvent($eventName))
-        ->useLogName(self::$logName)
-        ->logOnly(self::$logAttributes)
-        ->logOnlyDirty();
+            ->setDescriptionForEvent(fn(string $eventName) => $this->getDescriptionForEvent($eventName))
+            ->useLogName(self::$logName)
+            ->logOnly(self::$logAttributes)
+            ->logOnlyDirty();
     }
 
     public function getContentByLanguage($language_code = 'en', $key = null)

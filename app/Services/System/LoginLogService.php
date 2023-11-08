@@ -2,25 +2,30 @@
 
 namespace App\Services\System;
 
+use App\Exceptions\CustomGenericException;
+use App\Exports\LoginLogExport;
 use App\Repositories\System\LoginLogRepository;
 use App\Services\Service;
+use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+use \PDF;
 
 class LoginLogService extends Service
 {
-    public function __construct(LoginLogRepository $loginLogRepository)
+    public function __construct(private readonly LoginLogRepository $loginLogRepository)
     {
-        $this->loginLogRepository = $loginLogRepository;
+        parent::__construct($loginLogRepository);
     }
 
-    public function getAllData($data, $selectedColumns = [], $pagination = true)
+    public function downloadExcel($request)
     {
-        return $this->loginLogRepository->getAllData($data);
-    }
+        $data = $this->repository->getAllData($request, [], false);
 
-    public function indexPageData($data)
-    {
-        return [
-            'items' => $this->getAllData($data),
-        ];
+        if ($data->isEmpty()) {
+            throw new CustomGenericException('No records found.');
+        }
+        $fileName = 'loginLogs' . Carbon::now()->format('Ymd') . '.xlsx';
+
+        return Excel::download(new LoginLogExport($data), $fileName);
     }
 }

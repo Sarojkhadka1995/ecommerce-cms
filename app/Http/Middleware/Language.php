@@ -17,9 +17,8 @@ class Language
      * @param  \Closure  $next
      * @return mixed
      */
-    public function __construct(LanguageService $languageService)
+    public function __construct(private readonly LanguageService $languageService)
     {
-        $this->languageService = $languageService;
     }
 
     public function handle($request, Closure $next)
@@ -31,6 +30,7 @@ class Language
         } else {
             $locale = Config::get('constants.DEFAULT_LOCALE');
         }
+
         app()->setlocale($locale);
         View::share('globalLocale', $locale);
 

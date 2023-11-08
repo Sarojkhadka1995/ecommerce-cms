@@ -28,11 +28,9 @@
     <td>{{SN($pageIndex, $key)}}</td>
     <td>{{ $item->name }}</td>
     <td>
-        @foreach($item->roles as $role)
-        <li><a href="/{{PREFIX}}/roles?keyword={{$role->name ?? 'N/A'}}" class="badge badge-secondary">
-                {{ $role->name ?? 'N/A' }}
-            </a></li>
-        @endforeach
+        <a href="{{ url('/system/roles?keyword='. $item->role->name) }}" class="badge badge-secondary">
+            {{ $item->role->name }}
+        </a>
     </td>
     <td>
         @include('system.partials.editButton')

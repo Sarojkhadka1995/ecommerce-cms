@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Cookie;
 
 class LanguageController extends ResourceController
 {
-    public function __construct(LanguageService $languageService)
+    public function __construct(private readonly LanguageService $languageService)
     {
         parent::__construct($languageService);
     }

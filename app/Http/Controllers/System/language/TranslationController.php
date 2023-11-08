@@ -7,15 +7,22 @@ use App\Http\Controllers\System\ResourceController;
 use App\Http\Requests\system\uploadExcel;
 use App\Imports\TranslationImport;
 use App\Model\Language;
+use App\Model\Locale;
+use App\Repositories\System\LanguageRepository;
 use App\Services\System\TranslationService;
 use Illuminate\Http\Request;
-use Spatie\TranslationLoader\LanguageLine;
 
 class TranslationController extends ResourceController
 {
-    public function __construct(TranslationService $translationService)
+    public function __construct(private readonly TranslationService $translationService,
+                                private readonly LanguageRepository $languageRepository)
     {
         parent::__construct($translationService);
+    }
+
+    public function moduleName()
+    {
+        return 'translations';
     }
 
     public function storeValidationRequest()
@@ -23,10 +30,6 @@ class TranslationController extends ResourceController
         return 'App\Http\Requests\system\translationRequest';
     }
 
-    public function moduleName()
-    {
-        return 'translations';
-    }
 
     public function viewFolder()
     {
@@ -48,47 +51,69 @@ class TranslationController extends ResourceController
         return response()->download($file_path);
     }
 
-    public function downloadExcel(Request $request, $group)
+    public function downloadExcel(Request $request)
     {
-        if ($group == 'frontend') {
-            $filename = 'frontend.xls';
-        } else {
-            $filename = 'backend.xls';
+        $translate = [];
+        $filename = 'translation.xls';
+
+        $langShortCodes = $this->languageRepository->pluckLanguages();
+
+        foreach ($langShortCodes as $lang) {
+            $jsonFileName = "{$lang}.json";
+            $jsonFilePath = resource_path('lang') . '/' . $jsonFileName;
+
+            if (file_exists($jsonFilePath)) {
+                $existingContent = file_get_contents($jsonFilePath);
+                $existingTranslations = json_decode($existingContent, true);
+                $translate[$lang] = $existingTranslations;
+            }
+        }
+        // Initialize the new array
+        $newArray = [];
+
+// Iterate over each language
+        foreach ($translate as $languageCode => $translations) {
+            // Iterate over each translation key
+            foreach ($translations as $key => $translation) {
+                // Add the translation to the new array
+                if (!isset($newArray[$key])) {
+                    $newArray[$key] = [];
+                }
+                $newArray[$key][$languageCode] = $translation;
+            }
         }
 
-        return \Excel::download(new TranslationExport($group), $filename);
+        return \Excel::download(new TranslationExport($newArray), $filename);
     }
 
-    public function uploadExcel(uploadExcel $request, $group)
+    public function uploadExcel(uploadExcel $request)
     {
         $file = $request->excel_file;
         $fileExtension = $file->getClientOriginalExtension();
-        if (! in_array($fileExtension, ['xlsx', 'xls'])) {
+        if (!in_array($fileExtension, ['xlsx', 'xls'])) {
             return back()->withErrors(['alert-danger' => 'The file type must be xls or xlsx!']);
         }
-        if (! in_array($group, ['frontend', 'backend'])) {
-            return back()->withErrors(['alert-danger' => 'Please select the valid group.']);
-        }
+
         try {
-            $contents = \Excel::import(new TranslationImport($group), $file);
+            $contents = \Excel::import(new TranslationImport(), $file);
             $uploadedData = $contents->toArray($contents, $file);
 
             if (count($uploadedData[0]) <= 1) {
                 return back()->withErrors(['alert-danger' => 'The file does not contain any translation content']);
             }
             $heading = $this->removeSpacesHeading($uploadedData[0][0]);
-            $langShortCodes = Language::where('group', $group)->pluck('language_code')->toArray();
-            array_push($langShortCodes, 'key');
+            $langShortCodes = $this->languageRepository->pluckLanguages();
+
+            array_unshift($langShortCodes, 'key');
 
             $checkValid = array_diff($heading, $langShortCodes);
 
             if (count($checkValid) > 0) {
                 return back()->withErrors(['alert-danger' => 'Invalid translation content or the provided language may not be available.']);
             }
-
             unset($uploadedData[0][0]); // removing header content from file
 
-            $this->parseAndUploadData($uploadedData, $heading, $group);
+            $this->parseAndUploadData($uploadedData, $heading);
 
             return back()->withErrors(['alert-success' => 'The translations successfully uploaded.']);
         } catch (\Exception $e) {
@@ -106,22 +131,53 @@ class TranslationController extends ResourceController
         return $removed;
     }
 
-    public function parseAndUploadData($data, $heading, $group)
+    public function parseAndUploadData($data, $heading)
     {
+        $langShortCodes = $this->languageRepository->pluckLanguages();
+        $directory = resource_path('lang');
+        if (!is_dir($directory)) {
+            \File::makeDirectory($directory, $mode = 0755, true);
+        }
+        foreach ($langShortCodes as $lang) {
+            $jsonFileName = "{$lang}.json";
+            $jsonFilePath = "{$directory}/{$jsonFileName}";
+
+            if (file_exists($jsonFilePath) && in_array($lang, $heading)) {
+                $existingContent = file_get_contents($jsonFilePath);
+                $existingTranslations = json_decode($existingContent, true);
+
+                $filteredTrans = $this->getTranslation($heading, $lang, $data[0]);
+
+                $filteredData = [];
+                foreach ($filteredTrans as $key => $translation) {
+                    if (isset($existingTranslations[$key])) {
+                        $filteredData[$key] = $translation;
+
+                        $mergedTranslations = array_merge($existingTranslations, $filteredData);
+
+                        $jsonContentString = json_encode($mergedTranslations, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                        file_put_contents($jsonFilePath, $jsonContentString);
+                    } else {
+                        $jsonContentString = json_encode($filteredData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                        file_put_contents($jsonFilePath, $jsonContentString);
+                    }
+                }
+            }
+        }
+
         $arrayT = [];
 
         foreach ($data[0] as $key => $value) {
             $word = strtolower(trim(str_replace('.', '', $value[0])));
-            $lang = LanguageLine::where('group', $group)->where('key', $word)->first();
+            $lang = Locale::where('key', $word)->first();
             $updated = $this->formatText($value, $heading);
             if (isset($lang) || $lang !== null) {
                 $lang->update([
                     'text' => $updated,
                 ]);
             } else {
-                LanguageLine::create([
+                Locale::create([
                     'key' => $word,
-                    'group' => $group,
                     'text' => $updated,
                 ]);
             }
@@ -130,7 +186,8 @@ class TranslationController extends ResourceController
         return $arrayT;
     }
 
-    public function formatText($data, $heading)
+    public
+    function formatText($data, $heading)
     {
         unset($data[0]); // removing key field
         $arrayT = [];
@@ -139,5 +196,28 @@ class TranslationController extends ResourceController
         }
 
         return $arrayT;
+    }
+
+// Define a function to filter translations by language code
+    function getTranslation($heading, $languageCode, $translationsArray)
+    {
+        // Find the index of the language in the heading array
+        $langIndex = array_search($languageCode, $heading);
+
+        if ($langIndex !== false) {
+            // Initialize an array to store filtered data
+            $filteredData = [];
+
+            // Iterate through the data arrays
+            foreach ($translationsArray as $dataArray) {
+                // Check if the current data array has a translation for the specified language
+                if (isset($dataArray[$langIndex])) {
+                    // Add the translation to the filtered data array
+                    $filteredData[$dataArray[0]] = $dataArray[$langIndex];
+                }
+            }
+
+            return $filteredData;
+        }
     }
 }

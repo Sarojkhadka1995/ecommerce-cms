@@ -7,14 +7,14 @@ use App\Services\System\ProfileService;
 
 class ProfileController extends ResourceController
 {
-    public function __construct(ProfileService $profileService)
+    public function __construct(private readonly ProfileService $profileService)
     {
         parent::__construct($profileService);
     }
 
     public function storeValidationRequest()
     {
-        return  'App\Http\Requests\system\profileRequest';
+        return 'App\Http\Requests\system\profileRequest';
     }
 
     public function moduleName()

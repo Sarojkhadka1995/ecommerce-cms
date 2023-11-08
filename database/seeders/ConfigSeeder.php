@@ -48,14 +48,5 @@ class ConfigSeeder extends Seeder
 
             ]);
         }
-
-        $settings4 = Config::where('id', 4)->first();
-        if (! isset($settings4)) {
-            Config::create([
-                'label' => 'cms login throttle minutes',
-                'type' => 'number',
-                'value' => 2,
-            ]);
-        }
     }
 }

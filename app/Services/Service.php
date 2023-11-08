@@ -15,12 +15,10 @@ class Service
      */
     protected $model;
 
-    public function __construct(Repository $repository)
+    public function __construct($repository)
     {
         $this->repository = $repository;
     }
-
-
 
     // Data for index page
     public function indexPageData($request)
@@ -54,5 +52,10 @@ class Service
             ['value' => 1, 'label' => 'Active'],
             ['value' => 0, 'label' => 'Inactive'],
         ];
+    }
+
+    public function store($request)
+    {
+        return $this->repository->create($request);
     }
 }
