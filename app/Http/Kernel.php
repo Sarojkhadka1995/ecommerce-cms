@@ -4,7 +4,9 @@ namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
-class Kernel extends HttpKernel
+class
+
+Kernel extends HttpKernel
 {
     /**
      * The application's global HTTP middleware stack.
@@ -70,12 +72,10 @@ class Kernel extends HttpKernel
         'permission' => \App\Http\Middleware\Permission::class,
         'twofa' => \App\Http\Middleware\TWOFA::class,
         'antitwofa' => \App\Http\Middleware\antiTwoFA::class,
-        'language' => \App\Http\Middleware\Language::class,
         'reset.password' => \App\Http\Middleware\CheckPasswordResetted::class,
         'pinewheel-log' => \App\Http\Middleware\LogMiddleware::class,
 
         //api middlewares
         'auth-frontend' => \App\Http\Middleware\Frontend\frontendAuth::class,
-        'lang' => \App\Http\Middleware\Frontend\Language::class,
     ];
 }

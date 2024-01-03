@@ -10,8 +10,6 @@ $userBaseUrl = '/users';
 $roleBaseUrl = '/roles';
 $loginLogsBaseUrl = '/login-logs';
 $activityLogsBaseUrl = '/activity-logs';
-$languagesBaseUrl = '/languages';
-$translationBaseUrl = '/translations';
 $emailTemplateBaseUrl = '/email-templates';
 $configBaseUrl = '/configs';
 $profileBaseUrl = '/profile';
@@ -29,10 +27,6 @@ return  [
         ],
         [
             'url' => '/logout',
-            'method' => $getMethod,
-        ],
-        [
-            'url' => '/languages/set-language/*',
             'method' => $getMethod,
         ],
         [
@@ -239,106 +233,6 @@ return  [
                         ],
                     ],
                 ],
-            ],
-        ],
-        [
-            'name' => 'Language Management',
-            'hasSubmodules' => true,
-            'icon' => "<i class='fa fa-language' aria-hidden='true'></i>",
-            'submodules' => [
-                [
-                    'name' => 'Languages',
-                    'icon' => "<i class='fa fa-language' aria-hidden='true'></i>",
-                    'hasSubmodules' => false,
-                    'route' => $languagesBaseUrl,
-                    'permissions' => [
-                        [
-                            'name' => 'View Languages',
-                            'route' => [
-                                'url' => $languagesBaseUrl,
-                                'method' => $getMethod,
-                            ],
-                        ],
-                        [
-                            'name' => 'Create Languages',
-                            'route' => [
-                                [
-                                    'url' => $languagesBaseUrl . '/create',
-                                    'method' => $getMethod,
-                                ],
-                                [
-                                    'url' => $languagesBaseUrl,
-                                    'method' => $postMethod,
-                                ],
-                            ],
-                        ],
-                        [
-                            'name' => 'Delete Languages',
-                            'route' => [
-                                'url' => $languagesBaseUrl . '/*',
-                                'method' => $deleteMethod,
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'name' => 'Translations',
-                    'icon' => "<i class='fa fa-globe' aria-hidden='true'></i>",
-                    'hasSubmodules' => false,
-                    'route' => $translationBaseUrl,
-                    'permissions' => [
-                        [
-                            'name' => 'View Translations',
-                            'route' => [
-                                'url' => $translationBaseUrl,
-                                'method' => $getMethod,
-                            ],
-                        ],
-                        [
-                            'name' => 'Create Translations',
-                            'route' => [
-                                'url' => $translationBaseUrl,
-                                'method' => $postMethod,
-                            ],
-                        ],
-                        [
-                            'name' => 'Edit Translations',
-                            'route' => [
-                                'url' => $translationBaseUrl . '/*',
-                                'method' => $putMethod,
-                            ],
-                        ],
-                        [
-                            'name' => 'Delete Translations',
-                            'route' => [
-                                'url' => $translationBaseUrl . '/*',
-                                'method' => $deleteMethod,
-                            ],
-                        ],
-                        [
-                            'name' => 'Download Sample',
-                            'route' => [
-                                'url' => $translationBaseUrl . '/download-sample',
-                                'method' => $getMethod,
-                            ],
-                        ],
-                        [
-                            'name' => 'Download Excel',
-                            'route' => [
-                                'url' => $translationBaseUrl . '/download/*',
-                                'method' => $getMethod,
-                            ],
-                        ],
-                        [
-                            'name' => 'Upload Excel',
-                            'route' => [
-                                'url' => $translationBaseUrl . '/upload/*',
-                                'method' => $postMethod,
-                            ],
-                        ],
-                    ],
-                ],
-
             ],
         ],
         [

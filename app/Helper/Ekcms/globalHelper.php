@@ -1,7 +1,6 @@
 <?php
 
 use App\Model\Config as conf;
-use App\Model\Language;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cookie;
 
@@ -70,11 +69,6 @@ function modules()
 function configTypes()
 {
     return ['file', 'text', 'textarea', 'number'];
-}
-
-function globalLanguages()
-{
-    return Language::get();
 }
 
 function setConfigCookie()

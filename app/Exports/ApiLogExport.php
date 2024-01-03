@@ -2,7 +2,6 @@
 
 namespace App\Exports;
 
-use App\Model\Language;
 use App\Model\Locale;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromCollection;

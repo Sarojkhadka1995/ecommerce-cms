@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Api;
 
-use App\Language;
 use Config;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest as IlluminateFormRequest;
