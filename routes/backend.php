@@ -50,19 +50,6 @@ Route::group(['namespace' => 'System', 'prefix' => getSystemPrefix()], function 
         Route::get('/login-logs', 'logs\LoginLogsController@index');
         Route::get('/activity-logs', 'logs\LogsController@index');
 
-        Route::resource('/languages', 'language\LanguageController', ['except' => ['show', 'edit', 'update']]);
-        Route::get('/languages/set-language/{lang}', 'language\LanguageController@setLanguage')->name('set.lang');
-        Route::get('/country-language/{country_id}', 'countryLanguage\countryLanguageController@getLanguages');
-
-        Route::resource('/translations', 'language\TranslationController', ['except' => ['show', 'edit', 'create']]);
-        Route::get('/translations/download-sample', 'language\TranslationController@downloadSample');
-        Route::get('/translations/download', 'language\TranslationController@downloadExcel');
-        Route::post('/translations/upload', 'language\TranslationController@uploadExcel');
-
-
-        Route::get('/clear-lang', function () {
-            \App\Model\Locale::truncate();
-        });
         Route::resource('/email-templates', 'systemConfig\emailTemplateController', ['except' => ['show', 'create', 'store']]);
 
         Route::resource('/configs', 'systemConfig\configController');
