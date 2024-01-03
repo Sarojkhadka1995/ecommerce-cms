@@ -177,8 +177,6 @@ V
 &app/Services/System/CountryService.php,0/c/0c05db437d62fcc3ff03a6485ba55a9b7ec49c9d
 \
 ,app/Services/System/EmailTemplateService.php,1/0/1002a6d5d5e248616bc31b6a5a7c25705b8b3513
-@
-app/RoleUser.php,6/8/685190a98abd44103f4ae67a7e6079856e8f195d
 \
 ,app/Repositories/System/ConfigRepository.php,0/d/0da171898bee77344956424b5571e8db0ad6d389
 ]
