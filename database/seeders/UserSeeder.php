@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::where('id', 1)->first();
+        $user = User::where('email',Config::get('constants.ADMIN_DEFAULT_EMAIL'))->first();
         if (!isset($user)) {
             User::create([
                 'name' => 'Admin',
