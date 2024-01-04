@@ -171,5 +171,14 @@
     "no records found": "No records found.",
     "foreach() argument must be of type array|object, string given (view: \/applications\/mamp\/htdocs\/ekcms-laravel\/resources\/views\/system\/loginlogs\/pdfbladephp)": "foreach() argument must be of type array|object, string given (View: \/Applications\/MAMP\/htdocs\/ekcms-laravel\/resources\/views\/system\/loginLogs\/pdf.blade.php)",
     "undefined variable $data (view: \/applications\/mamp\/htdocs\/ekcms-laravel\/resources\/views\/system\/loginlogs\/pdfbladephp)": "Undefined variable $data (View: \/Applications\/MAMP\/htdocs\/ekcms-laravel\/resources\/views\/system\/loginLogs\/pdf.blade.php)",
-    "no readertype or writertype could be detected make sure you either pass a valid extension to the filename or pass an explicit type": "No ReaderType or WriterType could be detected. Make sure you either pass a valid extension to the filename or pass an explicit type."
+    "no readertype or writertype could be detected make sure you either pass a valid extension to the filename or pass an explicit type": "No ReaderType or WriterType could be detected. Make sure you either pass a valid extension to the filename or pass an explicit type.",
+    "old password": "Old password",
+    "profile change password": "Profile Change Password ",
+    "the password confirmation does not match": "The password confirmation does not match.",
+    "expected response code \"250\" but got code \"530\", with message \"530 571 authentication required\"": "Expected response code \"250\" but got code \"530\", with message \"530 5.7.1 Authentication required\".",
+    "the old password didn't match": "The old password didn't match.",
+    "user creation failed please try again": "User creation failed. Please try again.",
+    "the password field is required": "The password field is required.",
+    "the password confirmation field is required": "The password confirmation field is required.",
+    "the username has already been taken": "The username has already been taken."
 }

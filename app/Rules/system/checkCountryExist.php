@@ -3,9 +3,9 @@
 namespace App\Rules\system;
 
 use App\Model\Country;
-use Illuminate\Contracts\Validation\Rule;
-
-class checkCountryExist implements Rule
+use Illuminate\Contracts\Validation\ValidationRule;
+use Closure;
+class checkCountryExist implements ValidationRule
 {
     /**
      * Create a new rule instance.
@@ -17,30 +17,11 @@ class checkCountryExist implements Rule
         //
     }
 
-    /**
-     * Determine if the validation rule passes.
-     *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @return bool
-     */
-    public function passes($attribute, $value)
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $checkExist = Country::find($value);
-        if (isset($checkExist)) {
-            return true;
-        } else {
-            return false;
+        if (!isset($checkExist)) {
+            $fail('Please select the valid country.');
         }
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return 'Please select the valid country.';
     }
 }

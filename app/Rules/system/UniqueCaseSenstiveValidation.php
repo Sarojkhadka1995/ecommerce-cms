@@ -2,16 +2,12 @@
 
 namespace App\Rules\system;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Facades\DB;
 
-class UniqueCaseSenstiveValidation implements Rule
+class UniqueCaseSenstiveValidation implements ValidationRule
 {
-    /**
-     * Create a new rule instance.
-     *
-     * @return void
-     */
     protected $table;
     protected $column;
     protected $ignoreId;
@@ -21,10 +17,9 @@ class UniqueCaseSenstiveValidation implements Rule
         $this->table = $table;
         $this->column = $column;
         $this->ignoreId = $ignoreId;
-
     }
 
-    public function passes($attribute, $value)
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $query = DB::table($this->table)
             ->where("{$this->column}", strtolower($value));
@@ -33,11 +28,9 @@ class UniqueCaseSenstiveValidation implements Rule
             $query->where('id', '<>', $this->ignoreId);
         }
 
-        return !$query->exists();
+        if ($query->exists()) {
+            $fail('The :attribute has already been taken.');
+        }
     }
 
-    public function message()
-    {
-        return "The :attribute has already been taken.";
-    }
 }

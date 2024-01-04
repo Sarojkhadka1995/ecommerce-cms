@@ -78,8 +78,6 @@ c
 ^
 .resources/views/system/profile/index.blade.php,0\e\0e3400725120d8292191a6e69ecfc83c67846d27
 [
-+app/Http/Requests/system/profileRequest.php,8\5\8530d9cb1f9acdf7e042b73db91074b9de92eca8
-[
 +resources/views/system/page/index.blade.php,f\0\f016d92bca55d7508d665f8cabe0ef2c4d4ded72
 Q
 !app/Http/Middleware/antiTwoFA.php,4\2\4227e499ca9584c0af0d3e6cddc2250f1b769af2
@@ -141,8 +139,6 @@ J
 +app/Interfaces/System/LoginLogInterface.php,a/9/a96e728d58908c1dd45c68db32ce6b6f23606e75
 Z
 *app/Interfaces/System/CountryInterface.php,d/e/deafb59fd02eeab097c79f6cda9f1fa0e4fed752
-a
-1app/Rules/system/UniqueCaseSenstiveValidation.php,4/a/4aa3cc3afdb20249846852a20094b899c6f0f1e4
 _
 /app/Http/Requests/system/translationRequest.php,0/a/0a687e26028ae7e78b94573025a8d1a3733eecf0
 D
@@ -167,10 +163,6 @@ E
 app/Model/Country.php,c/3/c395f6ad756dca1b4152ac66fea84647c86183bf
 G
 app/Model/Loginlogs.php,a/e/ae826db6290e818b07cd09573dee5851c55b25bd
-C
-app/Http/Kernel.php,4/0/405f423e61f666bcedb754ae8befdce9e746176e
-4
-.env,3/c/3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
 M
 public/filemanager/dialog.php,8/6/86c4c265afdb3603ee1e6333951dbf781aaed058
 T
@@ -183,8 +175,6 @@ e
 5resources/views/system/layouts/editorScript.blade.php,6/c/6c4cf8dd8a62a233d0b7118d65ebdae16c4b8648
 ~
 Ndatabase/migrations/2023_08_22_125833_add_place_holders_to_email_templates.php,1/5/1541a9769d6a7c90567a4221856ecc11f70e5940
-<
-app/User.php,5/1/5158cc6821d0344345606af2834807beae093242
 K
 app/Model/EmailTemplate.php,f/d/fd023d5bc6fc1afd939f77ecba563b39ee567233
 X
@@ -195,8 +185,6 @@ Q
 !app/Helper/Ekcms/globalHelper.php,2/c/2c8ea60b95b552485f43da37af7941c5b1b77def
 D
 app/Model/Config.php,b/f/bf44822381370f77a9e0b51993d3d0b28438c3dc
-O
-app/Rules/system/ConfigRule.php,a/0/a0ead60d73617dcf5b6c2c8e5587d71e8c9f7dcf
 r
 Bresources/views/components/system/form/form-inline-group.blade.php,8/8/88284175b29748ddff3749aab7e1d4bb8d4d665d
 m
@@ -319,8 +307,6 @@ Z
 *app/Http/Requests/system/ConfigRequest.php,9/2/92b54afddcbac3608d01ea1870d2b2df3f9af006
 a
 1app/Http/Requests/system/emailTemplateRequest.php,7/3/733df9befeaeb6595d001a811e6ba7c634d8d79f
-X
-(app/Http/Requests/system/pageRequest.php,5/d/5dd986f83f9da87f60c2151df20718b706421a0e
 D
 config/cmsConfig.php,9/2/9216b2b3d78b8f4c40acf0c7f9e051a837cab45c
 c
@@ -335,8 +321,6 @@ W
 'app/Services/System/LanguageService.php,9/3/9315e4e283a47a44b6d74e7ef06166ca868f12c4
 ^
 .resources/views/system/language/form.blade.php,5/d/5de27dd71a953a3a0641b6d6d13440409c8f9fbe
-<
-.env.example,d/4/d4dae00d11854b35292c2b8a30515a9a0aa2d871
 k
 ;app/Http/Controllers/System/language/LanguageController.php,e/a/eae4fe0425ee1ac28adad10f6a9754cbb820e04a
 :
@@ -358,8 +342,6 @@ D
 public/js/landing.js,1/4/145df4f18d5659864cc6123db1c5f09c4529a522
 T
 $resources/asset/system/js/landing.js,d/6/d6d5b1b48172c91b174166befc007f8fe51d8dc8
->
-webpack.mix.js,7/3/73a5f9e927f70e0292701d67f61dbff4fb17febc
 ]
 -resources/asset/system/js/theme-customizer.js,e/6/e64b08453b24fe0a0274d90ae2e7ff6272a40fb0
 _
@@ -370,7 +352,5 @@ e
 5resources/views/system/layouts/layoutFooter.blade.php,f/4/f4c02e42c8ffe009e2e52bac947078ec98bd8129
 S
 #resources/asset/system/js/system.js,6/a/6a6f0869e01bb6c651f076645ee5f859a9b6e6e9
-<
-package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 Q
 !database/seeders/ConfigSeeder.php,a/4/a49dfdc6ceb2f0889ee392fba0b1029dd1d59aea
