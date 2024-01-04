@@ -3,39 +3,21 @@
 namespace App\Rules\system;
 
 use App\User;
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
+use Closure;
 
-class CheckOtpRule implements Rule
+class CheckOtpRule implements ValidationRule
 {
-    /**
-     * Create a new rule instance.
-     *
-     * @return void
-     */
     public function __construct($email)
     {
         $this->email = $email;
     }
 
-    /**
-     * Determine if the validation rule passes.
-     *
-     * @param string $attribute
-     * @param mixed $value
-     * @return bool
-     */
-    public function passes($attribute, $value)
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        return User::where('email', $this->email)->where('otp_code', $value)->exists();
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return 'Invalid otp code.';
+        $user = User::where('email', $this->email)->where('otp_code', $value)->exists();
+        if (!$user) {
+            $fail('Invalid otp code.');
+        }
     }
 }

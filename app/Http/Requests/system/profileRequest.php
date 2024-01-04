@@ -26,11 +26,7 @@ class profileRequest extends FormRequest
      */
     public function rules(Request $request)
     {
-//        return [
-//            'old_password' => ['required', new checkOldPassword],
-//            'password' => 'required|confirmed|min:6',
-//            'password_confirmation' => 'required',
-//        ];
+
         $id = $request->id; // Assuming your route parameter is named 'page'
 
         return [

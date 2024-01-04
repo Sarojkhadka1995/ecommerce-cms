@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class pageRequest extends FormRequest
 {
