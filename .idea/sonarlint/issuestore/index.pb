@@ -3,8 +3,6 @@ B
 config/session.php,e/1/e1025c27321c40291fc56c4990ab2088a43c3269
 l
 <resources/views/components/system/form/input-radio.blade.php,3/9/39e8bac6be42d3efe1963d043ddbc3c10a37414e
-C
-app/Traits/Mail.php,e/b/eb7f5d1932ec90c558a7e74a5f592fa52b33f52e
 J
 public/js/jquery.ui.min.js,e/7/e78812c3b596270807e9617441f27215ea543bed
 a
@@ -57,18 +55,6 @@ X
 public/.htaccess,c\9\c9fe70f275af093c7fb3ed73b451fadc91069bac
 X
 (app/Http/Requests/system/userRequest.php,8\5\85bd764152996d0ead0c4f7a10dc5f312ba8bb53
-W
-'app/Mail/system/AccountCreatedEmail.php,1\c\1c33b829502c32f381ffb5ab333d3740073f35bd
-V
-&app/Mail/system/PasswordResetEmail.php,5\2\523aa9944b6cf15a8074b6ac021160e6bdd62e05
-T
-$app/Mail/system/PasswordSetEmail.php,8\f\8f6ea9f8eeedd966d9efd6bf98448ae5fa1c91b3
-R
-"app/Mail/system/ResendOtpEmail.php,f\8\f81d51c635102287054333aaad02a6091fd3f4d9
-L
-app/Mail/system/TestMail.php,5\4\54685f582bfb335c1212d2aec905123c5fc38f20
-N
-app/Mail/system/TwoFAEmail.php,7\9\7954439ef81024824a0880ef7ade285b026363be
 e
 5resources/views/system/layouts/layoutHeader.blade.php,a\e\aea1ec041aa2b6b31c1b4e766a64ebf50e7d5cb3
 f
@@ -177,8 +163,6 @@ e
 Ndatabase/migrations/2023_08_22_125833_add_place_holders_to_email_templates.php,1/5/1541a9769d6a7c90567a4221856ecc11f70e5940
 K
 app/Model/EmailTemplate.php,f/d/fd023d5bc6fc1afd939f77ecba563b39ee567233
-X
-(database/seeders/EmailTemplateSeeder.php,2/d/2de3a7c9393840cefb5846d1e6f292523c3e05b2
 j
 :resources/views/components/system/form/text-area.blade.php,c/4/c4d077c6598554f6f9dc4b9aebf858f0a766a190
 Q
@@ -202,8 +186,6 @@ Z
 a
 1resources/views/system/partials/sidebar.blade.php,d/7/d7088dc027c77ff434085e1b5017525422cdb941
 Z
-*resources/views/system/role/form.blade.php,4/9/4954195a8cad582d9e67ce3df5100ae8b6940f19
-Z
 *resources/views/system/role/edit.blade.php,0/5/05f253bc41de4cd8cf253430ae94ad8e875afe68
 \
 ,resources/views/system/role/create.blade.php,8/d/8d6549f8062dce31356cf8616061dae635c0cbe3
@@ -219,8 +201,6 @@ b
 2resources/views/system/translation/index.blade.php,9/e/9eef6b220416e8692365715ab17034b12597a969
 [
 +resources/views/system/auth/login.blade.php,9/4/9412b766e59f873861c8eb5f770b4dbdead19796
-V
-&app/Helper/Ekcms/translationHelper.php,c/8/c89cb4c7e4129bbddac9e990d86c736226634823
 U
 %app/Services/System/ConfigService.php,4/d/4d5df6092b9d9b094b2d129457be814838d05c9b
 ]
@@ -289,8 +269,6 @@ t
 Dapp/Http/Controllers/System/systemConfig/emailTemplateController.php,1/d/1d78078ebfc711fd3a1df825f54996a7478deeeb
 c
 3app/Http/Controllers/System/user/RoleController.php,3/2/324996371a4017d4b8df8c111ccd16a76085d1e2
-c
-3app/Http/Controllers/System/user/UserController.php,0/b/0bf78f7b52c3c5b51115280ca6c5ddda9d4560ba
 b
 2app/Http/Controllers/System/MailTestController.php,9/b/9b7661b004ba75f760402cb9aedd87b4d643a0da
 _

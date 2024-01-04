@@ -15,7 +15,7 @@ function setRoleCache($user)
 }
 
 function getRoleCache($user)
-{
+{  
     return \Cache::get('role-' . $user->id);
 }
 

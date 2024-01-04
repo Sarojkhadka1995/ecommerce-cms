@@ -6,7 +6,10 @@ use App\Traits\Mail;
 use Cookie;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Attachment;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class PasswordSetEmail extends Mailable
@@ -26,17 +29,33 @@ class PasswordSetEmail extends Mailable
     }
 
     /**
-     * Build the message.
-     *
-     * @return $this
+     * Get the message content definition.
      */
-    public function build()
+    public function content(): Content
     {
         $content = $this->parseEmailTemplate([
             '%user_name%' => $this->user->name,
             '%password_set_link%' => $this->user->getPasswordSetResetLink(true, $this->token),
         ], 'PasswordSetLinkEmail', $this->locale);
 
-        return $this->view('system.mail.index', compact('content'));
+        return new Content(
+            view: 'system.mail.index',
+            with: ['content' => $content],
+        );
     }
+
+    /**
+     * Get the attachments for the message.
+     *
+     * @return array
+     */
+    public function attachments(): array
+    {
+//        return [
+//            Attachment::fromPath(public_path('/images/logo.png'))
+//        ];
+
+        return [];
+    }
+
 }

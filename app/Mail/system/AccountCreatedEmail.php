@@ -7,6 +7,8 @@ use Cookie;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class AccountCreatedEmail extends Mailable
@@ -25,16 +27,27 @@ class AccountCreatedEmail extends Mailable
     }
 
     /**
-     * Build the message.
-     *
-     * @return $this
+     * Get the message content definition.
      */
-    public function build()
+    public function content(): Content
     {
         $content = $this->parseEmailTemplate([
             '%user_name%' => $this->user->name,
         ], 'AccountCreateEmail', $this->locale);
 
-        return $this->view('system.mail.index', compact('content'));
+        return new Content(
+            view: 'system.mail.index',
+            with: ['content' => $content],
+        );
+    }
+
+    /**
+     * Get the attachments for the message.
+     *
+     * @return array
+     */
+    public function attachments(): array
+    {
+        return [];
     }
 }
