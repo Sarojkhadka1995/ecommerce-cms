@@ -7,6 +7,7 @@ use Cookie;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
 
 class TwoFAEmail extends Mailable
@@ -25,17 +26,18 @@ class TwoFAEmail extends Mailable
     }
 
     /**
-     * Build the message.
-     *
-     * @return $this
+     * Get the message content definition.
      */
-    public function build()
+    public function content(): Content
     {
         $content = $this->parseEmailTemplate([
             '%user_name%' => $this->user->name,
             '%verification_code%' => session()->get('verification_code'),
         ], 'TwoFAEmail', $this->locale);
 
-        return $this->view('system.mail.index', compact('content'));
+        return new Content(
+            view: 'system.mail.index',
+            with: ['content' => $content],
+        );
     }
 }

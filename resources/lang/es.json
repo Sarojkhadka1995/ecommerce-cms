@@ -180,5 +180,6 @@
     "user creation failed please try again": "User creation failed. Please try again.",
     "the password field is required": "The password field is required.",
     "the password confirmation field is required": "The password confirmation field is required.",
-    "the username has already been taken": "The username has already been taken."
+    "the username has already been taken": "The username has already been taken.",
+    "retype password": "Retype Password"
 }

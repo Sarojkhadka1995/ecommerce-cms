@@ -7,6 +7,7 @@ use Cookie;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
 
 class ProfileUpdateEmail extends Mailable
@@ -24,17 +25,14 @@ class ProfileUpdateEmail extends Mailable
         $this->locale = Cookie::get('lang');
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
-    {
-        $content = $this->parseEmailTemplate([
-            '%user_name%' => $this->user->name,
-        ], 'ProfileUpdateEmail', $this->locale);
+   public function content(): Content{
+       $content = $this->parseEmailTemplate([
+           '%user_name%' => $this->user->name,
+       ], 'ProfileUpdateEmail', $this->locale);
 
-        return $this->view('system.mail.index', compact('content'));
-    }
+       return new Content(
+           view: 'system.mail.index',
+           with: ['content' => $content],
+       );
+   }
 }
