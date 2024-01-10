@@ -23,26 +23,19 @@ class Service
     // Data for index page
     public function indexPageData($request)
     {
-        return [
-            'items' => $this->repository->getAllData($request),
-        ];
+        return $this->repository->indexPageData($request);
     }
 
     // Data for create page
     public function createPageData($request)
     {
-        return [
-            'status' => $this->status(),
-        ];
+        return $this->repository->createPageData($request);
     }
 
     // Data for edit page
     public function editPageData($request, $id)
     {
-        return [
-            'item' => $this->repository->itemByIdentifier($id),
-            'status' => $this->status(),
-        ];
+        return $this->repository->editPageData($request, $id);
     }
 
 
